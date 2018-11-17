@@ -1,0 +1,105 @@
+$base-font-family: 'Lato', sans-serif;
+$heading-font-family: 'Alegreya', serif;
+// $base-font-family: 'Noto Sans', sans-serif;
+// $heading-font-family: 'Fjalla One', sans-serif;
+
+html, .root {
+  font-size: calc(.9em + .5vw); //16px @ 320px
+  // font-size: 125%;
+  line-height: 1.5;
+}
+body, .article {
+  font-family: $base-font-family;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6 {
+  font-weight: 400;
+  font-family: $heading-font-family;
+}
+
+h1, .h1 {
+  font-size: 3.375rem;
+  line-height: 4.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 3rem;
+  transform: translateY(.65rem);
+}
+h2, .h2 {
+  font-size: 2.25rem;
+  line-height: 3rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  transform: translateY(.25rem);
+}
+h3, .h3 {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0rem;
+  transform: translateY(-.2rem);
+}
+
+h4, .h4 {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0rem;
+}
+h5, .h5 {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0rem;
+}
+p, ul, ol, pre, table, blockquote {
+  margin-top: 0rem;
+  margin-bottom: 1.5rem;
+}
+ul ul, ol ol, ul ol, ol ul {
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+}
+
+/* Let's make sure all's aligned */
+hr, .hr {
+  border: 1px solid;
+  margin: -1px 0;
+}
+a, b, i, strong, em, small, code {
+  line-height: 0;
+}
+sub, sup {
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+
+.large {
+  font-size: 1.5em;
+  font-weight: 300;  
+}
+
+// .f-n {
+//   margin-bottom: 4.5rem;
+//   font-family: 'Noto Sans', sans-serif;
+//   h1, h2, h3 {
+//     font-family: 'Fjalla One', sans-serif;
+//   }
+// }
+// .a-l {
+//   margin-bottom: 4.5rem;
+//   font-family: 'Lato', sans-serif;
+//   .h1,h2,h3,h4,h5 { 
+//     font-family: 'Alegreya', serif;
+//   }
+// }
