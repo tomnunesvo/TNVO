@@ -1,43 +1,111 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta class="name"></meta>
-	<title><%= meta.title %></title>
-	<meta name="description" content="<%= meta.description %>">
-	<link rel="canonical" href="<%= meta.url %>">
-	<meta property="og:locale" content="en_US">
-	<meta property="og:type" content="website">
-	<meta property="og:title" content="<%= meta.name %>">
-	<meta property="og:description" content="<%= meta.descripion %>">
-	<meta property="og:url" content="<%= meta.url %>">
-	<meta property="og:site_name" content="<%= meta.name %>">
-	<meta property="og:image" content="<%= meta.socialImage %>">
-	<meta property="og:image:secure_url" content="<%= meta.url %>">
-	<meta name="twitter:card" content="<%= meta.socialImageLarge %>">
-	<meta name="twitter:description" content="<%= meta.descripion %>">
-	<meta name="twitter:title" content="<%= meta.name %>">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta class="name"></meta>
+  <title>
+    <%= meta.title %>
+  </title>
+  <meta name="description" content="<%= meta.description %>">
+  <link rel="canonical" href="<%= meta.url %>">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="<%= meta.name %>">
+  <meta property="og:description" content="<%= meta.descripion %>">
+  <meta property="og:url" content="<%= meta.url %>">
+  <meta property="og:site_name" content="<%= meta.name %>">
+  <meta property="og:image" content="<%= meta.socialImage %>">
+  <meta property="og:image:secure_url" content="<%= meta.url %>">
+  <meta name="twitter:card" content="<%= meta.socialImageLarge %>">
+  <meta name="twitter:description" content="<%= meta.descripion %>">
+  <meta name="twitter:title" content="<%= meta.name %>">
   <meta name="twitter:image" content="<%= meta.socialImage %>">
   <link href="https://fonts.googleapis.com/css?family=Alegreya|Lato:300,400" rel="stylesheet">
   <!-- <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Noto+Sans" rel="stylesheet"> -->
-	<link rel="stylesheet" href="css/application.css">
-	<style>
-		.show-vr-grid {
-			background: linear-gradient(rgba(0, 119, 179, 0.2) 1px, transparent 1px) 0 0 / 1.5rem 1.5rem;
-		}
-	</style>
+  <link rel="stylesheet" href="css/application.css">
+  <style>
+    .show-vr-grid {
+      background: linear-gradient(rgba(0, 119, 179, 0.2) 1px, transparent 1px) 0 0 / 1.5rem 1.5rem;
+    }
+  </style>
 </head>
 
 <body>
-	<div style="padding:0 2rem;">
-    <div>
-      <h2>Savor the Sound</h2>
-      <p class="large">Smooth, balanced, complex, with hints of spice and nutty undertones</p>
-      <p>For over three decades, Tom has been an actor, singer, software designer, corporate denizen, husband and father. He draws on his broad range of experience to produce a sound that blends authority, trustworthiness, and credibility with approachable likability.</p>
-      <p>Tom is known for his professionalism and dedication to the quality of his work. His focus is always the success of your project. Tom takes his work seriously, but never himself. You will find him a pleasure to work with and good for a few laughs.</p> 
-      <p>Sourced from his home studio in the Hartford, CT area, Tom produces high quality digital recordings with fast turnaround. And he is just a 2-3 hour commute from NYC and Boston.</p>
-    </div>
-</div>
+  <header>
+    <div class="container">
+      <div>
+        <span>Logo</span>
+      </div>
+      <div>
+        <a href="emailTom" aria-label="<%= emailLabel %>">
+          <span class="obfuscatedContact" aria-hidden="true">
+            <%- obfuscatedEmail %>
+          </span>
+        </a>
 
+        <a href="phoneTom" aria-label="<%= phoneLabel %>">
+          <span class="obfuscatedContact" aria-hidden="true">
+            <%- obfuscatedPhone %>
+          </span>
+        </a>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <div class="section__hero">
+      <div class="container">
+        <h1>
+          <div>Savor the Sound</div>
+          <div>of</div>
+          <div>
+            <span>Tom Nunes</span>
+            <span>Voiceover</span>
+          </div>
+        </h1>
+        <h2 class="sr-only">Demos</h2>
+        <p>TBD - add demos here</p>
+      </div>
+    </div>
+    <div class="section__about">
+      <div class="container">
+        <h2>About</h2>
+        <p class="large">Smooth, balanced, complex, with hints of spice and nutty undertones</p>
+        <p>For over three decades, Tom has been an actor, singer, software designer, corporate denizen, husband and father.
+          He draws on his broad range of experience to produce a sound that blends authority, trustworthiness, and credibility
+          with approachable likability.</p>
+        <p>Tom is known for his professionalism and dedication to the quality of his work. His focus is always the success of
+          your project. Tom takes his work seriously, but never himself. You will find him a pleasure to work with and good
+          for a few laughs.</p>
+        <p>Sourced from his home studio in the Hartford, CT area, Tom produces high quality digital recordings with fast turnaround.
+          And he is just a 2-3 hour commute from NYC and Boston.</p>
+      </div>
+    </div>
+    <div class="section__contact">
+      <div class="container">
+        <h2>Contact</h2>
+      </div>
+    </div>
+  </main>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div>&copy;
+        <span id="copyrightYear"></span> Tom Nunes</div>
+      <a href="emailTom" aria-label="<%= emailLabel %>">
+        <span class="obfuscatedContact" aria-hidden="true">
+          <%- obfuscatedEmail %>
+        </span>
+      </a>
+      <a href="phoneTom" aria-label="<%= phoneLabel %>">
+        <span class="obfuscatedContact" aria-hidden="true">
+          <%- obfuscatedPhone %>
+        </span>
+      </a>
+    </div>
+  </footer>
+
+  <script src="js/tnvo.js"></script>
 </body>

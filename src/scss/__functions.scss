@@ -1,0 +1,13 @@
+@function px2em($px) {
+  @if type-of($px) == 'number' and not unitless($px) {
+    $px: $number / ($number * 0 + 1);
+  }
+  @return $px * 1rem / 16;
+}
+
+@function px2rem($px) {
+  @if type-of($px) == 'number' and not unitless($px) {
+    $px: $number / ($number * 0 + 1);
+  }
+  @return $px * 1rem / 20;
+}

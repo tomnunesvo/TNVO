@@ -6,6 +6,7 @@ $heading-font-family: 'Alegreya', serif;
 html, .root {
   font-size: calc(.9em + .5vw); //16px @ 320px
   // font-size: 125%;
+  font-display: swap;
   line-height: 1.5;
 }
 body, .article {
@@ -70,7 +71,7 @@ hr, .hr {
   margin: -1px 0;
 }
 a, b, i, strong, em, small, code {
-  line-height: 0;
+  line-height: inherit;
 }
 sub, sup {
   line-height: 0;
