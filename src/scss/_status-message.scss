@@ -1,0 +1,51 @@
+.status-message {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: -.5rem;
+  background-color: $status-message-bgcolor;
+  color: $status-message-color;
+  padding: 2rem 2rem 2.5rem;
+  z-index: $z-index-status;
+  transition: transform .5s cubic-bezier(.215,.61,.355,1.25);
+
+  .container {
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  a, a:visited, a:focus, a:hover {
+    color:inherit;
+    text-decoration: underline;
+  }
+
+  &:empty {
+    display: none;
+  }
+
+  &.out-of-view {
+    transform: translateY(100%);
+    &:not(.quickly) {
+      transition-duration: 2s;
+    }
+  }
+
+  &__dismiss {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+    background-color: transparent;
+    color: inherit;
+    font-size: 1.5rem;
+    font-weight: normal;
+    line-height: 1;
+    width: px2rem(40);
+    opacity: .5;
+
+    &:hover, &:focus {
+      opacity: 1;
+    }
+  }
+}
+

@@ -1,0 +1,53 @@
+$demo-progressbar-height: 1.5rem;
+.demo-player {
+  max-width: 30rem;
+  &__overall-progressbar {
+    height: $demo-progressbar-height;
+    margin: 1rem auto;
+    background-color: #ddd;
+    display: flex;
+  }
+  
+  &__track-progressbars {
+    flex: 1 0 auto;
+    display: flex;
+  }
+  &__track-progressbar {
+    height: 100%;
+    flex: 1 0 auto;
+    display: block;
+    background-image: linear-gradient(to right, #999, #999); //todo: change to data:svg
+    background-size: 0;
+    background-repeat: no-repeat;
+    position: relative;
+    // transition: background-size .25s linear;
+
+    &:not(.immediate) {
+      transition: background-size .25s linear;
+    }
+
+    &:not(:last-of-type)::after {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background-color: #bbb;
+      border-radius: 50%;
+      position: absolute;
+      top: -8px;
+      right: -2px;
+    }
+
+    &[aria-valuenow="100"] {
+      background-size: 100%;
+    }
+
+  }
+
+  &__play-pause,
+  &__show-tracks,
+  &__download {
+    width: $demo-progressbar-height;
+    border: 0;
+    background-color: #bbb;
+  }
+}

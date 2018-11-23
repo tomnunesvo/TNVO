@@ -1,3 +1,5 @@
 import './polyfills'
 import './antispam'
+import './contact'
 import './copyright'
+import './demo-player'

@@ -10,13 +10,17 @@
     "clean": "del-cli dist",
     "html": "node build/html.js",
     "js": "rollup --config build/rollup.config.js --sourcemap",
+    "js:exp": "rollup src/js/tnvo.js src/js/contact.js -f  --dir dist --experimentalCodeSplitting --sourcemap",
     "sass": "node-sass src/scss/application.scss --output-style expanded --source-map true --precision 6 dist/css/application.css",
+    "copy": "run-p copy:*",
+    "copy:audio": "copyfiles -u 2 src/audio/**.* dist/audio",
     "serve": "http-server ./dist --silent -p 3000 -c-1 -o",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "npm-run-all --parallel watch:*",
-    "watch:html": "nodemon -w src -e html -d 3 -x \"npm run html\"",
-    "watch:js": "nodemon -w src -e js -d 3 -x \"npm run js\"",
-    "watch:scss": "nodemon -w src -e scss -d 3 -x \"npm run sass\""
+    "watch:html": "nodemon -w src -e html -d 2 -x \"npm run html\"",
+    "watch:js": "nodemon -w src -e js -d 2 -x \"npm run js\"",
+    "watch:scss": "nodemon -w src -e scss -d 2 -x \"npm run sass\"",
+    "watch:audio": "nodemon -w src/audio -d 2 -x \"npm run copy:audio\""
   },
   "repository": {
     "type": "git",
@@ -31,6 +35,7 @@
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
+    "copyfiles": "^2.1.0",
     "del": "^3.0.0",
     "del-cli": "^1.1.0",
     "ejs": "^2.6.1",

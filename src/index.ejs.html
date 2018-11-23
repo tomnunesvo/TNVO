@@ -53,19 +53,28 @@
       </div>
     </div>
   </header>
+  <div id="status-message" class="status-message" role="status" aria-live="polite"></div>
   <main id="main">
     <div class="section__hero">
       <div class="container">
-        <h1>
-          <div>Savor the Sound</div>
-          <div>of</div>
-          <div>
-            <span>Tom Nunes</span>
-            <span>Voiceover</span>
+        <div>
+          <h1>
+              <div>
+                <span>Tom Nunes</span>
+                <span>Voiceover</span>
+              </div>
+            </h1>
+            <h2>Savor the Sound</h2>
+        </div>
+        
+        <div>
+          <div class="demo-player">
+            <span class="demo-player__audio" data-audio="2_honest" data-duration="9" hidden></span>
+            <span class="demo-player__audio" data-audio="3_earnest" data-duration="6" hidden></span>
+            <span class="demo-player__audio" data-audio="4_dramatic" data-duration="8" hidden></span>
+            <span class="demo-player__audio" data-audio="1" data-duration="17" hidden></span>
           </div>
-        </h1>
-        <h2 class="sr-only">Demos</h2>
-        <p>TBD - add demos here</p>
+        </div>
       </div>
     </div>
     <div class="section__about">
@@ -85,6 +94,26 @@
     <div class="section__contact">
       <div class="container">
         <h2>Contact</h2>
+        <div>
+          <form id="contactForm" method="post" action="https://www.mydomain.com/scripts/formemail.bml" novalidate>
+            <div class="form-field">
+              <label class="form-field__label" for="contact-name">Your name</label>
+              <input class="form-field__control" id="contact-name" type="text" name="name">
+            </div>
+            <div class="form-field">
+              <label class="form-field__label" for="contact-email">Your email</label>
+              <input class="form-field__control" id="contact-email" type="email" name="email">
+            </div>
+            <div class="form-field">
+              <label class="form-field__label" for="contact-message">How can I help?</label>
+              <textarea  class="form-field__control" id="contact-message" type="text" name="message" rows="6"></textarea>
+            </div>
+            <input class="sr-only" type="text" name="subject" tabindex="-1" autocomplete="off">
+            <div class="form-buttons">
+              <button class="button--primary" type="submit">Send</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </main>
@@ -107,5 +136,7 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/bluebird/latest/bluebird.core.min.js"></script>
+  <script src="https://github.com/github/fetch/releases/download/v3.0.0/fetch.umd.js"></script>
   <script src="js/tnvo.js"></script>
 </body>
