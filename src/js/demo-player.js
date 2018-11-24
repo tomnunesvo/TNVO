@@ -56,20 +56,15 @@ class DemoTrack {
     const progressbar = this.getProgressbar()
     const progress = Math.floor((this.audio.currentTime / this.audio.duration) * 100)
     const timeDiff = Math.abs((this._lastCurrentTime || 0) - this.audio.currentTime)
-    if (progressbar.classList.contains('immediate')) {
-      console.log('ha!')
-      return
-    }
 
     const finish = () => {
       progressbar.style.backgroundSize = `${progress}% 100%`
       this._lastCurrentTime = this.audio.currentTime
       if (progressbar.classList.contains('immediate')) {
-        setTimeout(()=> { progressbar.classList.remove('immediate') }, 300 )
+        setTimeout(() => { progressbar.classList.remove('immediate') }, 300)
       }
     }
     if (timeDiff > .5) {
-      console.log('immediate')
       progressbar.classList.add('immediate')
       setTimeout(finish, 0)
     }
@@ -87,7 +82,6 @@ class DemoTrack {
           prevTrack = false
         } else {
           track.isActivePlayer = false
-          track._suspendEndedHandler = true
           track.audio.pause()
           track.audio.currentTime = prevTrack ? track.audio.duration : 0
         }
@@ -116,7 +110,7 @@ class DemoTrack {
   }
 
   isPlaying() {
-    return !(this.audio.paused || this.audio.ended) 
+    return !(this.audio.paused || this.audio.ended)
   }
 
   _bind() {
@@ -125,15 +119,22 @@ class DemoTrack {
 
     audio.addEventListener('timeupdate', () => {
       const transtionDuration = 200
-      if (this.audio.currentTime < this.audio.duration) {
-        this._suspendEndedHandler = false
-      }
       this.setProgress()
     })
 
     audio.addEventListener('ended', () => {
-      if (this.isActivePlayer && this._next) {
-        this._next.play()
+      if (this.isActivePlayer) {
+        if (this._next) {
+          this._next.play()
+        } else {
+          // after a slight delay, reset each track to 0
+          setTimeout(() => {
+            this._visitEach((track) => {
+              track.isActivePlayer = false
+              track.audio.currentTime = 0
+            })
+          }, 600)
+        }
       }
       this.isActivePlayer = false
     })
@@ -222,7 +223,7 @@ class DemoPlayer {
     }
   }
 
-  _bind () {
+  _bind() {
     this._getPlayPauseButton().addEventListener('click', this.toggle.bind(this))
     const onAudioStateChange = this._setPlayPauseState.bind(this)
     for (let i = 0; i < this._tracks.length; i++) {
@@ -233,11 +234,11 @@ class DemoPlayer {
 
   }
 
-  _getPlayPauseButton () {
+  _getPlayPauseButton() {
     return this._playerEl.querySelector('.demo-player__play-pause')
   }
 
-  _setPlayPauseState () {
+  _setPlayPauseState() {
     var isPlaying = false
     for (let i = 0; i < this._tracks.length; i++) {
       if (this._tracks[i].isPlaying()) {
