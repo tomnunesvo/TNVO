@@ -27,7 +27,7 @@ class DemoTrack {
   constructor(audioEl, previousTrack) {
     this.id = nextDemoTrackId++
     const src = `audio/${audioEl.getAttribute('data-audio')}.mp3`
-    const audio = this._audio = new Audio(src)
+    const audio = this.audio = new Audio(src)
     audio.load()
     this.duration = audioEl.getAttribute('data-duration') * 1
     this._progress = 0
@@ -54,8 +54,8 @@ class DemoTrack {
   setProgress() {
     const ACTIVE_PLAYER_CLS = 'activePlayer'
     const progressbar = this.getProgressbar()
-    const progress = Math.floor((this._audio.currentTime / this._audio.duration) * 100)
-    const timeDiff = Math.abs((this._lastCurrentTime || 0) - this._audio.currentTime)
+    const progress = Math.floor((this.audio.currentTime / this.audio.duration) * 100)
+    const timeDiff = Math.abs((this._lastCurrentTime || 0) - this.audio.currentTime)
     if (progressbar.classList.contains('immediate')) {
       console.log('ha!')
       return
@@ -63,7 +63,7 @@ class DemoTrack {
 
     const finish = () => {
       progressbar.style.backgroundSize = `${progress}% 100%`
-      this._lastCurrentTime = this._audio.currentTime
+      this._lastCurrentTime = this.audio.currentTime
       if (progressbar.classList.contains('immediate')) {
         setTimeout(()=> { progressbar.classList.remove('immediate') }, 300 )
       }
@@ -88,25 +88,44 @@ class DemoTrack {
         } else {
           track.isActivePlayer = false
           track._suspendEndedHandler = true
-          track._audio.pause()
-          track._audio.currentTime = prevTrack ? track._audio.duration : 0
+          track.audio.pause()
+          track.audio.currentTime = prevTrack ? track.audio.duration : 0
         }
       })
     }
-    this._audio.play()
+    this.audio.play()
   }
 
   pause() {
-    this._audio.pause()
+    this.audio.pause()
+  }
+
+  toggle() {
+    const audio = this.audio
+    if (this.isActivePlayer) {
+      if (audio.paused || audio.ended) {
+        audio.play()
+      }
+      else {
+        audio.pause()
+      }
+    }
+    else {
+      this.play()
+    }
+  }
+
+  isPlaying() {
+    return !(this.audio.paused || this.audio.ended) 
   }
 
   _bind() {
-    const audio = this._audio
+    const audio = this.audio
     const progressbar = this._progressbar
 
     audio.addEventListener('timeupdate', () => {
       const transtionDuration = 200
-      if (this._audio.currentTime < this._audio.duration) {
+      if (this.audio.currentTime < this.audio.duration) {
         this._suspendEndedHandler = false
       }
       this.setProgress()
@@ -119,20 +138,7 @@ class DemoTrack {
       this.isActivePlayer = false
     })
 
-    progressbar.addEventListener('click', () => {
-      const audio = this._audio
-      if (this.isActivePlayer) {
-        if (audio.paused || audio.ended) {
-          audio.play()
-        }
-        else {
-          audio.pause()
-        }
-      }
-      else {
-        this.play()
-      }
-    })
+    progressbar.addEventListener('click', this.toggle.bind(this))
   }
 
   _activeTrack() {
@@ -175,6 +181,7 @@ class DemoTrack {
 
 class DemoPlayer {
   constructor(playerEl) {
+    this._playerEl = playerEl
     playerEl.insertAdjacentHTML('afterbegin', renderPlayer())
     //for each track...
     const audioTracks = playerEl.querySelectorAll('.demo-player__audio')
@@ -196,6 +203,48 @@ class DemoPlayer {
       pctRemaining -= width
       totalDuration -= tracks[i].duration
     }
+    this._bind()
+  }
+
+  toggle() {
+    var activeTrack = null
+    for (let i = 0; i < this._tracks.length; i++) {
+      if (this._tracks[i].isActivePlayer) {
+        activeTrack = this._tracks[i]
+        break;
+      }
+    }
+    if (activeTrack) {
+      activeTrack.toggle()
+    }
+    else if (this._tracks[0]) {
+      this._tracks[0].play()
+    }
+  }
+
+  _bind () {
+    this._getPlayPauseButton().addEventListener('click', this.toggle.bind(this))
+    const onAudioStateChange = this._setPlayPauseState.bind(this)
+    for (let i = 0; i < this._tracks.length; i++) {
+      const audio = this._tracks[i].audio
+      audio.addEventListener('timeupdate', onAudioStateChange)
+      audio.addEventListener('ended', onAudioStateChange)
+    }
+
+  }
+
+  _getPlayPauseButton () {
+    return this._playerEl.querySelector('.demo-player__play-pause')
+  }
+
+  _setPlayPauseState () {
+    var isPlaying = false
+    for (let i = 0; i < this._tracks.length; i++) {
+      if (this._tracks[i].isPlaying()) {
+        isPlaying = true
+      }
+    }
+    this._getPlayPauseButton().classList[isPlaying ? 'add' : 'remove']('pause')
   }
 }
 
