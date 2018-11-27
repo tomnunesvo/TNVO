@@ -39,6 +39,7 @@
     "del": "^3.0.0",
     "del-cli": "^1.1.0",
     "ejs": "^2.6.1",
+    "event-stream": "3.3.4",
     "fs-extra": "^7.0.1",
     "http-server": "^0.11.1",
     "node-sass": "^4.10.0",
