@@ -36,6 +36,7 @@ class DemoTrack {
       previousTrack._next = this
     }
     this._lastTimeUpdate = 0
+    this._audioEl = audioEl
   }
 
   getProgressbar() {
@@ -59,10 +60,12 @@ class DemoTrack {
 
     const finish = () => {
       progressbar.style.backgroundSize = `${progress}% 100%`
+      progressbar.setAttribute('aria-valuenow', progress)
       this._lastCurrentTime = this.audio.currentTime
       if (progressbar.classList.contains('immediate')) {
         setTimeout(() => { progressbar.classList.remove('immediate') }, 300)
       }
+
     }
     if (timeDiff > .5) {
       progressbar.classList.add('immediate')
@@ -193,6 +196,7 @@ class DemoPlayer {
       const demoTrack = new DemoTrack(audioTracks[i], tracks[i - 1])
       tracks.push(demoTrack)
       totalDuration += demoTrack.duration
+      audioTracks[i].hidden = false
     }
     var pctRemaining = 100
     for (let i = 0; i < tracks.length; i++) {
