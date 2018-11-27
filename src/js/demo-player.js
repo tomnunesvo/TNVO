@@ -255,7 +255,7 @@ function renderPlayer() {
     <button class="demo-player__play-pause"></button>
     <span class="demo-player__track-progressbars"></span>
     <button class="demo-player__show-tracks"></button>
-    <button class="demo-player__download"></button>
+    <a href="audio/sample.mp3" class="demo-player__download" download></a>
   </div>
   `
 }

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "run-s build serve",
     "build": "run-s clean build:each",
-    "build:each": "run-p sass html js",
+    "build:each": "run-p copy sass html js",
     "clean": "del-cli dist",
     "html": "node build/html.js",
     "js": "rollup --config build/rollup.config.js --sourcemap",
