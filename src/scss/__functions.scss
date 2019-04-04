@@ -2,7 +2,7 @@
   @if type-of($px) == 'number' and not unitless($px) {
     $px: $px / ($px * 0 + 1);
   }
-  @return $px * 1rem / 16;
+  @return $px * 1em / 16;
 }
 
 @function px2rem($px) {

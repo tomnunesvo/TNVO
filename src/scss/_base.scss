@@ -8,60 +8,10 @@
   display: none !important;
 }
 
-.above-the-fold {
-  background-color: #434c5b;
-  margin-top: px2rem(-115);
-  padding-top: px2rem(115);
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+img {
+  max-width: 100%;
 }
 
-<<<<<<< HEAD
-=======
-.section-intro {
-  // background-color: #373f4b;
-  background-color: #434c5b;
-  // background-image: url('../assets/images/homepage_social_thumbnail_square.jpg');
-  // background-size: cover;
-  // background-position: 50% 40%;
-  color: #fff;
-  flex: 1 0 auto;
+h2 {
   text-align: center;
-  padding: 1rem 0;
-
-  &__identity,
-  &__xxdemos {
-    width: 55%;
-    margin-left: auto;
-  }
-
-  
-  h1 {
-    font-size: px2rem(14);
-    font-family: $base-font-family;
-    margin: 0;
-    line-height: 1.5;
-    text-transform: uppercase;
-    letter-spacing: .25em;
-    text-shadow: 0 0 px2rem(10) rgba(0,0,0,0.8);
-  }
-  
-  img {
-    display: block;
-    width: 100%;
-    margin: 0 auto;
-    max-width: px2rem(400);
-  }
-
 }
-.section-demos {
-  background-color: white;
-
-}
-.demo-player {
-  margin: 1rem auto;
-}
-
->>>>>>> parent of bc496a4... Site intro work
-

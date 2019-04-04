@@ -1,24 +1,69 @@
-.footer {
-  .container {
-    text-align: center;
+.tnvo-footer {
+  background-color: #222;
+  border-top: solid px2rem(3) #cba;
+  color: white;
+  padding: 1rem 0;
+  position: relative;
+  text-align: center;
+  font-size: px2rem(13);
 
-    > * {
-      display: block;
+  a, 
+  a:visited {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  &__identity {
+    text-transform: uppercase;
+    letter-spacing: .25em;
+    margin-bottom: 0.5rem;
+  }
+  
+  &__logo {
+    display: inline-block;
+    width: 1.8rem;
+  }
+  
+  &__contact {
+    margin-bottom: 0.5rem;
+  }
+  
+  &__copyright {
+    margin-bottom: 0.5rem;
+  }
+}
+
+
+@media screen and (min-width: $md) {
+  .tnvo-footer {
+    &__contact > * {
+      display: inline;
+
+      + *:before {
+        content: '\2022';
+        margin: 0 .4em 0 .5em;
+      }
     }
 
-    @media screen and (min-width: $md) {
+    &__identity {
       display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    &__whoiam,
+    &__whatido {
+      width: 10em;
+    }
+    
+    &__whoiam {
+      text-align: right;
+      margin-right: .5em;
+    }
+    
+    &__whatido {
       text-align: left;
-
-      > *:first-child + * {
-        margin-left: auto;
-      }
-
-      > *:last-child {
-        border-left: solid px2rem(2) #bbb;
-        margin-left: .45rem;
-        padding-left: .45rem;
-      }
+      margin-left: .75em;
     }
   }
 }
