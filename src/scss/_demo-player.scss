@@ -1,108 +1,259 @@
 $demo-progressbar-height: 1.5rem;
-.demo-player {
-  max-width: 30rem;
-  margin: 1rem auto;
-  
-  &__overall-progressbar {
-    height: $demo-progressbar-height;
-    background-color: #ddd;
-    display: flex;
+$demo-player-prefix: 'demo-player';
+
+.#{$demo-player-prefix} {
+  // max-width: 20rem;
+  margin-bottom: 1.5rem;
+  // text-align: left;
+
+  audio {
+    display: none;
   }
-  
-  &__track-progressbars {
-    flex: 1 0 auto;
-    display: flex;
+
+  &__heading {
+    margin: 0;
+    padding: 0 0 0 2rem;
+    font-size: px2rem(20);
+    transform: none;
+    color: $gold;
+
   }
-  &__track-progressbar {
-    height: 100%;
-    flex: 1 0 auto;
-    display: block;
-    background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201%201%22%20preserveAspectRatio%3D%22none%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%23000000%22%20fill-opacity%3D%220.2%22%2F%3E%3C%2Fsvg%3E');
-    background-size: 0;
-    background-repeat: no-repeat;
+
+  &__wrapper {
+    margin-right: .5rem;
+    // display: flex;
+    // flex-wrap: wrap;
+    // align-items: center;
     position: relative;
-
-    &:not(.immediate) {
-      transition: background-size .25s linear;
-    }
-
-    &:not(:last-of-type)::after {
-      content: '';
-      width: 4px;
-      height: 4px;
-      background-color: #666;
-      border-radius: 50%;
-      position: absolute;
-      top: calc(50% - 2px);
-      right: -2px;
-      z-index: 1;
-    }
-
-    &[aria-valuenow="100"] {
-      background-size: 100%;
-    }
-
+    padding-top: 1px;
+    margin-top: -1px;
   }
 
+  &__progress {
+    // flex: 1 0 auto;
+    position: relative;
+    height: px2rem(6);
+    margin-left: 2rem;
+    margin-top: px2rem(6);
+    margin-bottom: px2rem(12);
+    margin-right: $demo-progressbar-height + px2rem(10);
+    background-color: #eee;
+    border-radius: px2rem(3);
+    overflow: hidden;
+  }
+
+  &__progressbar {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background-color: $slate-blue;
+    border-radius: inherit;
+    transform: translateX(-100%);
+
+    // &:not(.immediate) {
+    //   transition: width .008ms linear;
+    // }
+  }
+  
   &__play-pause,
   &__show-tracks,
-  &__download {
+  &__download,
+  &__download-track {
     width: $demo-progressbar-height;
+    height: $demo-progressbar-height;
     border: 0;
-    background-color: #bbb;
+    background-color: transparent;
     background-position: center center;
     background-repeat: no-repeat;
     cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+
+    &:focus {
+      text-decoration: none;
+    }
   }
 
   &__play-pause {
-    background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2216%22%20viewBox%3D%220%200%2010%2016%22%3E%3Cpath%20d%3D%22M%200%200%20L%2010%208%20L%200%2016%20z%22%20fill%3D%22black%22%2F%3E%3C%2Fsvg%3E');
+    color: white;
+    font-size: 1.25rem;
+    transform: translateY(-100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .8;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+
+    &:not(.pause) {
+      .pause-icon {
+        display: none;
+      }
+    }
 
     &.pause {
-      background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2216%22%20viewBox%3D%220%200%2012%2016%22%3E%3Cg%20fill%3D%22black%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%224%22%20height%3D%2216%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%220%22%20width%3D%224%22%20height%3D%2216%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+      .play-icon {
+        display: none;
+      }
     }
-  }
-
-  &__show-tracks {
-    background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2216%22%20viewBox%3D%220%200%2018%2016%22%3E%3Cg%20fill%3D%22black%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%223%22%20height%3D%223%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%220%22%20width%3D%2212%22%20height%3D%223%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%226%22%20width%3D%223%22%20height%3D%223%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%226%22%20width%3D%2212%22%20height%3D%223%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%2212%22%20width%3D%223%22%20height%3D%223%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%2212%22%20width%3D%2212%22%20height%3D%223%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
   }
 
   &__download {
-    background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22black%22%3E%3Crect%20x%3D%228%22%20y%3D%220%22%20width%3D%228%22%20height%3D%221%22%2F%3E%3Crect%20x%3D%228%22%20y%3D%222%22%20width%3D%228%22%20height%3D%222%22%2F%3E%3Cpath%20d%3D%22M%208%205%20h%208%20v%204%20h%206%20l%20-10%2010%20l%20-10%20-10%20h%206%20z%22%2F%3E%3Crect%20x%3D%220%22%20y%3D%2221%22%20width%3D%2224%22%20height%3D%223%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+    position: absolute;
+    font-size: px2rem(24);
+    height: $demo-progressbar-height + px2rem(6);
+    padding-bottom: px2rem(6);
+    top: 0;
+    right: 0;
+    transform: translateY(-$demo-progressbar-height + px2rem(7));
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: px2rem(6);
+      bottom: 0;
+      border-radius: px2rem(3);
+      background-color: $slate-blue;
+    }
   }
 
-  &__audio {
-    background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2216%22%20viewBox%3D%220%200%2010%2016%22%3E%3Cpath%20d%3D%22M%200%200%20L%2010%208%20L%200%2016%20z%22%20fill%3D%22black%22%2F%3E%3C%2Fsvg%3E');
-    background-position: px2rem(8) 50%;
-    background-repeat: no-repeat;
+  &__download-track {
+    font-size: px2rem(12);
+  }
+
+  &__download,
+  &__download-track {
+    border-radius: px2rem(3);
+    color: $slate-blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover,
+    &:focus {
+      // color: mix(white, $slate-blue, 60%);
+      background-color: rgba(white, .2);
+    }
+  }
+
+  &__tracks {
+    flex: 1 0 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0 0 0 2rem;
+    margin: 0;
+    counter-reset: demotrack;
+
+    > li {
+      display: flex;
+      align-items: baseline;
+    }
+  }
+
+  &__track {
+    cursor: pointer;
     display: block;
+    font-family: inherit;
+    background-color: transparent;
+    text-align: left;
+    color: inherit;
+    font-size: px2rem(14);
     line-height: px2rem(40);
-    background-color: #f6f6f6;
-    padding-left: $demo-progressbar-height;
-    margin-top: 0;
-    height: 0;
-    opacity: 0;
-    transition: all .4s ease-in-out;
-    overflow: hidden;
+    margin-top: px2rem(-1);
+    border: none;
+    position: relative;
+    padding-left: 2em;
+    width: calc(100% - 1.5rem);
 
-    .show-audio-tracks & {
-      margin-top: px2rem(2);
-      opacity: 1;
-      height: px2rem(40);
+    &::before {
+      counter-increment: demotrack;
+      content: counter(demotrack);
+      font-family: sans-serif;
+      float: left;
+      width: 1.5em;
+      margin-left: -2em;
+      text-align: center;
+      color: rgba(white, .5);
     }
 
-    &.pause {
-      background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2216%22%20viewBox%3D%220%200%2012%2016%22%3E%3Cg%20fill%3D%22black%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%224%22%20height%3D%2216%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%220%22%20width%3D%224%22%20height%3D%2216%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+    &:hover,
+    &:focus {
+      .#{$demo-player-prefix}__track-progress {
+        background-color: rgba(white, .05);
+      }
     }
 
-    &-progressbar {
-      display: block;
-      background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201%201%22%20preserveAspectRatio%3D%22none%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22%23000000%22%20fill-opacity%3D%220.2%22%2F%3E%3C%2Fsvg%3E');
-      background-size: 0;
-      background-repeat: no-repeat;
+    &:hover::before,
+    &:focus::before {
+      content: '\25b8';
+    }
 
-      &:not([aria-valuenow="0"]) {
-        transition: background-size .25s linear;
+    .#{$demo-player-prefix}__track-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+    }  
+    .#{$demo-player-prefix}__track-progressbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      transform: translateX(-100%);
+    }  
+
+    &.playing  {
+      .#{$demo-player-prefix}__track-progress {
+        background-color: rgba(white, .1);
+      }  
+      .#{$demo-player-prefix}__track-progressbar {
+        background-color: rgba(white, .1);
+      }  
+      &::before {
+        content: '||';
+        color: white;
+        font-weight: bold;
+      }
+      &.paused::before {
+        content: '\25b8';
+      }
+    }
+  }
+  
+  &__progress-ticks {
+    position: absolute;
+    top: 0;
+    left: 2rem;
+    right: $demo-progressbar-height + px2rem(10);
+    height: $demo-progressbar-height;
+    display: flex;
+  }
+
+  &__progress-tick {
+    height: 100%;
+    cursor: pointer;
+
+    &:not(:first-child) {
+      // border-left: solid 1px rgba($charcoal, .4);
+      position: relative;
+      &::before {
+        content: '';
+        position: absolute;
+        width: px2rem(8);
+        height: px2rem(8);
+        border-radius: 0 50% 50% 0;
+        top: px2rem(6);
+        left: px2rem(-8);
+        border: solid rgba($charcoal, .4);
+        border-width: 0 1px 1px 0;
       }
     }
   }

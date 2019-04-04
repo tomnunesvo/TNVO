@@ -13,14 +13,16 @@
     "js:exp": "rollup src/js/tnvo.js src/js/contact.js -f  --dir dist --experimentalCodeSplitting --sourcemap",
     "sass": "node-sass src/scss/application.scss --output-style expanded --source-map true --precision 6 dist/css/application.css",
     "copy": "run-p copy:*",
-    "copy:audio": "copyfiles -u 2 src/audio/**.* dist/audio",
+    "copy:audio": "copyfiles -u 2 src/audio/**/*.* dist/audio",
+    "copy:assets": "copyfiles -u 2 'src/assets/**/*.*' dist/assets",
     "serve": "http-server ./dist --silent -p 3000 -c-1 -o",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "npm-run-all --parallel watch:*",
-    "watch:html": "nodemon -w src -e html -d 2 -x \"npm run html\"",
-    "watch:js": "nodemon -w src -e js -d 2 -x \"npm run js\"",
+    "watch:html": "nodemon -w src -e html,ejs -d 2 -x \"npm run html\"",
+    "watch:js": "nodemon -w src -e js,json -d 2 -x \"npm run js\"",
     "watch:scss": "nodemon -w src -e scss -d 2 -x \"npm run sass\"",
-    "watch:audio": "nodemon -w src/audio -d 2 -x \"npm run copy:audio\""
+    "watch:audio": "nodemon -w src/audio -e mp3,ogg -d 2 -x \"npm run copy:audio\"",
+    "watch:assets": "nodemon -w src/assets -e svg,png,jpg,ttf,woff,css -d 2 -x \"npm run copy:assets\""
   },
   "repository": {
     "type": "git",

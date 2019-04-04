@@ -1,240 +1,123 @@
-/**
- * - add <nojavascript> in header to include css to show elements normally hidden
- * - insert <audio> components, get these working under normal circumstances
- * - a message for older browsers?
- * - when player is ready
- *   - display and hide off screen (sr-only)
- *   - insert fake audio
- * 
- * AUDIO PLAYER
- * - visual component to show the attributes of audio
- * - https://developer.mozilla.org/en-US/docs/Web/Apps/Fundamentals/Audio_and_video_delivery/Video_player_styling_basics
- * 
- * 
- * PSUEDO PLAYLIST
- * - json gives the breakdown
- * - each 'track' defines start and length|end
- * - each 'track' reflects the state of audio
- * - if audio not running: not active
- * - if audio is running and position is withing track timeframe, show progress bar
- * - clicking track and not active moves audio to start position
- * 
- */
+/*
+TO DO
+- track segments over progress
+  - display ticks (when playing)
+*/
 
+//https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery/Cross-browser_audio_basics#HTML5_audio_in_detail
 import whenReady from './whenReady'
-var nextDemoTrackId = 1
-class DemoTrack {
-  constructor(audioEl, previousTrack) {
-    this.id = nextDemoTrackId++
-    const src = `audio/${audioEl.getAttribute('data-audio')}.mp3`
-    const audio = this.audio = new Audio(src)
-    audio.load()
-    this.duration = audioEl.getAttribute('data-duration') * 1
-    this._progress = 0
-    this._previous = previousTrack
-    if (previousTrack) {
-      previousTrack._next = this
-    }
-    this._lastTimeUpdate = 0
-    this._audioEl = audioEl
-  }
-
-  getProgressbar() {
-    if (!this._progressbar) {
-      const pb = this._progressbar = document.createElement('span')
-      pb.className = 'demo-player__track-progressbar'
-      pb.setAttribute('role', 'progressbar')
-      pb.setAttribute('aria-valuenow', 0)
-      pb.setAttribute('aria-valuemin', 0)
-      pb.setAttribute('aria-valuemax', this.duration)
-      this._bind()
-    }
-    return this._progressbar
-  }
-
-  setProgress() {
-    const ACTIVE_PLAYER_CLS = 'activePlayer'
-    const progressbar = this.getProgressbar()
-    const progress = Math.floor((this.audio.currentTime / this.audio.duration) * 100)
-    const timeDiff = Math.abs((this._lastCurrentTime || 0) - this.audio.currentTime)
-
-    const finish = () => {
-      progressbar.style.backgroundSize = `${progress}% 100%`
-      progressbar.setAttribute('aria-valuenow', progress)
-      this._lastCurrentTime = this.audio.currentTime
-      if (progressbar.classList.contains('immediate')) {
-        setTimeout(() => { progressbar.classList.remove('immediate') }, 300)
-      }
-
-    }
-    if (timeDiff > .5) {
-      progressbar.classList.add('immediate')
-      setTimeout(finish, 0)
-    }
-    else {
-      finish()
-    }
-  }
-
-  play() {
-    if (!this.isActivePlayer) {
-      this.isActivePlayer = true
-      var prevTrack = true
-      this._visitEach((track) => {
-        if (this === track) {
-          prevTrack = false
-        } else {
-          track.isActivePlayer = false
-          track.audio.pause()
-          track.audio.currentTime = prevTrack ? track.audio.duration : 0
-        }
-      })
-    }
-    this.audio.play()
-  }
-
-  pause() {
-    this.audio.pause()
-  }
-
-  toggle() {
-    const audio = this.audio
-    if (this.isActivePlayer) {
-      if (audio.paused || audio.ended) {
-        audio.play()
-      }
-      else {
-        audio.pause()
-      }
-    }
-    else {
-      this.play()
-    }
-  }
-
-  isPlaying() {
-    return !(this.audio.paused || this.audio.ended)
-  }
-
-  _bind() {
-    const audio = this.audio
-    const progressbar = this._progressbar
-
-    audio.addEventListener('timeupdate', () => {
-      const transtionDuration = 200
-      this.setProgress()
-    })
-
-    audio.addEventListener('ended', () => {
-      if (this.isActivePlayer) {
-        if (this._next) {
-          this._next.play()
-        } else {
-          // after a slight delay, reset each track to 0
-          setTimeout(() => {
-            this._visitEach((track) => {
-              track.isActivePlayer = false
-              track.audio.currentTime = 0
-            })
-          }, 600)
-        }
-      }
-      this.isActivePlayer = false
-    })
-
-    progressbar.addEventListener('click', this.toggle.bind(this))
-  }
-
-  _activeTrack() {
-    var active = null
-    this._visitEach((track) => {
-      if (track.isActivePlayer) {
-        active = track
-      }
-    })
-    return active
-  }
-
-  _isPreviousTrack(trackToCheck) {
-    var thisIX = -1
-    var thatIX = -1
-    this._visitEach((track, index) => {
-      if (track === this) {
-        thisIX = index
-      }
-      else if (track === trackToCheck) {
-        thatIX = index
-      }
-    })
-    return thatIX < thisIX
-  }
-
-  _visitEach(visit) {
-    var first = this
-    while (first._previous) {
-      first = first._previous
-    }
-    var track = first
-    var index = 0
-    while (track) {
-      visit(track, index++)
-      track = track._next
-    }
-  }
-}
+const demoPlayers = []
 
 class DemoPlayer {
   constructor(playerEl) {
     this._playerEl = playerEl
-    playerEl.insertAdjacentHTML('afterbegin', renderPlayer())
-    //for each track...
-    const audioTracks = playerEl.querySelectorAll('.demo-player__audio')
-    const progressBars = playerEl.querySelector('.demo-player__track-progressbars')
-    const tracks = this._tracks = []
-    var totalDuration = 0
-    for (let i = 0; i < audioTracks.length; i++) {
-      const demoTrack = new DemoTrack(audioTracks[i], tracks[i - 1])
-      tracks.push(demoTrack)
-      totalDuration += demoTrack.duration
-      audioTracks[i].hidden = false
-    }
-    var pctRemaining = 100
-    for (let i = 0; i < tracks.length; i++) {
-      const width = Math.round(tracks[i].duration * pctRemaining / totalDuration)
-      const progressbar = tracks[i].getProgressbar()
-      progressBars.append(progressbar)
-      progressbar.style.width = width + '%'
-      progressbar.style.flex = `0 0 ${width}%`
-      pctRemaining -= width
-      totalDuration -= tracks[i].duration
-    }
+    const audio = this.audio = playerEl.querySelector('audio')
+    audio.parentNode.removeChild(audio)
+    const wrapper = playerEl.querySelector('.demo-player__wrapper')
+    wrapper.hidden = false
+    this._captureTrackInfo()
     this._bind()
+    this.currentTrack = 0
+    demoPlayers.push(this)
   }
 
   toggle() {
-    var activeTrack = null
-    for (let i = 0; i < this._tracks.length; i++) {
-      if (this._tracks[i].isActivePlayer) {
-        activeTrack = this._tracks[i]
-        break;
+    const audio = this.audio
+    const playing = !(audio.paused || audio.ended)
+    audio[playing ? 'pause' : 'play']()
+  }
+
+  toggleTrack(index) {
+    if (index === this.currentTrack) {
+      this.toggle()
+    }
+    else {
+      this.playTrack(index)
+    }
+  }
+
+  playTrack(trackIX) {
+    const track = this._trackList[trackIX]
+    const audio = this.audio
+    audio.currentTime = track.startTime + .0001 //fudge factor to get around floating point issue
+    audio.play()
+  }
+
+  setPlayPauseStatus() {
+    const audio = this.audio
+    const playPause = this._getPlayPauseButton()
+    const isPlaying = !(audio.paused || audio.ended)
+    playPause.classList[isPlaying ? 'add' : 'remove']('pause')
+    playPause.title = [isPlaying ? 'pause' : 'play']
+    playPause.setAttribute('aria-label', playPause.title)
+  }
+
+  setProgress() {
+    this.animationRequest = window.requestAnimationFrame(this.setProgress.bind(this))
+    const audio = this.audio
+    const progress = this._playerEl.querySelector('.demo-player__progress')
+    const progressbar = progress.querySelector('.demo-player__progressbar')
+    const valueNow = audio.currentTime
+    const pct = audio.ended ? 100 : Math.min(100, 100 * valueNow / this.duration)
+    progress.setAttribute('aria-valuenow', valueNow)
+    progressbar.style.transform = `translateX(${pct - 100}%)`
+    const trackList = this._trackList 
+    for(let i=0; i<trackList.length; i++) {
+      const trackItem = trackList[i]
+      const trackValueNow = valueNow - trackItem.startTime
+      const track = trackItem.track
+      const trackProgress = track.querySelector('.demo-player__track-progress')
+      const trackProgressbar = trackProgress.querySelector('.demo-player__track-progressbar')
+      if (!audio.ended && audio.currentTime && valueNow >= trackItem.startTime && valueNow < trackItem.endTime) {
+        trackItem.track.classList.add('playing')
+        trackItem.track.classList[audio.paused ? 'add' : 'remove']('paused')
+        const trackProgressPct = audio.ended ? 100 : Math.min(100, 100 * trackValueNow / trackItem.duration)
+        trackProgressbar.style.transform = `translateX(${trackProgressPct - 100}%)`
+        trackProgress.setAttribute('aria-valuenow', trackValueNow)
+        this.currentTrack = i
+      }
+      else {
+        trackItem.track.classList.remove('playing')
+        trackItem.track.classList.remove('paused')
+        trackProgress.setAttribute('aria-valuenow', 0)
       }
     }
-    if (activeTrack) {
-      activeTrack.toggle()
+
+    if (audio.paused || audio.ended) {
+      window.cancelAnimationFrame(this.animationRequest)
+      if (audio.ended) {
+        this.reset()
+      }
     }
-    else if (this._tracks[0]) {
-      this._tracks[0].play()
-    }
+  }
+
+  reset() {
+    const audio = this.audio
+    audio.pause()
+    audio.currentTime = 0
+    this.currentTrack = 0
+    this.setProgress()
   }
 
   _bind() {
     this._getPlayPauseButton().addEventListener('click', this.toggle.bind(this))
-    const onAudioStateChange = this._setPlayPauseState.bind(this)
-    for (let i = 0; i < this._tracks.length; i++) {
-      const audio = this._tracks[i].audio
-      audio.addEventListener('timeupdate', onAudioStateChange)
-      audio.addEventListener('ended', onAudioStateChange)
+    if (isNaN(this.audio)) {
+      this.audio.addEventListener('durationchange', () => this.duration = this.audio.duration)
+    } else {
+      this.duration = this.audio.duration
     }
+    this.audio.addEventListener('play', () => {
+      demoPlayers.forEach(player => {
+        if (player !== this) {
+          player.reset();
+        }
+      })
+    })
+    this.audio.addEventListener('play', this.setProgress.bind(this))
+    const onPlayPause = this.setPlayPauseStatus.bind(this)
+    this.audio.addEventListener('play', onPlayPause)
+    this.audio.addEventListener('pause', onPlayPause)
+    this.audio.addEventListener('ended', onPlayPause)
 
   }
 
@@ -242,31 +125,60 @@ class DemoPlayer {
     return this._playerEl.querySelector('.demo-player__play-pause')
   }
 
-  _setPlayPauseState() {
-    var isPlaying = false
-    for (let i = 0; i < this._tracks.length; i++) {
-      if (this._tracks[i].isPlaying()) {
-        isPlaying = true
-      }
+  _getShowTracksButton() {
+    return this._playerEl.querySelector('.demo-player__show-tracks')
+  }
+
+  _captureTrackInfo() {
+    const tracks = this._playerEl.querySelectorAll('.demo-player__track')
+    const trackList = this._trackList = []
+    var startTime = 0
+    this.duration = 0
+    for(let i=0; i< tracks.length; i++) {
+      const duration = tracks[i].getAttribute('data-duration') * 1
+      const endTime = startTime + duration
+      trackList.push({
+        track: tracks[i],
+        startTime,
+        endTime,
+        duration,
+        audio: tracks[i].getAttribute('data-audio')
+      })
+      startTime = endTime
+      this.duration += duration
+
+      tracks[i].addEventListener('click', ()=> {
+        this.toggleTrack(i)
+      })
+
     }
-    this._getPlayPauseButton().classList[isPlaying ? 'add' : 'remove']('pause')
-  }
+    const progressTicks = this._playerEl.querySelector('.demo-player__progress-ticks')
+    progressTicks.innerHTML = renderPlayerTicks(this.duration, trackList)
+    const ticks = progressTicks.querySelectorAll('.demo-player__progress-tick')
+    for(let i=0; i< ticks.length; i++) {
+      ticks[i].addEventListener('click', ()=> {
+        this.toggleTrack(i)
+      })
+    }
+  }  
 }
 
-function renderPlayer() {
-  return `
-  <div class="demo-player__overall-progressbar">
-    <button class="demo-player__play-pause"></button>
-    <span class="demo-player__track-progressbars"></span>
-    <button class="demo-player__show-tracks"></button>
-    <a href="audio/sample.mp3" class="demo-player__download" download></a>
-  </div>
-  `
+function renderPlayerTicks (duration, trackList) {
+  let remainingDuration = duration
+  let remainingPct = 100
+  return trackList.map((trackItem, i) => {
+    const pct = remainingPct * trackItem.duration / remainingDuration
+    remainingDuration -= trackItem.duration
+    remainingPct -= pct
+    return `<span class="demo-player__progress-tick" style="width:${pct}%;" title="Jump to read ${i+1}"></span>`
+  }).join('')
 }
 
-whenReady(() => {
-  const players = document.querySelectorAll('.demo-player')
-  for (let i = 0; i < players.length; i++) {
-    new DemoPlayer(players[i])
-  }
-})
+if (typeof Audio === 'function') {
+  whenReady(() => {
+    const players = document.querySelectorAll('.demo-player')
+    for (let i = 0; i < players.length; i++) {
+      new DemoPlayer(players[i])
+    }
+  })
+}

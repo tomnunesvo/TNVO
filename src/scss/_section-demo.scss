@@ -1,0 +1,71 @@
+$demo-board-background: $charcoal;
+$demo-board-background-offset: mix(white, $demo-board-background, 15%);
+
+.section-demos {
+  // background-color: $neutral;
+
+  &__layout {
+    color: white;
+    width: px2rem(400);
+    padding: 0 1rem;
+    background-color: $demo-board-background;
+    position: relative;
+    margin: px2rem(30) auto;
+    border-radius: px2rem(6);
+    border-top: solid px2rem(76) $demo-board-background-offset;
+    box-shadow: px2rem(1) px2rem(3) px2rem(10) rgba(black, 0.5);
+  }
+
+  &__logo {
+    box-sizing: content-box;
+    position: absolute;
+    display: block;
+    margin: 0 auto;
+    width: px2rem(80);
+    height: px2rem(80);
+    background-color: $midnight-blue;
+    border-radius: 50%;
+    border: solid px2rem(10) $demo-board-background-offset; //$demo-board-background;
+    text-align: center;
+    top: px2rem(-76);
+    left: 50%;
+    transform: translate(-50%, -27%);  //-27% aligns horizontal logo lines with top of board
+
+
+    img {
+      position: absolute;
+      width: px2rem(60);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &__heading {
+    display: block;
+    position: relative;
+    color: white;
+    font-family: $base-font-family;
+    font-weight: 500;
+    transform: none;
+    text-transform: uppercase;
+    font-size: px2rem(18);
+    padding: 0;
+    margin: px2rem(-30) 0 1.5rem 0;
+    line-height: 1.5;
+    text-shadow: 0 0 2px rgba(#000, .5);
+  }
+
+  @media (min-width: $lg) {
+    &__layout {
+      float: left;
+      margin-top: px2rem(-15);
+      margin-left: -1.5rem;
+      margin-right: 1.5rem;
+      margin-bottom: 1.5rem;
+      z-index: 1;
+    }
+  }
+}
+
+

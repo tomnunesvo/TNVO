@@ -2,7 +2,44 @@ $xs: px2em(320);
 $sm: px2em(400);
 $md: px2em(576);
 
+$base-font-family: 'Lato', sans-serif;
+$heading-font-family: 'Alegreya', serif;
+// $base-font-family: 'Noto Sans', sans-serif;
+// $heading-font-family: 'Fjalla One', sans-serif;
+
+$header-menu-height: 40px;
+
 $status-message-color: #fff;
 $status-message-bgcolor: rgba(0,0,0,0.8);
 
+$old-dark-blue: #23354a;
+$dark-blue: #00233a;
+// $gold: #997d33;
+$gold: #a07f4e;
+$jb-gold: #a07f4e;
+$jb-goldenrod: #d2a72f;
+$jb-dark-teal: #253436;
+
+$maroon: #1f0905;
+$maroon-light1: mix(white, $maroon, 20%);
+$maroon-light2: mix(white, $maroon, 35%);
+$maroon-light3: mix(white, $maroon, 55%);
+$maroon-light4: mix(white, $maroon, 70%);
 $z-index-status: 1000;
+
+$brown: #805426;
+$brown-dark1: mix(black, $brown, 20%);
+$brown-dark2: mix(black, $brown, 40%);
+$brown-dark3: mix(black, $brown, 60%);
+$brown-dark4: mix(black, $brown, 80%);
+
+
+$neutral: #948d85;
+$charcoal: #282120;
+$mocha: #6b5242;
+$dk-slate-blue: #264860;
+$slate-blue: #4584af;
+$midnight-blue: #12354d;
+
+$base-font-color: $charcoal;
+$heading-font-color: $dk-slate-blue;

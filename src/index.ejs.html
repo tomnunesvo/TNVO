@@ -1,150 +1,228 @@
 <!DOCTYPE html>
-<html lang="en">
+<htm lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta class="name"></meta>
-  <title>
-    <%= meta.title %>
-  </title>
-  <meta name="description" content="<%= meta.description %>">
-  <link rel="canonical" href="<%= meta.url %>">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="<%= meta.name %>">
-  <meta property="og:description" content="<%= meta.descripion %>">
-  <meta property="og:url" content="<%= meta.url %>">
-  <meta property="og:site_name" content="<%= meta.name %>">
-  <meta property="og:image" content="<%= meta.socialImage %>">
-  <meta property="og:image:secure_url" content="<%= meta.url %>">
-  <meta name="twitter:card" content="<%= meta.socialImageLarge %>">
-  <meta name="twitter:description" content="<%= meta.descripion %>">
-  <meta name="twitter:title" content="<%= meta.name %>">
-  <meta name="twitter:image" content="<%= meta.socialImage %>">
-  <link href="https://fonts.googleapis.com/css?family=Alegreya|Lato:300,400" rel="stylesheet">
-  <!-- <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Noto+Sans" rel="stylesheet"> -->
-  <link rel="stylesheet" href="css/application.css">
-  <style>
-    .show-vr-grid {
-      background: linear-gradient(rgba(0, 119, 179, 0.2) 1px, transparent 1px) 0 0 / 1.5rem 1.5rem;
-    }
-  </style>
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta class="name">
+    </meta>
+    <title>
+      <%= meta.title %>
+    </title>
+    <meta name="description" content="<%= meta.description %>">
+    <link rel="canonical" href="<%= meta.url %>">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<%= meta.name %>">
+    <meta property="og:description" content="<%= meta.descripion %>">
+    <meta property="og:url" content="<%= meta.url %>">
+    <meta property="og:site_name" content="<%= meta.name %>">
+    <meta property="og:image" content="<%= meta.socialImage %>">
+    <meta property="og:image:secure_url" content="<%= meta.url %>">
+    <meta name="twitter:card" content="<%= meta.socialImageLarge %>">
+    <meta name="twitter:description" content="<%= meta.descripion %>">
+    <meta name="twitter:title" content="<%= meta.name %>">
+    <meta name="twitter:image" content="<%= meta.socialImage %>">
+<<<<<<< HEAD
+    <link href="https://fonts.googleapis.com/css?family=Alegreya|Lato:300,400,400i,600" rel="stylesheet">
+=======
+    <link href="https://fonts.googleapis.com/css?family=Alegreya|Lato:300,400" rel="stylesheet">
+>>>>>>> parent of bc496a4... Site intro work
+    <!-- <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Noto+Sans" rel="stylesheet"> -->
+    <link rel="stylesheet" href="css/application.css">
+    <link rel="stylesheet" href="assets/icons/style.css">
+    <style>
+      .show-vr-grid {
+        background: linear-gradient(rgba(0, 119, 179, 0.2) 1px, transparent 1px) 0 0 / 1.5rem 1.5rem;
+      }
+    </style>
+  </head>
 
-<body>
-  <header>
-    <div class="container">
-      <div>
-        <span>Logo</span>
+  <body>
+      <%- include('partials/_header.ejs') %>
+    <div id="status-message" class="status-message" role="status" aria-live="polite"></div>
+    <main id="main" class="tnvo-main">
+<<<<<<< HEAD
+      <%- include('partials/_section-intro.ejs') %>
+      <%- include('partials/_section-demo.ejs') %>
+      <%- include('partials/_section-about.ejs') %>
+      <%- include('partials/_contact.ejs') %>
+    </main>
+    <%- include('partials/_footer.ejs') %>
+=======
+      <div class="above-the-fold">
+        <div class="section-intro">
+          <div class="container">
+            <h1>
+              <span>Savor the sound of</span>
+              <span>Tom Nunes Voiceover</span>
+            </h1>
+            <h2>Smooth and balanced, earthy yet sweet, with occasional nuttiness</h2>
+          </div>
+        </div>
+        <div class="section-demos">
+          <div class="container">
+            <h2 class="sr-only">Demos</h2>
+            <div class="section-intro__demos">
+              <div class="demo-player">
+                <h4 class="demo-player__heading">Commercial</h4>
+                <audio controls>
+                  <source src="audio/sample.mp3" type="audio/mp3" />
+                  <p>You're browser does not support audio. <a href="audio/sample.mp3" download>Download this demo</a>.
+                  </p>
+                </audio>
+                <div class="demo-player__wrapper" hidden>
+                  <button class="demo-player__play-pause"></button>
+                  <div class="demo-player__progress">
+                    <div class="demo-player__progressbar"></div>
+                  </div>
+                  <button class="demo-player__show-tracks" aria-expanded="false"></button>
+                  <ol class="demo-player__tracks" data-duration="52.819592">
+                    <li>
+                      <div class="demo-player__track" data-audio="2_honest" data-duration="14">
+                        <span>Track Number 1</span>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="demo-player__track" data-audio="3_earnest" data-duration="12">
+                        <span>Track Two</span>
+                      </div>
+                    </li>
+                    <li>
+                      <di class="demo-player__track" data-audio="4_dramatic" data-duration="13">
+                        <span>Track # Three</span>
+                      </di>
+                    </li>
+                    <li>
+                      <div class="demo-player__track" data-audio="1" data-duration="13.819592">
+                        <span>Fourth Track</span>
+                      </div>
+                    </li>
+                  </ol>
+                  <a href="audio/sample.mp3" class="demo-player__download" download></a>
+                </div>
+              </div>
+              <div class="demo-player">
+                <h4 class="demo-player__heading">Narration</h4>
+                <audio controls>
+                  <source src="audio/sample.mp3" type="audio/mp3" />
+                  <p>You're browser does not support audio. <a href="audio/sample.mp3" download>Download this demo</a>.
+                  </p>
+                </audio>
+                <div class="demo-player__wrapper" hidden>
+                  <button class="demo-player__play-pause"></button>
+                  <div class="demo-player__progress">
+                    <div class="demo-player__progressbar"></div>
+                  </div>
+                  <button class="demo-player__show-tracks" aria-expanded="false"></button>
+                  <ol class="demo-player__tracks" data-duration="52.819592">
+                    <li>
+                      <div class="demo-player__track" data-audio="2_honest" data-duration="14">
+                        <span>Track Number 1</span>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="demo-player__track" data-audio="3_earnest" data-duration="12">
+                        <span>Track Two</span>
+                      </div>
+                    </li>
+                    <li>
+                      <di class="demo-player__track" data-audio="4_dramatic" data-duration="13">
+                        <span>Track # Three</span>
+                      </di>
+                    </li>
+                    <li>
+                      <div class="demo-player__track" data-audio="1" data-duration="13.819592">
+                        <span>Fourth Track</span>
+                      </div>
+                    </li>
+                  </ol>
+                  <a href="audio/sample.mp3" class="demo-player__download" download></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
+
+
+      <div class="section-about">
+        <div class="container">
+          <h2>About</h2>
+          <p class="large">Let Tom brew you the perfect cup of voiceover.</p>
+          <p>
+            Tom Nunes, a professional male voice actor, delivers a voiceover that is <strong>warm and friendly</strong>,
+            or <strong>intense and deliberate</strong>, always <strong>genuine, with the authority</strong> needed
+            to carry your message. Tom draws from his <strong>30 years of assorted professional experiences</strong>
+            to produce a vocal blend perfect for <strong>commercials, eLearning, corporate narration, explainer videos
+            and tutorials</strong>.
+          </p>
+          <p>
+            From his home studio in the Greater Hartford Area of Connecticut, Tom produces high-quality audio in all
+            major formats with fast turnaround. He can connect over ipDTL or Skype for directed sessions, and is an easy
+            commute to NYC or Boston for studio sessions.
+          </p>
+          <p>
+            As many before you, you will appreciate Tom for his professionalism and pleasant nature. You can trust him
+            to
+            approach your project with the same importance you do. He takes his work seriously, but never himself. So
+            you can also trust Tom to be a pleasure to work with and good for a few laughs &mdash; like enjoying coffee
+            with
+            a friend.
+          </p>
+          <p>
+            Ready to savor the sound? <a href="#contact-tom"><strong>Let's get brewing!</strong></a>
+          </p>
+        </div>
+      </div>
+      <div class="section-contact">
+        <div class="container">
+          <h2 id="contact-tom">Contact</h2>
+          <div>
+            <form id="contactForm" method="post" action="https://www.mydomain.com/scripts/formemail.bml" novalidate>
+              <div class="form-field">
+                <label class="form-field__label" for="contact-name">Your name</label>
+                <input class="form-field__control" id="contact-name" type="text" name="name">
+              </div>
+              <div class="form-field">
+                <label class="form-field__label" for="contact-email">Your email</label>
+                <input class="form-field__control" id="contact-email" type="email" name="email">
+              </div>
+              <div class="form-field">
+                <label class="form-field__label" for="contact-message">How can I help?</label>
+                <textarea class="form-field__control" id="contact-message" type="text" name="message"
+                  rows="6"></textarea>
+              </div>
+              <input class="sr-only" type="text" name="subject" tabindex="-1" autocomplete="off">
+              <div class="form-buttons">
+                <button class="button--primary" type="submit">Send</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+    <footer class="footer">
+      <div class="container">
+        <div>&copy;
+          <span id="copyrightYear"></span> Tom Nunes</div>
         <a href="emailTom" aria-label="<%= emailLabel %>">
           <span class="obfuscatedContact" aria-hidden="true">
             <%- obfuscatedEmail %>
           </span>
         </a>
-
         <a href="phoneTom" aria-label="<%= phoneLabel %>">
           <span class="obfuscatedContact" aria-hidden="true">
             <%- obfuscatedPhone %>
           </span>
         </a>
       </div>
-    </div>
-  </header>
-  <div id="status-message" class="status-message" role="status" aria-live="polite"></div>
-  <main id="main">
-    <div class="section__hero">
-      <div class="container">
-        <div>
-          <h1>
-              <div>
-                <span>Tom Nunes</span>
-                <span>Voiceover</span>
-              </div>
-            </h1>
-            <h2>Savor the Sound</h2>
-        </div>
-        
-        <div>
-          <div class="demo-player">
-            <div class="demo-player__audio" data-audio="2_honest" data-duration="9" hidden>
-              <div class=demo-player__audio-progressbar>Track Number 1</div>
-            </div>
-            <div class="demo-player__audio" data-audio="3_earnest" data-duration="6" hidden>
-              <div class=demo-player__audio-progressbar>Track Two</div>
-            </div>
-            <div class="demo-player__audio" data-audio="4_dramatic" data-duration="8" hidden>
-              <div class=demo-player__audio-progressbar>Track # Three</div>
-            </div>
-            <div class="demo-player__audio" data-audio="1" data-duration="17" hidden>
-              <div class=demo-player__audio-progressbar>Fourth Track</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="section__about">
-      <div class="container">
-        <h2>About</h2>
-        <p class="large">Smooth, balanced, complex, with hints of spice and nutty undertones</p>
-        <p>For over three decades, Tom has been an actor, singer, software designer, corporate denizen, husband and father.
-          He draws on his broad range of experience to produce a sound that blends authority, trustworthiness, and credibility
-          with approachable likability.</p>
-        <p>Tom is known for his professionalism and dedication to the quality of his work. His focus is always the success of
-          your project. Tom takes his work seriously, but never himself. You will find him a pleasure to work with and good
-          for a few laughs.</p>
-        <p>Sourced from his home studio in the Hartford, CT area, Tom produces high quality digital recordings with fast turnaround.
-          And he is just a 2-3 hour commute from NYC and Boston.</p>
-      </div>
-    </div>
-    <div class="section__contact">
-      <div class="container">
-        <h2>Contact</h2>
-        <div>
-          <form id="contactForm" method="post" action="https://www.mydomain.com/scripts/formemail.bml" novalidate>
-            <div class="form-field">
-              <label class="form-field__label" for="contact-name">Your name</label>
-              <input class="form-field__control" id="contact-name" type="text" name="name">
-            </div>
-            <div class="form-field">
-              <label class="form-field__label" for="contact-email">Your email</label>
-              <input class="form-field__control" id="contact-email" type="email" name="email">
-            </div>
-            <div class="form-field">
-              <label class="form-field__label" for="contact-message">How can I help?</label>
-              <textarea  class="form-field__control" id="contact-message" type="text" name="message" rows="6"></textarea>
-            </div>
-            <input class="sr-only" type="text" name="subject" tabindex="-1" autocomplete="off">
-            <div class="form-buttons">
-              <button class="button--primary" type="submit">Send</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </main>
+    </footer>
 
-
-  <footer class="footer">
-    <div class="container">
-      <div>&copy;
-        <span id="copyrightYear"></span> Tom Nunes</div>
-      <a href="emailTom" aria-label="<%= emailLabel %>">
-        <span class="obfuscatedContact" aria-hidden="true">
-          <%- obfuscatedEmail %>
-        </span>
-      </a>
-      <a href="phoneTom" aria-label="<%= phoneLabel %>">
-        <span class="obfuscatedContact" aria-hidden="true">
-          <%- obfuscatedPhone %>
-        </span>
-      </a>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/bluebird/latest/bluebird.core.min.js"></script>
-  <script src="https://github.com/github/fetch/releases/download/v3.0.0/fetch.umd.js"></script>
-  <script src="js/tnvo.js"></script>
-</body>
+>>>>>>> parent of bc496a4... Site intro work
+    <script src="https://cdn.jsdelivr.net/bluebird/latest/bluebird.core.min.js"></script>
+    <script src="https://github.com/github/fetch/releases/download/v3.0.0/fetch.umd.js"></script>
+    <script src="js/tnvo.js"></script>
+  </body>

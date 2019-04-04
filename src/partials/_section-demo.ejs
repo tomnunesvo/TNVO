@@ -1,0 +1,54 @@
+<div class="section-demos">
+  <div class="container">
+    <div class="section-demos__layout">
+      <span class="section-demos__logo">
+        <img src="assets/images/tnvo-coffee-logo.png" role="presentation">
+      </span>
+      <h2 class="section-demos__heading">Demos</h2>
+      <div class="section-demos__demo-board-content">
+        <% demos.forEach(demo => {%>
+        <div class="demo-player">
+          <h4 class="demo-player__heading"><%= demo.name %></h4>
+          <audio controls hidden preload="auto">
+            <source src="audio/<%- demo.audio %>.mp3" type="audio/mp3" />
+            <p>
+              You're browser does not support audio. <a href="audio/<%- demo.audio %>.mp3" download>Download this
+                demo</a>.
+            </p>
+          </audio>
+          <div class="demo-player__wrapper">
+            <button class="demo-player__play-pause" aria-label="play" title="play">
+              <span class="icon-play-circle play-icon" role="presentation"></span>
+              <span class="icon-pause-circle pause-icon" role="presentation"></span>
+            </button>
+            <div class="demo-player__progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="<%- demo.duration %>">
+              <div class="demo-player__progressbar"></div>
+            </div>
+            <a href="audio/<%- demo.audio %>.mp3" class="demo-player__download" download aria-label="download demo" title="download demo">
+              <span class="icon-arrow-down" role="presentation"></span>
+            </a>
+            <ol class="demo-player__tracks">
+              <% demo.tracks.forEach((track) => {%>
+              <li>
+                <button class="demo-player__track" data-audio="<%- track.audio %>" data-duration="<%- track.duration %>">
+                  <span class="sr-only">Play track</span>
+                  <span><%= track.name %></span>
+                  <div class="demo-player__track-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="<%- track.duration %>">
+                    <div class="demo-player__track-progressbar"></div>
+                  </div>
+                </button>
+                <a href="audio/<%- track.audio %>.mp3" class="demo-player__download-track" download aria-label="download read" title="download read">
+                  <span class="icon-arrow-down" role="presentation"></span>
+                </a>
+                    <!-- <button class="demo-player__download-track">&#x2193;</button> -->
+              </li>
+              <%})%>
+            </ol>
+            <div class="demo-player__progress-ticks" aria-hidden="true"></div>
+          </div>
+        </div>
+        <%})%>
+      </div>
+    </div>
+  </div>
+</div>

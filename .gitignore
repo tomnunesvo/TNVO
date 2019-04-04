@@ -1,2 +1,5 @@
+artwork
 dist/
 node_modules/
+.DS-Store
+
