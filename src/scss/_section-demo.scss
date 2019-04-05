@@ -2,16 +2,18 @@ $demo-board-background: $charcoal;
 $demo-board-background-offset: mix(white, $demo-board-background, 15%);
 
 .section-demos {
-  // background-color: $neutral;
+  background-color: $neutral;
+  background-image: url('../assets/images/textured-background.png');
+  background-size: 100px 100px;
 
   &__board {
     color: white;
     width: px2rem(400);
     background-color: $demo-board-background;
     position: relative;
-    margin: px2rem(30) auto;
+    margin: px2rem(-15) auto px2rem(30) auto;
     border-radius: px2rem(6);
-    box-shadow: px2rem(1) px2rem(3) px2rem(10) rgba(black, 0.5);
+    box-shadow: px2rem(1) px2rem(3) px2rem(10) 2px rgba(black, 0.5);
     &::before {
       content: '';
       position: absolute;
@@ -64,11 +66,12 @@ $demo-board-background-offset: mix(white, $demo-board-background, 15%);
     color: mix(white, $demo-board-background, 90%);
     font-family: $heading-font-family;
     font-weight: 500;
+    letter-spacing: .02em;
     transform: none;
     text-transform: uppercase;
     font-size: px2rem(28);
     padding: 0;
-    margin: .95rem 0 0 0;
+    margin: .95rem 0 .5rem 0;
     line-height: 1.5;
     text-shadow: 0 0 2px rgba(#000, 1);
   }
@@ -80,13 +83,20 @@ $demo-board-background-offset: mix(white, $demo-board-background, 15%);
 
 
   @media (min-width: $lg) {
+    background-color: transparent;
+    
     &__board {
       float: left;
       margin-top: px2rem(-15);
-      margin-left: -1.5rem;
+      margin-left: 0;
       margin-right: 1.5rem;
       margin-bottom: 1.5rem;
       z-index: 1;
+    }
+  }
+  @media (min-width: px2em(960)) {
+    &__board {
+      margin-left: -1rem;
     }
   }
 }

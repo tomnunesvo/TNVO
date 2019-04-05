@@ -3,13 +3,17 @@ $sm: px2em(400);
 $md: px2em(576);
 $lg: px2em(768);
 
-$base-font-family: 'Lato', sans-serif;
+// $base-font-family: 'Lato', sans-serif;
+$base-font-family: 'Nunito', sans-serif;
 // $heading-font-family: 'Alegreya', serif;
 $heading-font-family: 'Norwester', 'Arial Black', serif;
 // $base-font-family: 'Noto Sans', sans-serif;
 // $heading-font-family: 'Fjalla One', sans-serif;
 
+$max-container-width: px2rem(960);
+
 $header-menu-height: 40px;
+
 
 $status-message-color: #fff;
 $status-message-bgcolor: rgba(0,0,0,0.8);

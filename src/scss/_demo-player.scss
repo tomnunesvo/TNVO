@@ -23,7 +23,9 @@ $demo-player-prefix: 'demo-player';
     margin: 0;
     padding: 0 0 0 1.75rem;
     font-size: px2rem(20);
+    letter-spacing: 0.06em;
     transform: none;
+    text-transform: lowercase;
     color: $gold;
 
   }
@@ -167,6 +169,8 @@ $demo-player-prefix: 'demo-player';
     text-align: left;
     color: inherit;
     font-size: px2rem(14);
+    font-weight: 300;
+    letter-spacing: 0.07em;
     line-height: px2rem(40);
     margin-top: px2rem(-1);
     border: none;
