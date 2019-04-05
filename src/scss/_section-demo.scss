@@ -4,32 +4,49 @@ $demo-board-background-offset: mix(white, $demo-board-background, 15%);
 .section-demos {
   // background-color: $neutral;
 
-  &__layout {
+  &__board {
     color: white;
     width: px2rem(400);
-    padding: 0 1rem;
     background-color: $demo-board-background;
     position: relative;
     margin: px2rem(30) auto;
     border-radius: px2rem(6);
-    border-top: solid px2rem(76) $demo-board-background-offset;
     box-shadow: px2rem(1) px2rem(3) px2rem(10) rgba(black, 0.5);
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: px2rem(100);
+      height: px2rem(100);
+      background-color: $demo-board-background-offset;
+      border-radius: 50%;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -27%);  //-27% aligns horizontal logo lines with top of board
+      box-shadow: px2rem(1) px2rem(1) px2rem(10) rgba(black, 0.5);
+    }
   }
 
+  &__header {
+    border-top: solid px2rem(30) $demo-board-background-offset;
+    border-top-left-radius: px2rem(6);
+    border-top-right-radius: px2rem(6);
+    background-color: inherit;
+    position: relative;
+    }
+
   &__logo {
-    box-sizing: content-box;
     position: absolute;
     display: block;
-    margin: 0 auto;
     width: px2rem(80);
     height: px2rem(80);
     background-color: $midnight-blue;
     border-radius: 50%;
-    border: solid px2rem(10) $demo-board-background-offset; //$demo-board-background;
     text-align: center;
-    top: px2rem(-76);
+    top: 0;
     left: 50%;
-    transform: translate(-50%, -27%);  //-27% aligns horizontal logo lines with top of board
+    // margin: px2rem(10) 0;
+    transform: translate(-50%, -57%);  //-57% aligns horizontal logo lines with top of board
 
 
     img {
@@ -44,20 +61,26 @@ $demo-board-background-offset: mix(white, $demo-board-background, 15%);
   &__heading {
     display: block;
     position: relative;
-    color: white;
-    font-family: $base-font-family;
+    color: mix(white, $demo-board-background, 90%);
+    font-family: $heading-font-family;
     font-weight: 500;
     transform: none;
     text-transform: uppercase;
-    font-size: px2rem(18);
+    font-size: px2rem(28);
     padding: 0;
-    margin: px2rem(-30) 0 1.5rem 0;
+    margin: .95rem 0 0 0;
     line-height: 1.5;
-    text-shadow: 0 0 2px rgba(#000, .5);
+    text-shadow: 0 0 2px rgba(#000, 1);
   }
 
+  &__demo-board-content {
+    padding: 0 1rem 1px; //1px to enforce bottom margin
+    position: relative;
+  }
+
+
   @media (min-width: $lg) {
-    &__layout {
+    &__board {
       float: left;
       margin-top: px2rem(-15);
       margin-left: -1.5rem;

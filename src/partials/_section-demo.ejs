@@ -1,14 +1,16 @@
 <div class="section-demos">
   <div class="container">
-    <div class="section-demos__layout">
-      <span class="section-demos__logo">
-        <img src="assets/images/tnvo-coffee-logo.png" role="presentation">
-      </span>
-      <h2 class="section-demos__heading">Demos</h2>
+    <div class="section-demos__board">
+      <div class="section-demos__header">
+        <span class="section-demos__logo">
+          <img src="assets/images/tnvo-coffee-logo.png" role="presentation">
+        </span>
+        <h2 class="section-demos__heading">Demos</h2>
+      </div>
       <div class="section-demos__demo-board-content">
         <% demos.forEach(demo => {%>
         <div class="demo-player">
-          <h4 class="demo-player__heading"><%= demo.name %></h4>
+          <h3 class="demo-player__heading"><%= demo.name %></h3>
           <audio controls hidden preload="auto">
             <source src="audio/<%- demo.audio %>.mp3" type="audio/mp3" />
             <p>
@@ -22,26 +24,31 @@
               <span class="icon-pause-circle pause-icon" role="presentation"></span>
             </button>
             <% const totalDuration = demo.tracks.map(t => t.duration).reduce((a,d) => a+d)%>
-            <div class="demo-player__progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="<%- totalDuration %>">
+            <div class="demo-player__progress" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+              aria-valuemax="<%- totalDuration %>">
               <div class="demo-player__progressbar"></div>
             </div>
-            <a href="audio/<%- demo.audio %>.mp3" class="demo-player__download" download aria-label="download demo" title="download demo">
+            <a href="audio/<%- demo.audio %>.mp3" class="demo-player__download" download aria-label="download demo"
+              title="download demo">
               <span class="icon-arrow-down" role="presentation"></span>
             </a>
             <ol class="demo-player__tracks">
               <% demo.tracks.forEach((track) => {%>
               <li>
-                <button class="demo-player__track" data-audio="<%- track.audio %>" data-duration="<%- track.duration %>">
+                <button class="demo-player__track" data-audio="<%- track.audio %>"
+                  data-duration="<%- track.duration %>">
                   <span class="sr-only">Play track</span>
                   <span class="demo-player__track-name"><%= track.name %></span>
-                  <div class="demo-player__track-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="<%- track.duration %>">
+                  <div class="demo-player__track-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                    aria-valuemax="<%- track.duration %>">
                     <div class="demo-player__track-progressbar"></div>
                   </div>
                 </button>
-                <a href="audio/<%- track.audio %>.mp3" class="demo-player__download-track" download aria-label="download read" title="download read">
+                <a href="audio/<%- track.audio %>.mp3" class="demo-player__download-track" download
+                  aria-label="download read" title="download read">
                   <span class="icon-arrow-down" role="presentation"></span>
                 </a>
-                    <!-- <button class="demo-player__download-track">&#x2193;</button> -->
+                <!-- <button class="demo-player__download-track">&#x2193;</button> -->
               </li>
               <%})%>
             </ol>

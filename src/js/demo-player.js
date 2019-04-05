@@ -1,9 +1,3 @@
-/*
-TO DO
-- track segments over progress
-  - display ticks (when playing)
-*/
-
 //https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery/Cross-browser_audio_basics#HTML5_audio_in_detail
 import whenReady from './whenReady'
 const demoPlayers = []
