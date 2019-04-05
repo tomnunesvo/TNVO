@@ -21,7 +21,8 @@
               <span class="icon-play-circle play-icon" role="presentation"></span>
               <span class="icon-pause-circle pause-icon" role="presentation"></span>
             </button>
-            <div class="demo-player__progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="<%- demo.duration %>">
+            <% const totalDuration = demo.tracks.map(t => t.duration).reduce((a,d) => a+d)%>
+            <div class="demo-player__progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="<%- totalDuration %>">
               <div class="demo-player__progressbar"></div>
             </div>
             <a href="audio/<%- demo.audio %>.mp3" class="demo-player__download" download aria-label="download demo" title="download demo">
@@ -32,7 +33,7 @@
               <li>
                 <button class="demo-player__track" data-audio="<%- track.audio %>" data-duration="<%- track.duration %>">
                   <span class="sr-only">Play track</span>
-                  <span><%= track.name %></span>
+                  <span class="demo-player__track-name"><%= track.name %></span>
                   <div class="demo-player__track-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="<%- track.duration %>">
                     <div class="demo-player__track-progressbar"></div>
                   </div>
