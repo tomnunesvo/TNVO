@@ -177,6 +177,9 @@ $demo-player-prefix: 'demo-player';
     position: relative;
     padding-left: 2em;
     width: calc(100% - 1.5rem);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
     &::before {
       counter-increment: demotrack;

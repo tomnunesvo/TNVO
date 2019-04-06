@@ -8,12 +8,9 @@ $demo-board-background-offset: mix(white, $demo-board-background, 15%);
 
   &__board {
     color: white;
-    width: px2rem(400);
     background-color: $demo-board-background;
     position: relative;
-    margin: px2rem(-15) auto px2rem(30) auto;
-    border-radius: px2rem(6);
-    box-shadow: px2rem(1) px2rem(3) px2rem(10) 2px rgba(black, 0.5);
+    margin: px2rem(-15) auto 0;
     &::before {
       content: '';
       position: absolute;
@@ -82,6 +79,48 @@ $demo-board-background-offset: mix(white, $demo-board-background, 15%);
   }
 
 
+  @media (max-width: $md - px2em(1)) {
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  @media (min-width: $md) {
+    padding-bottom: 1px;
+
+    &__board {
+      border-radius: px2rem(6);
+      box-shadow: px2rem(1) px2rem(3) px2rem(10) 2px rgba(black, 0.5);
+      margin-bottom: 1rem;
+      // margin-left: 1rem;
+      // margin-right: 1rem;
+      // width: 90vw;
+    }
+  }
+
+  @media (min-width: px2em(660)) and (max-width: ($lg - px2em(1))) {
+    .section-demos__demo-board-content {
+      display: flex;
+      margin-top: 1rem;
+
+      .demo-player {
+        flex: 1 1 50%;
+        width: 50%;
+        
+        &:nth-child(odd) {
+          padding-right: .5rem;
+        }
+        &:nth-child(even) {
+          padding-left: .5rem;
+        }
+      }
+    }
+  }
+
+  
+
+
   @media (min-width: $lg) {
     background-color: transparent;
     
@@ -91,6 +130,7 @@ $demo-board-background-offset: mix(white, $demo-board-background, 15%);
       margin-left: 0;
       margin-right: 1.5rem;
       margin-bottom: 1.5rem;
+      width: px2rem(400);
       z-index: 1;
     }
   }
