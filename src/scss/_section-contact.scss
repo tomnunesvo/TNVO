@@ -1,0 +1,139 @@
+$contact-form-field-label-width: 8em;
+
+.section-contact {
+  background-color: $dk-slate-blue;
+  background-image: url('../assets/images/coffee-bag-desk.jpg');
+  background-size: cover;
+  background-position: 40% bottom;
+
+  color: white;
+
+  a {
+    color: inherit;
+
+    &:visited {
+      color: mix($neutral, white);
+    }
+  }
+
+  &__header, 
+  h3,
+  .form-field__label {
+    color: mix(#eee, $slate-blue, 85%);
+  }
+  
+  .form-field__label {
+    text-shadow: 0 0 3px rgba(0,0,0,0.75);
+  }
+
+  .profile-pic {
+    margin-bottom: .5em;
+    img {
+      display: block;
+      width: px2rem(100);
+      margin: 0 auto;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 0 0 px2rem(1) white, 
+                  0 0 0 px2rem(4) $jb-goldenrod;
+    }
+  }
+  .signature-span {
+    margin-left: 1em;
+    white-space: nowrap;
+  }
+
+  .signature {
+    width: px2rem(75);
+    vertical-align: text-top;
+  }
+
+  &__welcome,
+  &__methods {
+    margin: 0 auto;
+    max-width: px2rem(600);
+  }
+
+  &__welcome {
+    margin-bottom: 1.5em;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .form-buttons {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .form-button {
+    border: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    padding: .5rem 3rem;
+    border-radius: px2rem(3);
+    background-color: $jb-goldenrod;
+    color: $charcoal;
+    // font-family: $heading-font-family;
+    // text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__other {
+    padding-top: 1rem;
+    text-align: center;
+
+    h3 {
+      transform: none;
+      margin: 0 0 1rem;
+      font-family: $base-font-family;
+    }
+
+    p {
+      margin-bottom: 1em;
+    }
+
+    a {
+      display: inline-block;
+      margin: 0 .5em .5em;
+      white-space: nowrap;
+    }
+  }
+
+  @media (min-width: $md) {
+    &__welcome {
+      display: flex;
+      align-items: center;
+    }
+
+    .profile-pic {
+      flex: 0 0 px2rem(100);
+      margin-bottom: 0;
+      margin-right: 1em;
+    }
+  }
+
+  @media (min-width: px2em(800)) {
+    &__methods {
+      display: flex;
+      max-width: none;
+    }
+
+    &__form {
+      flex: 1 0 auto;
+      padding: 0 1rem 0 0;
+    }
+
+    &__other {
+      flex: 0 1 auto;
+      padding: px2rem(27) 1rem 0;
+
+      a {
+        display: block;
+        
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@
 }
 .form-field__label {
   display: block;
-  font-size: px2rem(16);
+  font-size: px2rem(18);
   font-weight: bold;
   margin: 0;
 }
@@ -11,7 +11,11 @@
 .form-field__control {
   margin: 0;
   line-height: inherit;
-  padding: px2rem(5);
+  font-size: 1rem;
+  font-family: inherit;
+  padding: .5em;
   border: 0;
+  border-radius: px2rem(3);
   background-color: #f6f6f6;
+  width: 100%;
 }

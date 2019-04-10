@@ -1,5 +1,9 @@
 .container {
-  max-width: 48rem;
+  max-width: 52rem;
   margin: -1px auto;
   padding: 1px 1rem;
+
+  @media (min-width: $lg) {
+    padding: 1px 2rem;
+  }
 }
