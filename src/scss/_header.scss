@@ -47,6 +47,10 @@
         text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
       }
     }
+
+    &__social:empty {
+      display: none;
+    }
   }
   
   @media screen and (min-width: $xs) {
