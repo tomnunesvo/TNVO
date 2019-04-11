@@ -2,7 +2,7 @@ $contact-form-field-label-width: 8em;
 
 .section-contact {
   background-color: $dk-slate-blue;
-  background-image: url('../assets/images/coffee-bag-desk.jpg');
+  background-image: url('../assets/images/coffee-bag-desk-shaded.jpg');
   background-size: cover;
   background-position: 40% bottom;
 
@@ -19,12 +19,13 @@ $contact-form-field-label-width: 8em;
   &__header, 
   h3,
   .form-field__label {
-    color: mix(#eee, $slate-blue, 85%);
+    color: mix(white, $slate-blue, 41%);
   }
   
   .form-field__label {
-    text-shadow: 0 0 3px rgba(0,0,0,0.75);
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
   }
+
 
   .profile-pic {
     margin-bottom: .5em;

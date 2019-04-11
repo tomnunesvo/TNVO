@@ -26,7 +26,7 @@ $demo-player-prefix: 'demo-player';
     letter-spacing: 0.06em;
     transform: none;
     text-transform: lowercase;
-    color: mix(white,$gold, 34%);
+    color: $jb-goldenrod; //mix(white,$gold, 34%);
 
   }
 

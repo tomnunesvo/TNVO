@@ -2,7 +2,7 @@
   background-color: $dark-blue;
   background-image: url('../assets/images/coffee-bag-fp-small.jpg');
   background-size: cover;
-  background-position: 50% 80%;
+  background-position: 50% 50%;
   color: #fff;
   text-align: center;
   margin-top: px2rem(-$header-menu-height - 1);
@@ -55,6 +55,7 @@
 
   @media screen and (min-width: $md) {
     background-image: url('../assets/images/coffee-bag-fp-square.jpg');
+    background-position: 50% 80%;
   }
 
 }
