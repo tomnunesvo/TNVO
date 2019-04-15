@@ -15,16 +15,14 @@ $max-container-width: px2rem(960);
 $header-menu-height: 40px;
 
 
-$status-message-color: #fff;
-$status-message-bgcolor: rgba(0,0,0,0.8);
-
 $old-dark-blue: #23354a;
 $dark-blue: #00233a;
 // $gold: #997d33;
-$gold: #a07f4e;
 $jb-gold: #a07f4e;
 $jb-goldenrod: #d2a72f;
 $jb-dark-teal: #253436;
+$sb-dark-brown: #2e2926;
+$sb-gold: #d3a049;
 
 $maroon: #1f0905;
 $maroon-light1: mix(white, $maroon, 20%);
@@ -41,11 +39,18 @@ $brown-dark4: mix(black, $brown, 80%);
 
 
 $neutral: #948d85;
-$charcoal: #282120;
+$gold: $sb-gold;
+$charcoal-orig: #282120;
+$charcoal: $sb-dark-brown;
 $mocha: #6b5242;
 $dk-slate-blue: #264860;
 $slate-blue: #4584af;
 $midnight-blue: #12354d;
 
-$base-font-color: $charcoal;
+$white: #f8f6f6;
+$base-background: $white;
+$base-font-color: mix(black, $charcoal);
 $heading-font-color: $dk-slate-blue;
+
+$status-message-color: $base-font-color;
+$status-message-bgcolor: $gold;

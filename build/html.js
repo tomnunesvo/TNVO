@@ -22,7 +22,7 @@ const data = {
     socialImage: "social image tbd",
     socialImageLarge: "social image large - tbd",
   },
-  whatIDo: "Voice Actor",
+  whatIDo: "Voiceover",
   obfuscatedEmail: obfuscate([contact.eName, '@', contact.eHostBase, '.', contact.eHostExt]),
   emailLabel: 'tom at tom nunes dot com',
   obfuscatedPhone: obfuscate([contact.pArea, '-', contact.pExchange, '-', contact.pNumber]),

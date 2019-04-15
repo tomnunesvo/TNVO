@@ -9,33 +9,33 @@
         <div class="tnvo-header__whatido"><%= whatIDo %></div>
       </div>
       <div class="tnvo-header__contact">
-        <div>
+        <span>
           <a href="emailTom" aria-label="<%= emailLabel %>">
             <span class="obfuscatedContact" aria-hidden="true">
               <%- obfuscatedEmail %>
             </span>
           </a>
-        </div>
+        </span>
 
-        <div>
+        <span>
           <a href="phoneTom" aria-label="<%= phoneLabel %>">
             <span class="obfuscatedContact" aria-hidden="true">
               <%- obfuscatedPhone %>
             </span>
           </a>
-        </div>
+        </span>
         <%# include('_social-links.ejs', {socialBaseClass: 'tnvo-header'}) %>
       </div>
     </div>
   </div>
-  <div class="tnvo-header__menu-container">
-    <div class="container">
-      <nav class="tnvo-header__menu">
-        <a href="#home">Home</a>
-        <a href="#demos">Demos</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </div>
 </header>
+<div class="tnvo-header__menu-container">
+  <div class="container">
+    <nav class="tnvo-header__menu">
+      <a href="#home">Home</a>
+      <a href="#demos">Demos</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</div>

@@ -1,13 +1,12 @@
 $demo-board-background: $charcoal;
-$demo-board-background-offset: mix(white, $demo-board-background, 15%);
+$demo-board-background-offset: mix($white, $demo-board-background, 15%);
+$demo-board-width: px2rem(400);
 
 .section-demos {
   background-color: $neutral;
-  background-image: url('../assets/images/textured-background.png');
-  background-size: 100px 100px;
 
   &__board {
-    color: white;
+    color: $white;
     background-color: $demo-board-background;
     position: relative;
     margin: px2rem(-15) auto 0;
@@ -44,7 +43,6 @@ $demo-board-background-offset: mix(white, $demo-board-background, 15%);
     text-align: center;
     top: 0;
     left: 50%;
-    // margin: px2rem(10) 0;
     transform: translate(-50%, -57%);  //-57% aligns horizontal logo lines with top of board
 
 
@@ -60,7 +58,7 @@ $demo-board-background-offset: mix(white, $demo-board-background, 15%);
   &__heading {
     display: block;
     position: relative;
-    color: mix(white, $demo-board-background, 90%);
+    color: mix($white, $demo-board-background, 90%);
     font-family: $heading-font-family;
     font-weight: 500;
     letter-spacing: .02em;
@@ -93,9 +91,6 @@ $demo-board-background-offset: mix(white, $demo-board-background, 15%);
       border-radius: px2rem(6);
       box-shadow: px2rem(1) px2rem(3) px2rem(10) 2px rgba(black, 0.5);
       margin-bottom: 1rem;
-      // margin-left: 1rem;
-      // margin-right: 1rem;
-      // width: 90vw;
     }
   }
 
@@ -127,16 +122,16 @@ $demo-board-background-offset: mix(white, $demo-board-background, 15%);
     &__board {
       float: left;
       margin-top: px2rem(-15);
-      margin-left: 0;
+      margin-left: -1rem;
       margin-right: 1.5rem;
       margin-bottom: 1.5rem;
-      width: px2rem(400);
+      width: $demo-board-width;
       z-index: 1;
     }
   }
   @media (min-width: px2em(960)) {
     &__board {
-      margin-left: -1rem;
+      margin-left: -2rem;
     }
   }
 }

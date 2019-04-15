@@ -6,20 +6,20 @@ $contact-form-field-label-width: 8em;
   background-size: cover;
   background-position: 40% bottom;
 
-  color: white;
+  color: $white;
 
   a {
     color: inherit;
 
     &:visited {
-      color: mix($neutral, white);
+      color: mix($neutral, $white);
     }
   }
 
   &__header, 
   h3,
   .form-field__label {
-    color: mix(white, $slate-blue, 41%);
+    color: mix($white, $slate-blue, 41%);
   }
   
   .form-field__label {
@@ -35,7 +35,7 @@ $contact-form-field-label-width: 8em;
       margin: 0 auto;
       border-radius: 50%;
       overflow: hidden;
-      box-shadow: 0 0 0 px2rem(1) white, 
+      box-shadow: 0 0 0 px2rem(1) $white, 
                   0 0 0 px2rem(4) $jb-goldenrod;
     }
   }

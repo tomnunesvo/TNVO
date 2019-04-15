@@ -3,11 +3,11 @@
   background-image: url('../assets/images/coffee-bag-fp-small.jpg');
   background-size: cover;
   background-position: 50% 50%;
-  color: #fff;
+  color: $white;
   text-align: center;
-  margin-top: px2rem(-$header-menu-height - 1);
-  padding: (px2rem($header-menu-height + 1) + 3rem) 0 4rem;
-  position: relative;
+  // margin-top: px2rem(-$header-menu-height - 1);
+  padding: 1rem 0 4rem;
+  // position: relative;
 
   &__content {
     display: flex;
@@ -44,16 +44,23 @@
     display: block;
     margin: px2rem(30) 0;
     margin: 0 auto;
-    width: px2rem(360);
+    width: px2rem(320);
   }
 
   @media screen and (min-width: $sm) {
+    padding-top: 2rem;
+
+    img {
+      width: px2rem(360);
+    }
+
     &__title {
       font-size: px2rem(16);
     }
   }
 
   @media screen and (min-width: $md) {
+    padding-top: 3rem;
     background-image: url('../assets/images/coffee-bag-fp-square.jpg');
     background-position: 50% 80%;
   }

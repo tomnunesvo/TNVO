@@ -1,34 +1,30 @@
 <footer class="tnvo-footer">
-    <div class="container">
-      <div class="tnvo-footer__identity">
-        <div class="tnvo-footer__whoiam"><%= meta.name %></div>
-        <a href="#home" class="tnvo-footer__logo">
-          <img src="../assets/images/tnvo-logo.svg">
-        </a>
-        <div class="tnvo-footer__whatido"><%= whatIDo %></div>
-      </div>
-      <div class="tnvo-footer__contact">
-        <div>
-            <a href="emailTom" aria-label="<%= emailLabel %>">
-                <span class="obfuscatedContact" aria-hidden="true">
-                  <%- obfuscatedEmail %>
-                </span>
-              </a>
-        </div>
-  
-        <div>
-            <a href="phoneTom" aria-label="<%= phoneLabel %>">
-                <span class="obfuscatedContact" aria-hidden="true">
-                  <%- obfuscatedPhone %>
-                </span>
-              </a>
-        </div>
-        
-        <%# include('_social-links.ejs', {socialBaseClass: 'tnvo-footer'}) %>
-      </div>
-      <p class="tnvo-footer__copyright"><small>&copy; <span id="copyrightYear">2019</span> <%= legalName %></small></p>
-      <div>
-        <a href="#">Privacy Policy</a>
-      </div>
+  <div class="container">
+    <div class="tnvo-footer__identity">
+      <div class="tnvo-footer__whoiam"><%= meta.name %></div>
+      <a href="#home" class="tnvo-footer__logo">
+        <img src="../assets/images/tnvo-logo.svg">
+      </a>
+      <div class="tnvo-footer__whatido"><%= whatIDo %></div>
     </div>
-  </footer>
+    <p>
+      <snan class="tnvo-footer__copyright">&copy; <span id="copyrightYear">2019</span> <%= legalName %></snan>
+      <span class="tnvo-footer__links">
+        <a href="#">Privacy Policy</a>
+      </span>
+    </p>
+    <p class="tnvo-footer__contact">
+      <a href="emailTom" aria-label="<%= emailLabel %>">
+        <span class="obfuscatedContact" aria-hidden="true">
+          <%- obfuscatedEmail %>
+        </span>
+      </a>
+      <a href="phoneTom" aria-label="<%= phoneLabel %>">
+        <span class="obfuscatedContact" aria-hidden="true">
+          <%- obfuscatedPhone %>
+        </span>
+      </a>
+      <%# include('_social-links.ejs', {socialBaseClass: 'tnvo-footer'}) %>
+    </p>
+  </div>
+</footer>

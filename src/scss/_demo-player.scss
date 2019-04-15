@@ -1,13 +1,8 @@
-// todo background and placement when floating left
-// todo: keep overlap in mobile width 
-
 $demo-progressbar-height: 1.5rem;
 $demo-player-prefix: 'demo-player';
 
 .#{$demo-player-prefix} {
-  // max-width: 20rem;
   margin-bottom: 1.5rem;
-  // text-align: left;
 
   audio {
     display: none;
@@ -26,7 +21,7 @@ $demo-player-prefix: 'demo-player';
     letter-spacing: 0.06em;
     transform: none;
     text-transform: lowercase;
-    color: $jb-goldenrod; //mix(white,$gold, 34%);
+    color: $jb-goldenrod; 
 
   }
 
@@ -79,7 +74,7 @@ $demo-player-prefix: 'demo-player';
   }
 
   &__play-pause {
-    color: white;
+    color: $white;
     font-size: 1.25rem;
     transform: translateY(-100%);
     position: absolute;
@@ -92,14 +87,12 @@ $demo-player-prefix: 'demo-player';
       opacity: 1;
     }
 
-    // &:not(.pause) {
     .#{$demo-player-prefix}:not(.playing)  & {
       .pause-icon {
         display: none;
       }
     }
 
-    // &.pause {
     .#{$demo-player-prefix}.playing  & {
       .play-icon {
         display: none;
@@ -142,7 +135,6 @@ $demo-player-prefix: 'demo-player';
 
     &:hover,
     &:focus {
-      // color: mix(white, $slate-blue, 60%);
       background-color: rgba(white, .2);
     }
   }
