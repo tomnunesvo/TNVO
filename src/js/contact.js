@@ -40,5 +40,8 @@ const resetForm = form => {
 }
 
 whenReady(() => {
-  document.getElementById('contactForm').addEventListener('submit', onContactFormSubmit)
+  const contactForm = document.getElementById('contactForm')
+  if (contactForm) {
+    contactForm.addEventListener('submit', onContactFormSubmit)
+  }
 })

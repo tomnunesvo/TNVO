@@ -3,12 +3,13 @@ $sm: px2em(400);
 $md: px2em(576);
 $lg: px2em(769); //1px above iPad portrait
 
-// $base-font-family: 'Lato', sans-serif;
-$base-font-family: 'Nunito', sans-serif;
+$base-font-family: 'Lato', sans-serif;
+// $base-font-family: 'Nunito', sans-serif;
 // $heading-font-family: 'Alegreya', serif;
-$heading-font-family: 'Norwester', 'Arial Black', serif;
 // $base-font-family: 'Noto Sans', sans-serif;
 // $heading-font-family: 'Fjalla One', sans-serif;
+$heading-font-family: 'Nunito', sans-serif;
+$coffee-label-font-family: 'Norwester', 'Arial Black', serif;
 
 $max-container-width: px2rem(960);
 
@@ -47,7 +48,7 @@ $dk-slate-blue: #264860;
 $slate-blue: #4584af;
 $midnight-blue: #12354d;
 
-$white: #f8f6f6;
+$white: mix(white, $charcoal, 97%);
 $base-background: $white;
 $base-font-color: mix(black, $charcoal);
 $heading-font-color: $dk-slate-blue;

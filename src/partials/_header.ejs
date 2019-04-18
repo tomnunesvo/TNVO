@@ -3,14 +3,14 @@
     <div class="container">
       <div class="tnvo-header__identity">
         <div class="tnvo-header__whoiam"><%= meta.name %></div>
-        <a href="#home" class="tnvo-header__logo">
+        <a href="<%= relPath %>#home" class="tnvo-header__logo">
           <img src='../assets/images/tnvo-logo.svg' />
         </a>
         <div class="tnvo-header__whatido"><%= whatIDo %></div>
       </div>
       <div class="tnvo-header__contact">
         <span>
-          <a href="emailTom" aria-label="<%= emailLabel %>">
+          <a href="emailTom" aria-label="<%= emailLabel %>" target="_blank">
             <span class="obfuscatedContact" aria-hidden="true">
               <%- obfuscatedEmail %>
             </span>
@@ -32,10 +32,10 @@
 <div class="tnvo-header__menu-container">
   <div class="container">
     <nav class="tnvo-header__menu">
-      <a href="#home">Home</a>
-      <a href="#demos">Demos</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="<%= relPath %>#home">Home</a>
+      <a href="<%= relPath %>#demos">Demos</a>
+      <a href="<%= relPath %>#about">About</a>
+      <a href="<%= relPath %>#contact">Contact</a>
     </nav>
   </div>
 </div>

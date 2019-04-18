@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/_head.ejs') %>
+
+<body>
+  <%- include('../partials/_header.ejs') %>
+  <div id="status-message" class="status-message" role="status" aria-live="polite"></div>
+  <main id="main" class="tnvo-main">
+    <div class="container">
+
+      <h1>Privacy Policy</h1>
+
+      <p><%= legalName %> ("us", "we", or "our") respects your privacy. We promise to protect it through this
+        Privacy Policy.</p>
+
+      <p>This page informs you of our policies regarding the collection, use, and disclosure of personal data when you
+        use
+        <%= meta.url %> (the "Service") and the choices you have associated with that data.
+        This privacy policy is <strong>effective as of April 16, 2019.</strong>
+        We may update our Privacy Policy from time to time. We advise you to review this page periodically for any
+        changes.</p>
+
+      <p>If you choose to use our Service, then you agree to the collection and use of information in relation with this
+        policy. The personal information that we collect are used for providing and improving the Service. We will not
+        use or
+        share your information with anyone except as described in this Privacy Policy.</p>
+
+      <h2>Information Collection and Use</h2>
+
+      <p>Our contact form asks for your name and email address. You may also provide other personally identifiable
+        information needed for us to contact you at your discretion. The information that we collect will be used to 
+        respond to your message. We may also use the information to provide you with further information about services 
+        we offer. You have the right to contact us and inquire about information that you’ve provided whether 
+        it is to change or remove information provided. We do not use your personal information for any other reason.
+      </p>
+
+      <h2>Log Data</h2>
+
+      <p>We want to inform you that whenever you visit our Service, we collect information that your browser sends to us
+        that is called Log Data. This Log Data may include information such as your computer’s Internet Protocol ("IP")
+        address, browser version, pages of our Service that you visit, the time and date of your visit, the time spent on those
+        pages, and other statistics.</p>
+
+      <h2>Cookies</h2>
+
+      <p>Cookies are files with small amount of data that is commonly used an anonymous unique identifier. These are
+        sent to your browser from the website that you visit and are stored on your computer’s hard drive.</p>
+
+      <p>Our website uses these "cookies" to collection information and to improve our Service. You have the option to
+        either accept or refuse these cookies, and know when a cookie is being sent to your computer. If you choose to refuse
+        our cookies, you may not be able to use some portions of our Service.</p>
+
+      <h2>Links to Other Sites</h2>
+
+      <p>Our Service may contain links to other sites. If you click on a third-party link, you will be directed to that
+        site. Note that these external sites are not operated by us. Therefore, we strongly advise you to review the Privacy
+        Policy of these websites. We have no control over, and assume no responsibility for the content, privacy policies, or
+        practices of any third-party sites or services.</p>
+
+      <h2>Service Providers</h2>
+      <p>We may employ third party companies and individuals to facilitate our Service ("Service Providers"), to provide
+        the Service on our behalf, to perform Service-related services or to assist us in analyzing how our Service is used.
+      </p>
+      <p>These third parties have access to your Personal Data only to perform these tasks on our behalf and are
+        obligated not to disclose or use it for any other purpose.</p>
+
+      <h3>Analytics</h3>
+      <p>We may use third-party Service Providers to monitor and analyze the use of our Service.</p>
+          <h4>Google Analytics</h4>
+          <p>Google Analytics is a web analytics service offered by Google that tracks and reports website traffic.
+            Google uses the data collected to track and monitor the use of our Service. This data is shared with other Google
+            services. Google may use the collected data to contextualize and personalize the ads of its own advertising
+            network.</p>
+          <p>You can opt-out of having made your activity on the Service available to Google Analytics by installing the
+            Google Analytics opt-out browser add-on. The add-on prevents the Google Analytics JavaScript (ga.js,
+            analytics.js, and dc.js) from sharing information with Google Analytics about visits activity.</p>
+          <p>For more information on the privacy practices of Google, please visit the Google Privacy & Terms web page:
+            <a href="https://policies.google.com/privacy?hl=en">https://policies.google.com/privacy?hl=en</a></p>
+
+      <h2>Contact Us</h2>
+
+      <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us.</p>
+    </div>
+  </main>
+  <%- include('../partials/_footer.ejs') %>
+  <script src="https://cdn.jsdelivr.net/bluebird/latest/bluebird.core.min.js"></script>
+  <script src="https://github.com/github/fetch/releases/download/v3.0.0/fetch.umd.js"></script>
+  <script src="../js/tnvo.js"></script>
+</body>

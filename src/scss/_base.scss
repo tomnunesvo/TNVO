@@ -12,14 +12,14 @@ img {
   max-width: 100%;
 }
 
-h2 {
-  text-align: center;
-}
-
 a {
   color: $dk-slate-blue;
 
   &:visited {
     color: $mocha;
   }
+}
+
+.section-heading {
+  text-align: center;
 }

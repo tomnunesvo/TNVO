@@ -33,7 +33,7 @@
   }
 
   &__tagline {
-    font-family: $base-font-family;
+    font-family: $heading-font-family;
     font-size: calc(1.25em + (.75 * (100vw - 20em) /  28)); 
     font-style:italic;
     line-height: normal;

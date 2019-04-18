@@ -2,7 +2,7 @@
   <div class="container">
     <div class="tnvo-footer__identity">
       <div class="tnvo-footer__whoiam"><%= meta.name %></div>
-      <a href="#home" class="tnvo-footer__logo">
+      <a href="<%= relPath %>#home" class="tnvo-footer__logo">
         <img src="../assets/images/tnvo-logo.svg">
       </a>
       <div class="tnvo-footer__whatido"><%= whatIDo %></div>
@@ -10,20 +10,24 @@
     <p>
       <snan class="tnvo-footer__copyright">&copy; <span id="copyrightYear">2019</span> <%= legalName %></snan>
       <span class="tnvo-footer__links">
-        <a href="#">Privacy Policy</a>
+        <a href="<%= relPath %>/privacy">Privacy Policy</a>
       </span>
     </p>
     <p class="tnvo-footer__contact">
-      <a href="emailTom" aria-label="<%= emailLabel %>">
+      <span>
+      <a href="emailTom" aria-label="<%= emailLabel %>" target="_blank">
         <span class="obfuscatedContact" aria-hidden="true">
           <%- obfuscatedEmail %>
         </span>
       </a>
+      </span>
+      <span>
       <a href="phoneTom" aria-label="<%= phoneLabel %>">
         <span class="obfuscatedContact" aria-hidden="true">
           <%- obfuscatedPhone %>
         </span>
       </a>
+      </span>
       <%# include('_social-links.ejs', {socialBaseClass: 'tnvo-footer'}) %>
     </p>
   </div>

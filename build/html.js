@@ -12,16 +12,18 @@ const obfuscate = parts => {
   
 const obsfuscateEmail = () => obfuscate([contact.eName, '@', contact.eHostBase, '.', contact.eHostExt])
 const obsfuscatePhone = () => obfuscate([contact.pArea, '-', contact.pExchange, '-', contact.pNumber])
+const title = "Tom Nunes Voiceover — Savor the Sound"
 
 const data = {
   meta: {
-    title: "Tom Nunes Voiceover — Savor the Sound",
+    title: title,
     description: "My description here",
     name: "Tom Nunes",
     url: "https://tomnunes.com/",
     socialImage: "social image tbd",
     socialImageLarge: "social image large - tbd",
   },
+  relPath: '',
   whatIDo: "Voiceover",
   obfuscatedEmail: obfuscate([contact.eName, '@', contact.eHostBase, '.', contact.eHostExt]),
   emailLabel: 'tom at tom nunes dot com',
@@ -31,15 +33,24 @@ const data = {
   demos
 }
 
-ejs.renderFile('./src/index.ejs.html', data, (err, html) => {
-  if (err) {
-    console.error(err)
-    process.exit(1)
-    return
-  }
+const outDir = './dist'
+function renderFile (ejsFile, data, outFile) {
+  ejs.renderFile(`./src/${ejsFile}`, data, (err, html) => {
+    if (err) {
+      console.error(err)
+      process.exit(1)
+      return
+    }
+  
+    fs.writeFileSync(`${outDir}/${outFile}`, html, 'utf-8')
+  })
+  
+}
 
-  const outDir = './dist'
-  fs.ensureDirSync(outDir)
-  fs.writeFileSync(outDir+'/index.html', html, 'utf-8')
-})
+fs.ensureDirSync(outDir)
+renderFile('index.ejs.html', data, 'index.html')
+
+fs.ensureDirSync(`${outDir}/privacy`)
+const privacyData = {...data, meta: {...data.meta, title: `Privacy Policy | ${title}`}, relPath: '../'}
+renderFile('privacy/index.ejs', privacyData, 'privacy/index.html')
 

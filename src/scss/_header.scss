@@ -14,6 +14,7 @@
   }
   
   &__identity {
+    font-family: $heading-font-family;
     font-size: px2rem(16);
     text-transform: uppercase;
     letter-spacing: .25em;
@@ -158,7 +159,7 @@
     }
 
     &__whoiam {
-      font-family: $heading-font-family;
+      font-family: $coffee-label-font-family;
       letter-spacing: .06em;
     }
 
