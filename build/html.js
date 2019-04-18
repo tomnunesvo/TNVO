@@ -19,7 +19,7 @@ const data = {
     title: title,
     description: "My description here",
     name: "Tom Nunes",
-    url: "https://tomnunes.com/",
+    url: "https://tomnunes.com",
     socialImage: "social image tbd",
     socialImageLarge: "social image large - tbd",
   },
