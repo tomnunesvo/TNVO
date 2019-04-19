@@ -5,9 +5,7 @@
   background-position: 50% 50%;
   color: $white;
   text-align: center;
-  // margin-top: px2rem(-$header-menu-height - 1);
-  padding: 1rem 0 4rem;
-  // position: relative;
+  padding: 3rem 0 4rem;
 
   &__content {
     display: flex;
@@ -48,7 +46,7 @@
   }
 
   @media screen and (min-width: $sm) {
-    padding-top: 2rem;
+    padding-top: 4rem;
 
     img {
       width: px2rem(360);
@@ -60,7 +58,6 @@
   }
 
   @media screen and (min-width: $md) {
-    padding-top: 3rem;
     background-image: url('../assets/images/coffee-bag-fp-square.jpg');
     background-position: 50% 80%;
   }

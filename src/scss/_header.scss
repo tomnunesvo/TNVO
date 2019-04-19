@@ -1,191 +1,134 @@
-.tnvo-header {
-  background-color: #00121d;
-  color: $white;
-  text-align: center;
+$header-bgcolor: mix(black, $charcoal);
 
-  a, 
+.tnvo-header {
+  color: $white;
+  background-color: $header-bgcolor;
+  position: relative;
+
+  a,
   a:visited {
     text-decoration: none;
     color: inherit;
   }
 
-  &__top {
-    padding: 1rem 0 0;
+  &__top-hat {
+    text-align: right;
+    font-size: px2rem(12);
+    line-height: 2;
   }
-  
-  &__identity {
-    font-family: $heading-font-family;
-    font-size: px2rem(16);
-    text-transform: uppercase;
-    letter-spacing: .25em;
-  }
-  
-  &__logo {
-    display: inline-block;
-    width: px2rem(36);
-    line-height: 1;
-  }
-  
-  &__contact {
-    font-size: px2rem(13);
 
-    a:hover {
-      text-decoration: underline;
-    }
-    
+  &__contact {
     > * {
-      display: inline-block;
-      margin: .5em;
-      white-space: nowrap;
+      margin: 0.5em 0;
+
+      + *::before {
+        content: "\2022";
+        margin: 0 0.4em 0 0.5em;
+      }
     }
   }
-  
+
   &__menu-container {
-    background-color: rgba(#00121d, 0.8);
-    position: sticky;
-    top: 0;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
 
     .container {
       margin: 0 auto;
-      padding-top: 0;
-      padding-bottom: 0;
+      position: relative;
     }
   }
-  
+
+  &__logo {
+    height: px2rem(50);
+    width: px2rem(50);
+    position: absolute;
+    left: 1rem;
+    top: px2rem(-16);
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
   &__menu {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     font-size: px2rem(12);
     line-height: 2.5;
     text-align: center;
     text-transform: uppercase;
 
-    a, 
+    > * + * {
+      margin-left: 1em;
+    }
+
+    a,
     a:visited {
       text-decoration: none;
       color: $white;
     }
 
     a {
-      letter-spacing: .25em;
+      letter-spacing: 0.25em;
       text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
 
       &:hover {
         color: $gold;
       }
     }
-  }
 
-  &__social:empty {
-    display: none;
-  }
-
-  @media screen and (min-width: $xs) {
-    &__identity {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    &__whoiam,
-    &__whatido {
-      width: 10em;
-    }
-    
-    &__whoiam {
-      text-align: right;
-      margin-right: .5em;
-    }
-    
-    &__whatido {
-      text-align: left;
-      margin-left: .75em;
-    }
-    
-    &__contact > *  {
-      margin: .5em 0;
-
-      + *:before {
-        content: '\2022';
-        margin: 0 .4em 0 .5em;
-      }
-    }
-  }
-
-  @media screen and (min-width: $sm) {
-    &__menu {
-      font-size: px2rem(16);
-      line-height: 2;
-    }  
-  }
-
-  @media screen and (min-width: px2em(660)) {
-    padding-bottom: 1.6rem;
-    margin-bottom: -1.6rem;
-
-    &__top {
-      padding-bottom: .5rem;
-      height: px2rem(42);  //this moves the menu bar up into the header
-
-      .container {
-        text-align: left;
-        display: flex;    
+    @media (max-width: px2em(299)) {
+      > *:first-child {
+        display: none;
       }
     }
 
-    &__identity {
-      position: relative;
-      display: block;
-      padding-left: px2rem(48) + .5rem;
-      font-size: px2rem(24);
-      line-height: 1;
-      z-index: 10;
-    }
+  }
 
-    &__logo {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: px2rem(48);
+  &-cap {
+    // add to top of content when we don't want transparency
+    border-top: solid px2rem(40) $midnight-blue;
+    @media (min-width: $lg) {
+      border-top-width: px2rem(68);
     }
+  }
 
-    &__whoiam,
-    &__whatido {
-      display: block;
-      text-align: left;
-      width: auto;
-      margin: 0;
-    }
-
-    &__whoiam {
-      font-family: $coffee-label-font-family;
-      letter-spacing: .06em;
-    }
-
-    &__whatido {
-      font-size: .6em;
-      letter-spacing: .3em;
-    }
-
-    &__contact {
-      margin-left: auto; //right align contact info
-      > * {
-        margin-top: 0;
-        margin-bottom: 0;
-      }
-    }
-
-    &__menu-container {
-      z-index: 9;
+  @media (min-width: $sm) {
+    &__top-hat {
+      font-size: px2rem(14);
     }
 
     &__menu {
-      justify-content: flex-end;
-      margin-right: -.25em; //make up for letter spacing
-      > a:not(:first-child) {
+      font-size: px2rem(16);
+    }
+  }
+
+  @media (min-width: $md) {
+    &__menu {
+      > * + * {
         margin-left: 2em;
       }
-    }  
+    }
+  }
+
+  @media (min-width: $lg) {
+    &__logo {
+      height: px2rem(80);
+      width: px2rem(80);
+      // background-color: $midnight-blue;
+      border: solid px2rem(1) $white;
+      border-radius: 50%;
+      top: px2rem(-20);
+
+  
+      img {
+        width: px2rem(60);
+      }
+    }
   }
 }
