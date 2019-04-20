@@ -124,12 +124,12 @@ $contact-form-field-label-width: 8em;
 
     &__form {
       flex: 1 0 auto;
-      padding: 0 1rem 0 0;
+      padding: 0 ($container-padding-md / 2) 0 0;
     }
 
     &__other {
       flex: 0 1 auto;
-      padding: px2rem(27) 1rem 0;
+      padding: px2rem(27) ($container-padding-md / 2) 0;
 
       a {
         display: block;

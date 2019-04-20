@@ -24,6 +24,7 @@ $jb-goldenrod: #d2a72f;
 $jb-dark-teal: #253436;
 $sb-dark-brown: #2e2926;
 $sb-gold: #d3a049;
+$chobani-white: #f4f3f0;
 
 $maroon: #1f0905;
 $maroon-light1: mix(white, $maroon, 20%);
@@ -48,7 +49,8 @@ $dk-slate-blue: #264860;
 $slate-blue: #4584af;
 $midnight-blue: #12354d;
 
-$white: mix(white, $charcoal, 97%);
+// $white: mix(white, $charcoal, 97%);
+$white: $chobani-white;
 $base-background: $white;
 $base-font-color: mix(black, $charcoal);
 $heading-font-color: $dk-slate-blue;

@@ -1,9 +1,22 @@
+$container-padding: 1.5rem;
+$container-padding-md: 2rem;
+$container-padding-lg: 2.5rem;
+
+$max-container-width-px: 1024;
+$max-container-width-em: px2em($max-container-width-px);
+$font-px-at-max-container-width: 19.52;
+$max-container-width-rem: 1rem * $max-container-width-px / $font-px-at-max-container-width;
+
 .container {
-  max-width: 52rem;
+  max-width: $max-container-width-rem;
   margin: -1px auto;
-  padding: 1px 1rem;
+  padding: 1px $container-padding;
+
+  @media (min-width: $md) {
+    padding: 1px $container-padding-md;
+  }
 
   @media (min-width: $lg) {
-    padding: 1px 2rem;
+    padding: 1px $container-padding-lg;
   }
 }

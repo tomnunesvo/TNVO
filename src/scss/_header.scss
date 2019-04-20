@@ -44,7 +44,7 @@ $header-bgcolor: mix(black, $charcoal);
     height: px2rem(50);
     width: px2rem(50);
     position: absolute;
-    left: 1rem;
+    left: $container-padding;
     top: px2rem(-16);
 
     img {
@@ -82,7 +82,7 @@ $header-bgcolor: mix(black, $charcoal);
       }
     }
 
-    @media (max-width: px2em(299)) {
+    @media (max-width: px2em(312)) {
       > *:first-child {
         display: none;
       }
@@ -109,6 +109,10 @@ $header-bgcolor: mix(black, $charcoal);
   }
 
   @media (min-width: $md) {
+    &__logo {
+      left: $container-padding-md;
+    }
+    
     &__menu {
       > * + * {
         margin-left: 2em;

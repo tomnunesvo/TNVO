@@ -27,8 +27,8 @@ $demo-board-width: px2rem(400);
 
   &__header {
     border-top: solid px2rem(30) $demo-board-background-offset;
-    border-top-left-radius: px2rem(6);
-    border-top-right-radius: px2rem(6);
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
     background-color: inherit;
     position: relative;
     }
@@ -78,14 +78,14 @@ $demo-board-width: px2rem(400);
   }
 
 
-  @media (max-width: $md - px2em(1)) {
+  @media (max-width: $sm - px2em(1)) {
     .container {
       padding-left: 0;
       padding-right: 0;
     }
   }
 
-  @media (min-width: $md) {
+  @media (min-width: $sm) {
     padding-bottom: 1px;
 
     &__board {
@@ -123,16 +123,17 @@ $demo-board-width: px2rem(400);
     &__board {
       float: left;
       margin-top: px2rem(-15);
-      margin-left: -1rem;
+      margin-left: -($container-padding-lg - .5rem);
       margin-right: 1.5rem;
       margin-bottom: 1.5rem;
       width: $demo-board-width;
       z-index: 1;
     }
   }
-  @media (min-width: px2em(960)) {
+
+  @media (min-width: $max-container-width-em + px2em(20)) {
     &__board {
-      margin-left: -2rem;
+      margin-left: -$container-padding-lg;
     }
   }
 }
