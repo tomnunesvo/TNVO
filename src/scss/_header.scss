@@ -63,6 +63,10 @@ $header-bgcolor: mix(black, $charcoal);
     text-align: center;
     text-transform: uppercase;
 
+    &.menu-fixed {
+      top: px2rem(-12 * 2.5);
+    }
+
     > * + * {
       margin-left: 1em;
     }
@@ -87,7 +91,6 @@ $header-bgcolor: mix(black, $charcoal);
         display: none;
       }
     }
-
   }
 
   &-cap {
@@ -105,6 +108,9 @@ $header-bgcolor: mix(black, $charcoal);
 
     &__menu {
       font-size: px2rem(16);
+      &.menu-fixed {
+        top: px2rem(-16 * 2.5);
+      }
     }
   }
 
@@ -112,7 +118,7 @@ $header-bgcolor: mix(black, $charcoal);
     &__logo {
       left: $container-padding-md;
     }
-    
+
     &__menu {
       > * + * {
         margin-left: 2em;
@@ -129,10 +135,22 @@ $header-bgcolor: mix(black, $charcoal);
       border-radius: 50%;
       top: px2rem(-20);
 
-  
       img {
         width: px2rem(60);
       }
+    }
+  }
+
+  .menu-fixed {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    justify-content: center;
+    background-color: rgba(mix(black, $midnight-blue), 0.85);
+    z-index: 10;
+    transition: transform .4s ease;
+    &.in {
+      transform: translateY(100%);
     }
   }
 }
