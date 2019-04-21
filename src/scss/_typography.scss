@@ -9,8 +9,8 @@
 }
 
 html {
+  font-size: 125%;
   font-size: calc(.9em + .5vw); //16px @ 320px, 20px @ 1120px
-  // font-size: 125%;
   font-display: swap;
   line-height: 1.5;
   scroll-behavior: smooth;
