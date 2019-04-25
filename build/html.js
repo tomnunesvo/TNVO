@@ -3,7 +3,7 @@
 const fs = require('fs-extra')
 const ejs = require('ejs')
 const contact = require('../src/js/contact.json')
-const { demos } = require('./demos.json')
+const { demos } = require('./demos.js')
 
 const obfuscate = parts => {
   return ['ks@jd',parts[0],'s$yej',parts[1],'#sld*g',parts[2],'isy^ggs',parts[3],'gda85w@',parts[4],'os(hshs)']

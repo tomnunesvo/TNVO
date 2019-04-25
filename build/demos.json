@@ -2,55 +2,51 @@
   "demos": [
     {
       "name": "Commercial",
-      "audio": "On_Hold_Messages_Demo",
+      "audio": "Tom_Nunes_Commercial",
       "tracks": [
         {
           "name": "Caring, compassionate",
-          "duration": 16,
-          "audio": "Dental_Office"
+          "duration": 14.187,
+          "audio": "Tom_Nunes_Commercial-1"
         },{
           "name": "Adventurous, rugged",
-          "duration": 12,
-          "audio": "Flooring_Company"
+          "duration": 12.014,
+          "audio": "Tom_Nunes_Commercial-2"
         },{
           "name": "Whimsical, energetic, fun",
-          "duration": 16,
-          "audio": "Restaurant"
+          "duration": 13.299,
+          "audio": "Tom_Nunes_Commercial-3"
         },{
           "name": "Upbeat, energetic",
-          "duration": 19,
-          "audio": "American_Express"
+          "duration": 11.263,
+          "audio": "Tom_Nunes_Commercial-4"
         },{
           "name": "Helpful, friendly, folksy",
-          "duration": 15,
-          "audio": "Mexican_Restaurant_with_accent"
+          "duration": 14.430,
+          "audio": "Tom_Nunes_Commercial-5"
         }
       ]
     },
     {
-      "name": "Commercial 2",
-      "audio": "On_Hold_Messages_Demo",
+      "name": "Narration",
+      "audio": "Tom_Nunes_Narration",
       "tracks": [
         {
           "name": "Caring, compassionate",
-          "duration": 16,
-          "audio": "Dental_Office"
+          "duration": 22.746,
+          "audio": "Tom_Nunes_Narration-1"
         },{
           "name": "Adventurous, rugged",
-          "duration": 12,
-          "audio": "Flooring_Company"
+          "duration": 22.877,
+          "audio": "Tom_Nunes_Narration-2"
         },{
           "name": "Whimsical, energetic, fun",
-          "duration": 16,
-          "audio": "Restaurant"
+          "duration": 24.161,
+          "audio": "Tom_Nunes_Narration-3"
         },{
           "name": "Upbeat, energetic",
-          "duration": 19,
-          "audio": "American_Express"
-        },{
-          "name": "Helpful, friendly, folksy",
-          "duration": 15,
-          "audio": "Mexican_Restaurant_with_accent"
+          "duration": 19.931,
+          "audio": "Tom_Nunes_Narration-4"
         }
       ]
     }

@@ -13,6 +13,7 @@
           <h3 class="demo-player__heading"><%= demo.name %></h3>
           <audio controls hidden preload="auto">
             <source src="audio/<%- demo.audio %>.mp3" type="audio/mp3" />
+            <source src="audio/<%- demo.audio %>.ogg" type="audio/ogg" />
             <p>
               You're browser does not support audio. <a href="audio/<%- demo.audio %>.mp3" download>Download this
                 demo</a>.
@@ -35,7 +36,7 @@
             <ol class="demo-player__tracks">
               <% demo.tracks.forEach((track) => {%>
               <li>
-                <button class="demo-player__track" data-audio="<%- track.audio %>"
+                <button class="demo-player__track" data-audio="<%- track.descriptiveAudioName %>"
                   data-duration="<%- track.duration %>">
                   <span class="sr-only">Play track</span>
                   <span class="demo-player__track-name"><%= track.name %></span>
@@ -44,7 +45,7 @@
                     <div class="demo-player__track-progressbar"></div>
                   </div>
                 </button>
-                <a href="audio/<%- track.audio %>.mp3" class="demo-player__download-track" download
+                <a href="audio/<%- track.descriptiveAudioName %>.mp3" class="demo-player__download-track" download
                   aria-label="download read" title="download read">
                   <span class="icon-arrow-down" role="presentation"></span>
                 </a>

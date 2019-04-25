@@ -13,7 +13,7 @@
     "js:exp": "rollup src/js/tnvo.js src/js/contact.js -f  --dir dist --experimentalCodeSplitting --sourcemap",
     "sass": "node-sass src/scss/application.scss --output-style expanded --source-map true --precision 6 dist/css/application.css",
     "copy": "run-p copy:*",
-    "copy:audio": "copyfiles -u 2 src/audio/**/*.* dist/audio",
+    "copy:audio": "node build/copyaudio.js",
     "copy:assets": "copyfiles -u 2 'src/assets/**/*.*' dist/assets",
     "copy:root": "copyfiles -u 2 'src/root/*.*' dist",
     "serve": "http-server ./dist --silent -p 3000 -c-1 -o",
@@ -39,6 +39,7 @@
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
     "copyfiles": "^2.1.0",
+    "cpy": "^7.2.0",
     "del": "^3.0.0",
     "del-cli": "^1.1.0",
     "ejs": "^2.6.1",
@@ -51,5 +52,6 @@
     "rollup": "^0.67.3",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-json": "^3.1.0"
-  }
+  },
+  "dependencies": {}
 }
