@@ -5,25 +5,30 @@
       "audio": "Tom_Nunes_Commercial",
       "tracks": [
         {
-          "name": "Caring, compassionate",
+          "name": "Man on the street",
           "duration": 14.187,
-          "audio": "Tom_Nunes_Commercial-1"
+          "audio": "Tom_Nunes_Commercial-1",
+          "topic": "Netflix"
         },{
-          "name": "Adventurous, rugged",
+          "name": "Folksy, friendly",
           "duration": 12.014,
-          "audio": "Tom_Nunes_Commercial-2"
+          "audio": "Tom_Nunes_Commercial-2",
+          "topic": "Tom's of Maine"
+        },{
+          "name": "Compassionate, caring",
+          "duration": 13.299,
+          "audio": "Tom_Nunes_Commercial-3",
+          "topic": "Americares"
+        },{
+          "name": "Rugged, masculine",
+          "duration": 11.263,
+          "audio": "Tom_Nunes_Commercial-4",
+          "topic": "Jeep Wrangler"
         },{
           "name": "Whimsical, energetic, fun",
-          "duration": 13.299,
-          "audio": "Tom_Nunes_Commercial-3"
-        },{
-          "name": "Upbeat, energetic",
-          "duration": 11.263,
-          "audio": "Tom_Nunes_Commercial-4"
-        },{
-          "name": "Helpful, friendly, folksy",
           "duration": 14.430,
-          "audio": "Tom_Nunes_Commercial-5"
+          "audio": "Tom_Nunes_Commercial-5",
+          "topic": "Orville Redenbacher"
         }
       ]
     },
@@ -32,21 +37,25 @@
       "audio": "Tom_Nunes_Narration",
       "tracks": [
         {
-          "name": "Caring, compassionate",
+          "name": "Expert, approachable",
           "duration": 22.746,
-          "audio": "Tom_Nunes_Narration-1"
+          "audio": "Tom_Nunes_Narration-1",
+          "topic": "Financial Advisor"
         },{
-          "name": "Adventurous, rugged",
+          "name": "Lively, inviting",
           "duration": 22.877,
-          "audio": "Tom_Nunes_Narration-2"
+          "audio": "Tom_Nunes_Narration-2",
+          "topic": "The Colbert Report"
         },{
-          "name": "Whimsical, energetic, fun",
+          "name": "Reverent, awe-inspired",
           "duration": 24.161,
-          "audio": "Tom_Nunes_Narration-3"
+          "audio": "Tom_Nunes_Narration-3",
+          "topic": "Zion National Park"
         },{
-          "name": "Upbeat, energetic",
+          "name": "Helpful, smiling, easy-going",
           "duration": 19.931,
-          "audio": "Tom_Nunes_Narration-4"
+          "audio": "Tom_Nunes_Narration-4",
+          "topic": "Interior Painting"
         }
       ]
     }

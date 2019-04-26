@@ -15,6 +15,7 @@
     "copy": "run-p copy:*",
     "copy:audio": "node build/copyaudio.js",
     "copy:assets": "copyfiles -u 2 'src/assets/**/*.*' dist/assets",
+    "copy:cgi-bin": "copyfiles -u 2 'src/cgi-bin/*.*' dist/cgi-bin",
     "copy:root": "copyfiles -u 2 'src/root/*.*' dist",
     "serve": "http-server ./dist --silent -p 3000 -c-1 -o",
     "test": "echo \"Error: no test specified\" && exit 1",
