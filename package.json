@@ -6,12 +6,17 @@
   "scripts": {
     "start": "run-s build serve",
     "build": "run-s clean build:each",
-    "build:each": "run-p copy sass html js",
+    "build:each": "run-p copy css html js",
     "clean": "del-cli dist",
     "html": "node build/html.js",
-    "js": "rollup --config build/rollup.config.js --sourcemap",
+    "js": "run-s js-compile js-minify",
+    "js-compile": "rollup --config build/rollup.config.js --sourcemap",
+    "js-minify": "terser --compress typeofs=false --mangle --comments \"/^!/\" --source-map \"content=dist/js/tnvo.js.map,includeSources,url=tnvo.min.js.map\" --output dist/js/tnvo.min.js dist/js/tnvo.js",
     "js:exp": "rollup src/js/tnvo.js src/js/contact.js -f  --dir dist --experimentalCodeSplitting --sourcemap",
-    "sass": "node-sass src/scss/application.scss --output-style expanded --source-map true --precision 6 dist/css/application.css",
+    "css": "run-s css-compile css-prefix css-minify",
+    "css-compile": "node-sass src/scss/tnvo.scss --output-style expanded --source-map true --precision 6 dist/css/tnvo.css",
+    "css-prefix": "postcss --config build/postcss.config.js --replace \"dist/css/tnvo.css\"",
+    "css-minify": "cleancss --level 1 --format breakWith=lf --source-map --source-map-inline-sources --output dist/css/tnvo.min.css dist/css/tnvo.css",
     "copy": "run-p copy:*",
     "copy:audio": "node build/copyaudio.js",
     "copy:assets": "copyfiles -u 2 'src/assets/**/*.*' dist/assets",
@@ -22,7 +27,7 @@
     "watch": "npm-run-all --parallel watch:*",
     "watch:html": "nodemon -w src -e html,ejs -d 2 -x \"npm run html\"",
     "watch:js": "nodemon -w src -e js,json -d 2 -x \"npm run js\"",
-    "watch:scss": "nodemon -w src -e scss -d 2 -x \"npm run sass\"",
+    "watch:scss": "nodemon -w src -e scss -d 2 -x \"npm run css\"",
     "watch:audio": "nodemon -w src/audio -e mp3,ogg -d 2 -x \"npm run copy:audio\"",
     "watch:assets": "nodemon -w src/assets -e svg,png,jpg,ttf,woff,css -d 2 -x \"npm run copy:assets\""
   },
@@ -39,6 +44,8 @@
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
+    "autoprefixer": "^9.5.1",
+    "clean-css-cli": "^4.3.0",
     "copyfiles": "^2.1.0",
     "cpy": "^7.2.0",
     "del": "^3.0.0",
@@ -50,9 +57,11 @@
     "node-sass": "^4.10.0",
     "nodemon": "^1.18.6",
     "npm-run-all": "^4.1.5",
+    "postcss-cli": "^6.1.2",
     "rollup": "^0.67.3",
     "rollup-plugin-babel": "^4.0.3",
-    "rollup-plugin-json": "^3.1.0"
+    "rollup-plugin-json": "^3.1.0",
+    "terser": "^3.17.0"
   },
   "dependencies": {}
 }

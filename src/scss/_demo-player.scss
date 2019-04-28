@@ -79,11 +79,14 @@ $demo-player-prefix: 'demo-player';
     position: absolute;
     top: 0;
     left: 0;
-    opacity: .8;
+
+    &:visited {
+      color: $white;
+    }
 
     &:hover,
     &:focus {
-      opacity: 1;
+      color: white;
     }
 
     .#{$demo-player-prefix}:not(.playing)  & {
@@ -131,6 +134,10 @@ $demo-player-prefix: 'demo-player';
     display: flex;
     align-items: center;
     justify-content: center;
+
+    &:visited {
+      color: $slate-blue;
+    }
 
     &:hover,
     &:focus {

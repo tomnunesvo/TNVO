@@ -7,7 +7,7 @@ const { demos } = require('./demos.js')
 
 const obfuscate = parts => {
   return ['ks@jd',parts[0],'s$yej',parts[1],'#sld*g',parts[2],'isy^ggs',parts[3],'gda85w@',parts[4],'os(hshs)']
-    .map(s => s ? `<span>${s}</span>` : '').join('')
+    .map(s => `<span>${s}</span>`).join('')
   }
   
 const obsfuscateEmail = () => obfuscate([contact.eName, '@', contact.eHostBase, '.', contact.eHostExt])
