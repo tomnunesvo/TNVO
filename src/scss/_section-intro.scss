@@ -1,6 +1,6 @@
 .section-intro {
   background-color: $dark-blue;
-  background-image: url('../assets/images/coffee-bag-fp-small.jpg');
+  background-image: url("../assets/images/coffee-bag-fp-small.jpg");
   background-size: cover;
   background-position: 50% 50%;
   color: $white;
@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   &__title,
   &__tagline {
     color: inherit;
@@ -27,13 +27,13 @@
     margin: 0;
     line-height: 1.5;
     text-transform: uppercase;
-    letter-spacing: .25em;
+    letter-spacing: 0.25em;
   }
 
   &__tagline {
     font-family: $heading-font-family;
-    font-size: calc(1.25em + (.75 * (100vw - 20em) /  28)); 
-    font-style:italic;
+    font-size: calc(1.25em + (0.75 * (100vw - 20em) / 28));
+    font-style: italic;
     line-height: normal;
     margin: 0;
   }
@@ -57,9 +57,35 @@
     }
   }
 
-  @media screen and (min-width: $md) {
-    background-image: url('../assets/images/coffee-bag-fp-square.jpg');
-    background-position: 50% 80%;
+  @media (min-resolution: 200dpi), (min-resolution: 1.25dppx), (-webkit-min-device-pixel-ratio: 1.25) {
+    background-image: url("../assets/images/coffee-bag-fp-small@2.jpg");
   }
 
+  @media (min-resolution: 360dpi), (min-resolution: 2.25dppx), (-webkit-min-device-pixel-ratio: 2.25) {
+    background-image: url("../assets/images/coffee-bag-fp-small@3.jpg");
+  }
+
+  @media (min-width: $md) {
+    background-image: url("../assets/images/coffee-bag-fp.jpg");
+    background-position: 50% 80%;
+
+    @media (min-resolution: 200dpi), (min-resolution: 1.25dppx), (-webkit-min-device-pixel-ratio: 1.25) {
+      background-image: url("../assets/images/coffee-bag-fp@2.jpg");
+    }
+
+    @media (min-resolution: 360dpi), (min-resolution: 2.25dppx), (-webkit-min-device-pixel-ratio: 2.25) {
+      background-image: url("../assets/images/coffee-bag-fp-@3.jpg");
+    }
+  }
+
+  @media (min-width: px2em(1000)) {
+    background-image: url("../assets/images/coffee-bag-fp@2.jpg");
+
+    @media (min-resolution: 200dpi), (min-resolution: 1.25dppx), (-webkit-min-device-pixel-ratio: 1.25) {
+      background-image: url("../assets/images/coffee-bag-fp@3.jpg");
+    }
+  }
+  @media (min-width: px2em(2000)) {
+    background-image: url("../assets/images/coffee-bag-fp@3.jpg");
+  }
 }
