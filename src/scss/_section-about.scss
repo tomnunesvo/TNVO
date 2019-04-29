@@ -1,7 +1,9 @@
 .section-about {
+  background-color: $white;
+
   @media (min-width: $lg) {
-    background-image: url('../assets/images/textured-background2.png');
-    background-size: 100px 100px;
+    // background-image: url('../assets/images/textured-background2.png');
+    // background-size: 100px 100px;
 
     .container > * {
       margin-left: $demo-board-width + 1.5rem - 1rem;

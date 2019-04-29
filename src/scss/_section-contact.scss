@@ -1,7 +1,7 @@
 $contact-form-field-label-width: 8em;
 
 .section-contact {
-  background-color: $dk-slate-blue;
+  background-color: #212a3b; //shade of the background image
   background-image: url('../assets/images/coffee-bag-desk-shaded.jpg');
   background-size: cover;
   background-position: 40% bottom;
@@ -19,7 +19,7 @@ $contact-form-field-label-width: 8em;
   &__header, 
   h3,
   .form-field__label {
-    color: mix($white, $slate-blue, 41%);
+    color: mix($white, $slate-blue, 50%);
   }
   
   .form-field__label {
@@ -75,10 +75,8 @@ $contact-form-field-label-width: 8em;
     margin: 0;
     padding: .5rem 3rem;
     border-radius: px2rem(3);
-    background-color: $jb-goldenrod;
-    color: $charcoal;
-    // font-family: $heading-font-family;
-    // text-transform: uppercase;
+    background-color: $gold;
+    color: $base-font-color;
     letter-spacing: 0.05em;
   }
 

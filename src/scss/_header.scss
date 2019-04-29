@@ -13,7 +13,7 @@ $header-bgcolor: mix(black, $charcoal);
 
   &__top-hat {
     text-align: right;
-    font-size: px2rem(12);
+    font-size: px2rem(14);
     line-height: 2;
   }
 
@@ -58,13 +58,13 @@ $header-bgcolor: mix(black, $charcoal);
   &__menu {
     display: flex;
     justify-content: flex-end;
-    font-size: px2rem(12);
+    font-size: px2rem(14);
     line-height: 2.5;
     text-align: center;
     text-transform: uppercase;
 
     &.menu-fixed {
-      top: px2rem(-12 * 2.5);
+      top: px2rem(-14 * 2.5);
     }
 
     > * + * {
@@ -78,7 +78,7 @@ $header-bgcolor: mix(black, $charcoal);
     }
 
     a {
-      letter-spacing: 0.25em;
+      letter-spacing: 0.1em;
       text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
 
       &:hover {
@@ -102,14 +102,14 @@ $header-bgcolor: mix(black, $charcoal);
   }
 
   @media (min-width: $sm) {
-    &__top-hat {
-      font-size: px2rem(14);
-    }
-
     &__menu {
       font-size: px2rem(16);
       &.menu-fixed {
         top: px2rem(-16 * 2.5);
+      }
+
+      a {
+        letter-spacing: 0.25em;
       }
     }
   }
