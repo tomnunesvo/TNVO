@@ -1,4 +1,5 @@
-$demo-progressbar-height: 1.5rem;
+$demo-action-button-width: 2rem;
+$demo-action-button-height: 2.5rem;
 $demo-player-prefix: 'demo-player';
 
 .#{$demo-player-prefix} {
@@ -16,7 +17,7 @@ $demo-player-prefix: 'demo-player';
 
   &__heading {
     margin: 0;
-    padding: 0 0 0 1.75rem;
+    padding: 0 0 0 ($demo-action-button-width - .25rem);
     font-size: px2rem(20);
     letter-spacing: 0.06em;
     transform: none;
@@ -25,20 +26,18 @@ $demo-player-prefix: 'demo-player';
   }
 
   &__wrapper {
-    margin-right: .5rem;
     position: relative;
-    padding-top: 1px;
-    margin-top: -1px;
   }
 
+  $demo-progress-bar-height: px2rem(6);
+
   &__progress {
-    // flex: 1 0 auto;
     position: relative;
-    height: px2rem(6);
-    margin-left: 1.75rem;
-    margin-top: px2rem(6);
-    margin-bottom: px2rem(12);
-    margin-right: $demo-progressbar-height + px2rem(10);
+    height: $demo-progress-bar-height;
+    margin-left: ($demo-action-button-width - .25rem);
+    margin-top: $demo-progress-bar-height;
+    margin-bottom: $demo-progress-bar-height * 2;
+    margin-right: $demo-action-button-width + px2rem(10);
     background-color: #eee;
     border-radius: px2rem(3);
     overflow: hidden;
@@ -56,8 +55,8 @@ $demo-player-prefix: 'demo-player';
   &__play-pause,
   &__download,
   &__download-track {
-    width: $demo-progressbar-height;
-    height: $demo-progressbar-height;
+    width: $demo-action-button-width;
+    height: $demo-action-button-height;
     border: 0;
     background-color: transparent;
     background-position: center center;
@@ -74,11 +73,11 @@ $demo-player-prefix: 'demo-player';
 
   &__play-pause {
     color: $white;
-    font-size: 1.25rem;
-    transform: translateY(-100%);
+    font-size: 1.5rem;
+    transform: translateY(-2.25rem);
     position: absolute;
     top: 0;
-    left: 0;
+    left: -.5rem;
 
     &:visited {
       color: $white;
@@ -105,11 +104,11 @@ $demo-player-prefix: 'demo-player';
   &__download {
     position: absolute;
     font-size: px2rem(24);
-    height: $demo-progressbar-height + px2rem(6);
+    height: $demo-action-button-height + px2rem(6);
     padding-bottom: px2rem(6);
     top: 0;
     right: 0;
-    transform: translateY(-$demo-progressbar-height + px2rem(7));
+    transform: translateY(-$demo-action-button-height);
 
     &::after {
       content: '';
@@ -124,7 +123,7 @@ $demo-player-prefix: 'demo-player';
   }
 
   &__download-track {
-    font-size: px2rem(12);
+    font-size: px2rem(16);
   }
 
   &__download,
@@ -149,15 +148,16 @@ $demo-player-prefix: 'demo-player';
     flex: 1 0 100%;
     width: 100%;
     margin: 0;
-    padding: 0 0 0 1.75rem;
-    margin: 0;
+    padding: 0 0 0 ($demo-action-button-width - .25rem);
     counter-reset: demotrack;
 
     > li {
       display: flex;
-      align-items: baseline;
+      align-items: stretch;
     }
   }
+
+  $track-number-width: 1.5em;
 
   &__track {
     cursor: pointer;
@@ -166,15 +166,15 @@ $demo-player-prefix: 'demo-player';
     background-color: transparent;
     text-align: left;
     color: inherit;
-    font-size: px2rem(14);
+    font-size: px2rem(15);
     font-weight: 300;
-    letter-spacing: 0.07em;
-    line-height: px2rem(40);
+    letter-spacing: 0.04em;
+    line-height: $demo-action-button-height;
     margin-top: px2rem(-1);
     border: none;
     position: relative;
-    padding-left: 2em;
-    width: calc(100% - 1.5rem);
+    padding-left: $track-number-width;
+    width: calc(100% - #{$demo-action-button-width});
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -184,9 +184,9 @@ $demo-player-prefix: 'demo-player';
       content: counter(demotrack);
       font-family: sans-serif;
       float: left;
-      width: 1.5em;
-      margin-left: -2em;
-      text-align: center;
+      width: $track-number-width;
+      margin-left: -$track-number-width;
+      padding-left: .15em;
       color: rgba(white, .5);
     }
 
@@ -195,11 +195,6 @@ $demo-player-prefix: 'demo-player';
       .#{$demo-player-prefix}__track-progress {
         background-color: rgba(white, .05);
       }
-    }
-
-    &:hover::before,
-    &:focus::before {
-      content: '\25b8';
     }
 
     .#{$demo-player-prefix}__track-progress {
@@ -232,17 +227,25 @@ $demo-player-prefix: 'demo-player';
         font-weight: bold;
       }
     }
+
+    &:hover::before,
+    &:focus::before,
+    &.paused::before {
+      content: '\25b8'; //right triangle
+    }
+
     &.playing::before {
       content: '||';
     }
+
 }
   
   &__progress-ticks {
     position: absolute;
-    top: 0;
-    left: 1.75rem;
-    right: $demo-progressbar-height + px2rem(10);
-    height: $demo-progressbar-height;
+    top: -$demo-progress-bar-height;
+    left: ($demo-action-button-width - .25rem);
+    right: $demo-action-button-width + px2rem(10);
+    height: $demo-progress-bar-height * 4;
     display: flex;
 
     .#{$demo-player-prefix}:not(.paused):not(.playing) & {
@@ -260,11 +263,11 @@ $demo-player-prefix: 'demo-player';
       &::before {
         content: '';
         position: absolute;
-        width: px2rem(8);
-        height: px2rem(8);
+        width: $demo-progress-bar-height + px2rem(2);
+        height: $demo-progress-bar-height + px2rem(2);
         border-radius: 0 50% 50% 0;
-        top: px2rem(6);
-        left: px2rem(-8);
+        top: $demo-progress-bar-height - px2rem(1);
+        left: -$demo-progress-bar-height - px2rem(2);
         border: solid rgba($charcoal, .4);
         border-width: 0 1px 1px 0;
       }

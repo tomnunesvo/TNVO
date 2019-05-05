@@ -10,7 +10,7 @@
           "audio": "Tom_Nunes_Commercial-1",
           "topic": "Netflix"
         },{
-          "name": "Folksy, friendly",
+          "name": "Folksy, helpful advice",
           "duration": 12.014,
           "audio": "Tom_Nunes_Commercial-2",
           "topic": "Tom's of Maine"
@@ -37,7 +37,7 @@
       "audio": "Tom_Nunes_Narration",
       "tracks": [
         {
-          "name": "Expert, approachable",
+          "name": "Expert, approachable, explainer",
           "duration": 22.746,
           "audio": "Tom_Nunes_Narration-1",
           "topic": "Financial Advisor"
@@ -47,12 +47,12 @@
           "audio": "Tom_Nunes_Narration-2",
           "topic": "The Colbert Report"
         },{
-          "name": "Reverent, awe-inspired",
+          "name": "Reverent, awe-inspired, visual",
           "duration": 24.161,
           "audio": "Tom_Nunes_Narration-3",
           "topic": "Zion National Park"
         },{
-          "name": "Helpful, smiling, easy-going",
+          "name": "Helpful, easy-going, advisory",
           "duration": 19.931,
           "audio": "Tom_Nunes_Narration-4",
           "topic": "Interior Painting"
