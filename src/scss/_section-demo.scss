@@ -1,6 +1,7 @@
 $demo-board-background: $charcoal;
 $demo-board-background-offset: mix($white, $demo-board-background, 15%);
 $demo-board-width: px2rem(400);
+$demo-board-margin-right: 1.5rem;
 
 .section-demos {
   background-color: $neutral;
@@ -122,9 +123,9 @@ $demo-board-width: px2rem(400);
     
     &__board {
       float: left;
-      margin-top: px2rem(-15);
+      margin-top: px2rem(-50);
       margin-left: -($container-padding-lg - .5rem);
-      margin-right: 1.5rem;
+      margin-right: $demo-board-margin-right;
       margin-bottom: 1.5rem;
       width: $demo-board-width;
       z-index: 1;
