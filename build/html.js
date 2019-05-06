@@ -13,15 +13,17 @@ const obfuscate = parts => {
 const obsfuscateEmail = () => obfuscate([contact.eName, '@', contact.eHostBase, '.', contact.eHostExt])
 const obsfuscatePhone = () => obfuscate([contact.pArea, '-', contact.pExchange, '-', contact.pNumber])
 const title = "Tom Nunes Voiceover — Savor the Sound"
+const url = "https://tomnunes.com"
+const description = `Tom Nunes, professional male voice actor, serves a vocal blend with the honesty and authority to carry 
+your message in commercials, eLearning, corporate narration, explainer videos and tutorials. Savor the sound.`
 
 const data = {
   meta: {
     title: title,
-    description: "My description here",
+    description: description,
     name: "Tom Nunes",
-    url: "https://tomnunes.com",
-    socialImage: "social image tbd",
-    socialImageLarge: "social image large - tbd",
+    url: url,
+    socialImage: `${url}/assets/images/social-share.jpg`
   },
   relPath: '',
   whatIDo: "Voiceover",
