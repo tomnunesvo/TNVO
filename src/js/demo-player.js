@@ -2,6 +2,9 @@
 import whenReady from './whenReady'
 const demoPlayers = []
 
+const CLICK_SRC_TRACK = 'track'
+const CLICK_SRC_PLAY = 'play'
+
 class DemoPlayer {
   constructor(playerEl) {
     this._playerEl = playerEl
@@ -15,13 +18,18 @@ class DemoPlayer {
     demoPlayers.push(this)
   }
 
-  toggle() {
+  toggle(e) {
+    if (e) {
+      this._clickSource = CLICK_SRC_PLAY
+      this._waitForTrack = -1
+    }
     const audio = this.audio
     const playing = !(audio.paused || audio.ended)
     audio[playing ? 'pause' : 'play']()
   }
 
   toggleTrack(index) {
+    this._clickSource = CLICK_SRC_TRACK
     if (index === this.currentTrack) {
       this.toggle()
     }
@@ -33,7 +41,8 @@ class DemoPlayer {
   playTrack(trackIX) {
     const track = this._trackList[trackIX]
     const audio = this.audio
-    audio.currentTime = track.startTime + .0001 //fudge factor to get around floating point issue
+    this._waitForTrack = trackIX
+    audio.currentTime = track.startTime
     audio.play()
   }
 
@@ -51,7 +60,7 @@ class DemoPlayer {
 
   setProgress() {
     this.animationRequest = window.requestAnimationFrame(this.setProgress.bind(this))
-    const { _playerEl, audio, _trackList } = this
+    const { _playerEl, audio, _trackList, _waitForTrack } = this
     const progress = _playerEl.querySelector('.demo-player__progress')
     const progressbar = progress.querySelector('.demo-player__progressbar')
     const valueNow = audio.currentTime
@@ -61,18 +70,35 @@ class DemoPlayer {
     let nowPlayingText = ''
     for(let i=0; i<_trackList.length; i++) {
       const trackItem = _trackList[i]
-      const trackValueNow = valueNow - trackItem.startTime
       const track = trackItem.track
       const trackProgress = track.querySelector('.demo-player__track-progress')
       const trackProgressbar = trackProgress.querySelector('.demo-player__track-progressbar')
-      if (!audio.ended && audio.currentTime && valueNow >= trackItem.startTime && valueNow < trackItem.endTime) {
+      let isCurrentTrack = (!audio.ended && audio.currentTime && valueNow >= trackItem.startTime && valueNow < trackItem.endTime)
+      if (isCurrentTrack && _waitForTrack === -1) {
+        if (i < this.currentTrack) {
+          // some weird iOS behavior where currenttime briefly jumps backward after setting it on track click
+          // causing a flash
+          isCurrentTrack = false;
+        }
+      }
+      // Because of floating math issues, to prevent flash of previous track when track is clicked
+      // wait for audio to catch up
+      if (isCurrentTrack && _waitForTrack > -1) {
+        if (_waitForTrack !== i) {
+          isCurrentTrack = false
+        }
+        else {
+          this._waitForTrack = -1
+        }
+      }
+      if (isCurrentTrack) {
+        const trackValueNow = valueNow - trackItem.startTime
         trackItem.track.classList[audio.paused ? 'remove' : 'add']('playing')
         trackItem.track.classList[audio.paused ? 'add' : 'remove']('paused')
         const trackProgressPct = audio.ended ? 100 : Math.min(100, 100 * trackValueNow / trackItem.duration)
         trackProgressbar.style.transform = `translateX(${trackProgressPct - 100}%)`
         trackProgress.setAttribute('aria-valuenow', trackValueNow)
-        const currentTrack = this.currentTrack
-        if (_trackList[currentTrack] && _trackList[currentTrack].track === document.activeElement )  {
+        if (this._clickSource === CLICK_SRC_TRACK) {  
           track.focus()
         }
         this.currentTrack = i

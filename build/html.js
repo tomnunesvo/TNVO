@@ -17,6 +17,16 @@ const url = "https://tomnunes.com"
 const description = `Tom Nunes, professional male voice actor, serves a vocal blend with the honesty and authority to carry 
 your message in commercials, eLearning, corporate narration, explainer videos and tutorials. Savor the sound.`
 
+const cacheBuster = (function makeid(length) {
+  var result           = '';
+  var characters       = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+})(8)
+
 const data = {
   meta: {
     title: title,
@@ -32,6 +42,7 @@ const data = {
   obfuscatedPhone: obfuscate([contact.pArea, '-', contact.pExchange, '-', contact.pNumber]),
   phoneLabel: 'eight six zero five seven three six four one nine',
   legalName: 'Tom Nunes Voiceover',
+  cacheBuster,
   demos
 }
 

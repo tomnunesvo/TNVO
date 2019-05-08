@@ -263,13 +263,12 @@ $demo-player-prefix: 'demo-player';
       &::before {
         content: '';
         position: absolute;
-        width: $demo-progress-bar-height + px2rem(2);
-        height: $demo-progress-bar-height + px2rem(2);
-        border-radius: 0 50% 50% 0;
-        top: $demo-progress-bar-height - px2rem(1);
-        left: -$demo-progress-bar-height - px2rem(2);
-        border: solid rgba($charcoal, .4);
-        border-width: 0 1px 1px 0;
+        width: $demo-progress-bar-height - px2rem(2);
+        height: $demo-progress-bar-height - px2rem(2);
+        border-radius: 50%;
+        top: $demo-progress-bar-height + px2rem(1);
+        left: -$demo-progress-bar-height  / 2;
+        background-color: rgba($charcoal, .5);
       }
     }
   }
