@@ -18,18 +18,13 @@ class DemoPlayer {
     demoPlayers.push(this)
   }
 
-  toggle(e) {
-    if (e) {
-      this._clickSource = CLICK_SRC_PLAY
-      this._waitForTrack = -1
-    }
+  toggle() {
     const audio = this.audio
     const playing = !(audio.paused || audio.ended)
     audio[playing ? 'pause' : 'play']()
   }
 
   toggleTrack(index) {
-    this._clickSource = CLICK_SRC_TRACK
     if (index === this.currentTrack) {
       this.toggle()
     }
@@ -39,11 +34,20 @@ class DemoPlayer {
   }
 
   playTrack(trackIX) {
-    const track = this._trackList[trackIX]
+    const trackItem = this._trackList[trackIX]
     const audio = this.audio
-    this._waitForTrack = trackIX
-    audio.currentTime = track.startTime
-    audio.play()
+    if (!this.loadStarted) {
+      console.log('loading...')
+      audio.load()
+    } else {
+      audio.pause()
+    }
+    trackItem.track.classList.add('waiting');
+    const waitForTime = (trackItem.startTime + trackItem.endTime) / 2
+    whenAudioLoaded(audio, waitForTime, () => {
+      audio.currentTime = trackItem.startTime + .1
+      audio.play()      
+    })
   }
 
   setPlayPauseStatus() {
@@ -60,7 +64,7 @@ class DemoPlayer {
 
   setProgress() {
     this.animationRequest = window.requestAnimationFrame(this.setProgress.bind(this))
-    const { _playerEl, audio, _trackList, _waitForTrack } = this
+    const { _playerEl, audio, _trackList } = this
     const progress = _playerEl.querySelector('.demo-player__progress')
     const progressbar = progress.querySelector('.demo-player__progressbar')
     const valueNow = audio.currentTime
@@ -74,31 +78,16 @@ class DemoPlayer {
       const trackProgress = track.querySelector('.demo-player__track-progress')
       const trackProgressbar = trackProgress.querySelector('.demo-player__track-progressbar')
       let isCurrentTrack = (!audio.ended && audio.currentTime && valueNow >= trackItem.startTime && valueNow < trackItem.endTime)
-      if (isCurrentTrack && _waitForTrack === -1) {
-        if (i < this.currentTrack) {
-          // some weird iOS behavior where currenttime briefly jumps backward after setting it on track click
-          // causing a flash
-          isCurrentTrack = false;
-        }
-      }
-      // Because of floating math issues, to prevent flash of previous track when track is clicked
-      // wait for audio to catch up
-      if (isCurrentTrack && _waitForTrack > -1) {
-        if (_waitForTrack !== i) {
-          isCurrentTrack = false
-        }
-        else {
-          this._waitForTrack = -1
-        }
-      }
       if (isCurrentTrack) {
         const trackValueNow = valueNow - trackItem.startTime
         trackItem.track.classList[audio.paused ? 'remove' : 'add']('playing')
         trackItem.track.classList[audio.paused ? 'add' : 'remove']('paused')
+        trackItem.track.classList.remove('waiting')
         const trackProgressPct = audio.ended ? 100 : Math.min(100, 100 * trackValueNow / trackItem.duration)
         trackProgressbar.style.transform = `translateX(${trackProgressPct - 100}%)`
         trackProgress.setAttribute('aria-valuenow', trackValueNow)
-        if (this._clickSource === CLICK_SRC_TRACK) {  
+        const currentTrackEl = _trackList[this.currentTrack] && _trackList[this.currentTrack].track 
+        if (document.activeElement === currentTrackEl) {  
           track.focus()
         }
         this.currentTrack = i
@@ -107,6 +96,7 @@ class DemoPlayer {
       else {
         trackItem.track.classList.remove('playing')
         trackItem.track.classList.remove('paused')
+        trackItem.track.classList.remove('waiting')
         trackProgress.setAttribute('aria-valuenow', 0)
       }
     }
@@ -151,12 +141,27 @@ class DemoPlayer {
         }
       })
     })
-    audio.addEventListener('play', this.setProgress.bind(this))
+    audio.addEventListener('playing', this.setProgress.bind(this))
     const onPlayPause = this.setPlayPauseStatus.bind(this)
-    audio.addEventListener('play', onPlayPause)
+    audio.addEventListener('playing', onPlayPause)
     audio.addEventListener('pause', onPlayPause)
     audio.addEventListener('ended', onPlayPause)
     _playerEl.addEventListener('keydown', keydownHandler(_trackList))
+
+    this.loadStarted = audio.readyState > 0
+    if (!this.loadStarted) {
+      const onLoadEvent = () => {
+        this.loadStarted = true
+        audio.removeEventListener('loadeddata' , onLoadEvent)
+        audio.removeEventListener('loadedmetadata', onLoadEvent)
+        audio.removeEventListener('loadstart', onLoadEvent)
+        audio.removeEventListener('progress', onLoadEvent)
+      }
+      audio.addEventListener('loadeddata' , onLoadEvent)
+      audio.addEventListener('loadedmetadata', onLoadEvent)
+      audio.addEventListener('loadstart', onLoadEvent)
+      audio.addEventListener('progress', onLoadEvent)
+    }
   }
 
   _getPlayPauseButton() {
@@ -237,11 +242,34 @@ function keydownHandler(trackList) {
   }
 }
 
+function whenAudioLoaded(audio, waitforTime, callback) {
+  const seekable = audio.seekable.length ? audio.seekable.end(audio.seekable.length - 1) : 0
+  if (seekable >= waitforTime) {
+    callback()
+  }
+  else {
+    window.setTimeout(() => whenAudioLoaded(audio, waitforTime, callback), 100)
+  }
+}
+
+function logEvents(audio) {
+  const events = 'abort canplay canplaythrough durationchange emptied ended error loadeddata loadedmetadata loadstart pause play playing progress ratechange seeked stalled suspend timeupdate waiting'
+  events.split(' ').forEach(event => {
+    audio.addEventListener(event, e => {
+      const seekable = audio.seekable.length ? audio.seekable.end(audio.seekable.length - 1) : -1
+      console.log(`${e.type} - ct: ${audio.currentTime}; seekable: ${seekable}; rs: ${audio.readyState}; now=${new Date().getTime()}`)
+    })
+  })
+}
+
 if (typeof Audio === 'function') {
   whenReady(() => {
     const players = document.querySelectorAll('.demo-player')
     for (let i = 0; i < players.length; i++) {
       new DemoPlayer(players[i])
+      if (i === 0) {
+        logEvents(demoPlayers[0].audio)
+      }
     }
   })
 }

@@ -190,8 +190,7 @@ $demo-player-prefix: 'demo-player';
       color: rgba(white, .5);
     }
 
-    &:hover,
-    &:focus {
+    &:hover {
       .#{$demo-player-prefix}__track-progress {
         background-color: rgba(white, .05);
       }
@@ -236,6 +235,10 @@ $demo-player-prefix: 'demo-player';
 
     &.playing::before {
       content: '||';
+    }
+
+    &.waiting::before {
+      content: '\21e3';
     }
 
 }
