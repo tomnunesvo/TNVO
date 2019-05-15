@@ -72,6 +72,7 @@ $demo-player-prefix: 'demo-player';
   }
 
   &__play-pause {
+    display: block;
     color: $white;
     font-size: 1.5rem;
     transform: translateY(-2.25rem);
@@ -80,7 +81,7 @@ $demo-player-prefix: 'demo-player';
     left: -.5rem;
 
     &:visited {
-      color: $white;
+      color: $charcoal;
     }
 
     &:hover,
@@ -99,7 +100,59 @@ $demo-player-prefix: 'demo-player';
         display: none;
       }
     }
+
+    .#{$demo-player-prefix}:not(.waiting)  & {
+      .loading-icon {
+        display: none;
+      }
+    }
   }
+
+  &__play-pause-icon {
+    display: block;
+    margin: 0 auto;
+    width: 1.4rem;
+    height: 1.4rem;
+    position: absolute;
+    left: px2rem(6);
+    top: px2rem(8);
+    
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+    
+    .play-icon {
+      color: $charcoal;
+      width: px2rem(12);
+      height: px2rem(18);
+      margin-top: px2rem(-9);
+      margin-left: px2rem(-5); 
+    }
+    
+    .pause-icon {
+      color: $charcoal;
+      width: px2rem(10);
+      height: px2rem(16);
+      margin-top: px2rem(-8);
+      margin-left: px2rem(-5); 
+    }
+
+    .circle-icon,
+    .loading-icon {
+      top: 0; 
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .loading-icon {
+      color: $slate-blue;
+      animation: spin 1s linear infinite;
+    }
+  }
+
 
   &__download {
     position: absolute;
@@ -109,6 +162,15 @@ $demo-player-prefix: 'demo-player';
     top: 0;
     right: 0;
     transform: translateY(-$demo-action-button-height);
+
+    svg {
+      position: absolute;
+      height: px2rem(24);
+      width: px2rem(24);
+      top: px2rem(18);
+      left: ($demo-action-button-width - px2rem(24)) / 2;
+    }
+
 
     &::after {
       content: '';
@@ -123,7 +185,10 @@ $demo-player-prefix: 'demo-player';
   }
 
   &__download-track {
-    font-size: px2rem(16);
+    svg {
+      height: px2rem(16);
+      width: px2rem(16);
+    }
   }
 
   &__download,
@@ -274,5 +339,14 @@ $demo-player-prefix: 'demo-player';
         background-color: rgba($charcoal, .5);
       }
     }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg)
   }
 }

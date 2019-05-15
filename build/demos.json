@@ -6,27 +6,32 @@
       "tracks": [
         {
           "name": "Man on the street",
-          "duration": 14.187,
+          "__duration": 14.187,
+          "duration": 14.200,
           "audio": "Tom_Nunes_Commercial-1",
           "topic": "Netflix"
         },{
           "name": "Folksy, helpful advice",
-          "duration": 12.014,
+          "__duration": 12.014,
+          "duration": 12.027,
           "audio": "Tom_Nunes_Commercial-2",
           "topic": "Tom's of Maine"
         },{
           "name": "Compassionate, caring",
-          "duration": 13.299,
+          "__duration": 13.299,
+          "duration": 13.312,
           "audio": "Tom_Nunes_Commercial-3",
           "topic": "Americares"
         },{
           "name": "Rugged, masculine",
-          "duration": 11.263,
+          "__duration": 11.263,
+          "duration": 11.274,
           "audio": "Tom_Nunes_Commercial-4",
           "topic": "Jeep Wrangler"
         },{
           "name": "Whimsical, energetic, fun",
-          "duration": 14.430,
+          "__duration": 14.430,
+          "duration": 14.443,
           "audio": "Tom_Nunes_Commercial-5",
           "topic": "Orville Redenbacher"
         }
@@ -38,22 +43,26 @@
       "tracks": [
         {
           "name": "Expert, approachable, explainer",
-          "duration": 22.746,
+          "_duration": 22.746,
+          "duration": 22.769,
           "audio": "Tom_Nunes_Narration-1",
           "topic": "Financial Advisor"
         },{
           "name": "Lively, enthusiastic",
-          "duration": 22.877,
+          "_duration": 22.877,
+          "duration": 22.900,
           "audio": "Tom_Nunes_Narration-2",
           "topic": "The Colbert Report"
         },{
           "name": "Reverent, awe-inspired, visual",
-          "duration": 24.161,
+          "_duration": 24.161,
+          "duration": 24.185,
           "audio": "Tom_Nunes_Narration-3",
           "topic": "Zion National Park"
         },{
           "name": "Helpful, easy-going, advisory",
-          "duration": 19.931,
+          "_duration": 19.931,
+          "duration": 19.954,
           "audio": "Tom_Nunes_Narration-4",
           "topic": "Interior Painting"
         }

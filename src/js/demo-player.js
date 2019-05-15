@@ -14,14 +14,19 @@ class DemoPlayer {
     wrapper.hidden = false
     this._captureTrackInfo()
     this._bind()
-    this.currentTrack = 0
+    this.currentTrack = -1
     demoPlayers.push(this)
   }
 
   toggle() {
-    const audio = this.audio
-    const playing = !(audio.paused || audio.ended)
-    audio[playing ? 'pause' : 'play']()
+    if (this.currentTrack === -1) {
+      this.playTrack(0)
+    }
+    else {
+      const audio = this.audio
+      const playing = !(audio.paused || audio.ended)
+      audio[playing ? 'pause' : 'play']()
+    }
   }
 
   toggleTrack(index) {
@@ -34,37 +39,78 @@ class DemoPlayer {
   }
 
   playTrack(trackIX) {
-    const trackItem = this._trackList[trackIX]
+    if (this.waitForTrack === this._trackList[trackIX]) {
+      return
+    }
+    const trackItem = this.waitForTrack = this._trackList[trackIX]
     const audio = this.audio
+
     if (!this.loadStarted) {
-      console.log('loading...')
+      // console.log('calling audio load...')
       audio.load()
     } else {
+      // console.log('audio load started, calling pause...')
       audio.pause()
     }
-    trackItem.track.classList.add('waiting');
-    const waitForTime = (trackItem.startTime + trackItem.endTime) / 2
-    whenAudioLoaded(audio, waitForTime, () => {
-      audio.currentTime = trackItem.startTime + .1
-      audio.play()      
-    })
+
+    const poll = () => {
+      if (this.waitForTrack === trackItem) { // may have clicked another
+        const seekable = audio.seekable || audio.buffered
+        const seekableAudio = seekable.length ? seekable.end(seekable.length - 1) : 0
+        const waitForTime = (trackItem.startTime + trackItem.endTime) / 2
+        // console.log('-----------')
+        // console.log(`waiting for track ${trackIX + 1}; time=${waitForTime}; seekable=${seekableAudio}`)
+        // console.log('-----------')
+        if (seekableAudio >= waitForTime) {
+          this.waitForTrack = null
+          audio.currentTime = trackItem.startTime + .1
+          // console.log('playing now...')
+          audio.play()      
+        }
+        else {
+          window.setTimeout(poll, 100)
+        }
+      }
+    }
+
+    this.setPlayPauseStatus({type: 'waiting'})
+    this.setProgress()
+    audio.currentTime = trackItem.startTime  + .1 // to tell browser to load to this point (?)
+    poll()
   }
 
-  setPlayPauseStatus() {
+  setPlayPauseStatus(e) {
     const { audio, _playerEl } = this
-    const playPause = this._getPlayPauseButton()
-    const audioState = audio.ended || (audio.paused && audio.currentTime === 0) ? 'not-playing' : audio.paused ? 'paused' : 'playing'
-    const isPlaying = audioState === 'playing'
-    const isPaused = audioState === 'paused'
-    _playerEl.classList[isPlaying ? 'add' : 'remove']('playing')
-    _playerEl.classList[isPaused ? 'add' : 'remove']('paused')
-    playPause.title = [isPlaying ? 'pause' : 'play']
+    let audioState
+    switch (e.type) {
+      case 'play':
+      case 'waiting':
+        audioState = 'waiting'
+        break;
+      case 'playing':
+        audioState = 'playing'
+        break;
+      case 'paused':
+        audioState = (audio.currentTime === 0) ? '' : 'paused'
+        break;
+      default:
+        audioState = ''
+      }
+
+      const playPause = this._getPlayPauseButton()
+    _playerEl.classList.remove('playing')
+    _playerEl.classList.remove('paused')
+    _playerEl.classList.remove('waiting')
+    if (audioState) {
+      _playerEl.classList.add(audioState)
+    }
+    playPause.title = [audioState === 'playing' ? 'pause' : audioState === 'waiting' ? 'waiting for audio to load' : 'play']
     playPause.setAttribute('aria-label', playPause.title)
   }
 
   setProgress() {
     this.animationRequest = window.requestAnimationFrame(this.setProgress.bind(this))
-    const { _playerEl, audio, _trackList } = this
+    const { _playerEl, audio, _trackList, waitForTrack } = this
     const progress = _playerEl.querySelector('.demo-player__progress')
     const progressbar = progress.querySelector('.demo-player__progressbar')
     const valueNow = audio.currentTime
@@ -77,7 +123,21 @@ class DemoPlayer {
       const track = trackItem.track
       const trackProgress = track.querySelector('.demo-player__track-progress')
       const trackProgressbar = trackProgress.querySelector('.demo-player__track-progressbar')
-      let isCurrentTrack = (!audio.ended && audio.currentTime && valueNow >= trackItem.startTime && valueNow < trackItem.endTime)
+      let isCurrentTrack = (!waitForTrack && !audio.ended && audio.currentTime && valueNow >= trackItem.startTime && valueNow < trackItem.endTime)
+      if (isCurrentTrack) {
+        const timeRemaining = trackItem.endTime - valueNow
+        if (i === (this.currentTrack - 1) && timeRemaining < .1) {
+          // gone backwards. iOS has put current time to an earlier point than requested. So, to prevent flash...
+          isCurrentTrack = false
+        } 
+      }
+      else if (i === this.currentTrack) {
+        const timeUntil = trackItem.startTime - valueNow
+        if (timeUntil < .1) {
+          // see above comment
+          isCurrentTrack = true
+        }
+      }
       if (isCurrentTrack) {
         const trackValueNow = valueNow - trackItem.startTime
         trackItem.track.classList[audio.paused ? 'remove' : 'add']('playing')
@@ -98,6 +158,9 @@ class DemoPlayer {
         trackItem.track.classList.remove('paused')
         trackItem.track.classList.remove('waiting')
         trackProgress.setAttribute('aria-valuenow', 0)
+        if (waitForTrack === trackItem) {
+          trackItem.track.classList.add('waiting')
+        }
       }
     }
 
@@ -122,7 +185,8 @@ class DemoPlayer {
     const audio = this.audio
     audio.pause()
     audio.currentTime = 0
-    this.currentTrack = 0
+    this.currentTrack = -1
+    this.waitForTrack = null
     this.setProgress()
   }
 
@@ -153,14 +217,10 @@ class DemoPlayer {
       const onLoadEvent = () => {
         this.loadStarted = true
         audio.removeEventListener('loadeddata' , onLoadEvent)
-        audio.removeEventListener('loadedmetadata', onLoadEvent)
         audio.removeEventListener('loadstart', onLoadEvent)
-        audio.removeEventListener('progress', onLoadEvent)
       }
       audio.addEventListener('loadeddata' , onLoadEvent)
-      audio.addEventListener('loadedmetadata', onLoadEvent)
       audio.addEventListener('loadstart', onLoadEvent)
-      audio.addEventListener('progress', onLoadEvent)
     }
   }
 
@@ -203,7 +263,7 @@ class DemoPlayer {
         this.toggleTrack(i)
       })
     }
-  }  
+  }
 }
 
 function renderPlayerTicks (duration, trackList) {
@@ -242,16 +302,6 @@ function keydownHandler(trackList) {
   }
 }
 
-function whenAudioLoaded(audio, waitforTime, callback) {
-  const seekable = audio.seekable.length ? audio.seekable.end(audio.seekable.length - 1) : 0
-  if (seekable >= waitforTime) {
-    callback()
-  }
-  else {
-    window.setTimeout(() => whenAudioLoaded(audio, waitforTime, callback), 100)
-  }
-}
-
 function logEvents(audio) {
   const events = 'abort canplay canplaythrough durationchange emptied ended error loadeddata loadedmetadata loadstart pause play playing progress ratechange seeked stalled suspend timeupdate waiting'
   events.split(' ').forEach(event => {
@@ -267,9 +317,7 @@ if (typeof Audio === 'function') {
     const players = document.querySelectorAll('.demo-player')
     for (let i = 0; i < players.length; i++) {
       new DemoPlayer(players[i])
-      if (i === 0) {
-        logEvents(demoPlayers[0].audio)
-      }
     }
+    // logEvents(demoPlayers[0].audio)
   })
 }
