@@ -111,11 +111,11 @@ $demo-player-prefix: 'demo-player';
   &__play-pause-icon {
     display: block;
     margin: 0 auto;
-    width: 1.4rem;
-    height: 1.4rem;
+    width: px2rem(30);
+    height: px2rem(30);
     position: absolute;
-    left: px2rem(6);
-    top: px2rem(8);
+    left: ($demo-action-button-width - px2rem(30)) / 2;
+    top: px2rem(7);
     
     svg {
       position: absolute;
@@ -165,10 +165,10 @@ $demo-player-prefix: 'demo-player';
 
     svg {
       position: absolute;
-      height: px2rem(24);
-      width: px2rem(24);
-      top: px2rem(18);
-      left: ($demo-action-button-width - px2rem(24)) / 2;
+      height: px2rem(30);
+      width: px2rem(30);
+      top: px2rem(15);
+      left: ($demo-action-button-width - px2rem(30)) / 2;
     }
 
 
@@ -186,8 +186,8 @@ $demo-player-prefix: 'demo-player';
 
   &__download-track {
     svg {
-      height: px2rem(16);
-      width: px2rem(16);
+      height: px2rem(20);
+      width: px2rem(20);
     }
   }
 
