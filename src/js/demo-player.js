@@ -19,13 +19,17 @@ class DemoPlayer {
   }
 
   toggle() {
+    const audio = this.audio
+    const playing = !(audio.paused || audio.ended)
     if (this.currentTrack === -1) {
       this.playTrack(0)
     }
     else {
-      const audio = this.audio
-      const playing = !(audio.paused || audio.ended)
       audio[playing ? 'pause' : 'play']()
+    }
+    if (!playing) {
+      const source = audio.querySelector('source')
+      analytics('Audio', 'play', (source && source.getAttribute('src')) || 'cannot determine')
     }
   }
 
@@ -222,6 +226,14 @@ class DemoPlayer {
       audio.addEventListener('loadeddata' , onLoadEvent)
       audio.addEventListener('loadstart', onLoadEvent)
     }
+
+    const downloadLinks = this._playerEl.querySelectorAll('a[download]')
+    for(let i=0; i< downloadLinks.length; i++) {
+      downloadLinks[i].addEventListener('click', e => {
+        const src = downloadLinks[i].getAttribute('href') || 'cannot determine'
+        analytics('Audio', 'download', src)
+      })
+    }
   }
 
   _getPlayPauseButton() {
@@ -252,6 +264,9 @@ class DemoPlayer {
 
       tracks[i].addEventListener('click', ()=> {
         this.toggleTrack(i)
+        if (!this.audio.paused && !this.audio.ended) {
+          analytics('Audio Track', 'play', trackList[i].audio)
+        } 
       })
 
     }
@@ -310,6 +325,13 @@ function logEvents(audio) {
       console.log(`${e.type} - ct: ${audio.currentTime}; seekable: ${seekable}; rs: ${audio.readyState}; now=${new Date().getTime()}`)
     })
   })
+}
+
+function analytics(category, action, label) {
+  if ('function' === typeof ga) {
+    // ga('send', 'event', category, action, label)
+    gtag('event', action, {event_category: category, event_label: label})
+  }
 }
 
 if (typeof Audio === 'function') {
