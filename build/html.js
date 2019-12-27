@@ -40,7 +40,7 @@ const data = {
   obfuscatedEmail: obfuscate([contact.eName, '@', contact.eHostBase, '.', contact.eHostExt]),
   emailLabel: 'tom at tom nunes dot com',
   obfuscatedPhone: obfuscate([contact.pArea, '-', contact.pExchange, '-', contact.pNumber]),
-  phoneLabel: 'eight six zero five seven three six four one nine',
+  phoneLabel: 'eight six zero seven five six zero two nine six',
   legalName: 'Tom Nunes Voiceover',
   cacheBuster,
   demos
