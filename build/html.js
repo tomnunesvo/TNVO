@@ -4,6 +4,7 @@ const fs = require('fs-extra')
 const ejs = require('ejs')
 const contact = require('../src/js/contact.json')
 const { demos } = require('./demos.js')
+const ldJSON = require('./ld+json.json')
 
 const obfuscate = parts => {
   return ['ks@jd',parts[0],'s$yej',parts[1],'#sld*g',parts[2],'isy^ggs',parts[3],'gda85w@',parts[4],'os(hshs)']
@@ -33,7 +34,7 @@ const data = {
     description: description,
     name: "Tom Nunes",
     url: url,
-    socialImage: `${url}/assets/images/social-share.jpg`
+    socialImage: `${url}/assets/images/social-share.png`
   },
   relPath: '',
   whatIDo: "Voiceover",
@@ -46,8 +47,17 @@ const data = {
   demos
 }
 
+// configure ld+json
+const ldjGraph = ldJSON["@graph"]
+const ldjPerson = ldjGraph[0]
+const ldjWebSite = ldjGraph[1]
+const ldjWebPage = ldjGraph[2]
+ldjPerson.image.url = data.meta.socialImage
+ldjWebSite.description = data.meta.description
+
 const outDir = './dist'
-function renderFile (ejsFile, data, outFile) {
+function renderFile (ejsFile, data, outFile, ldJson) {
+  getLdJson(data, ldJson)
   ejs.renderFile(`./src/${ejsFile}`, data, (err, html) => {
     if (err) {
       console.error(err)
@@ -60,10 +70,39 @@ function renderFile (ejsFile, data, outFile) {
   
 }
 
-fs.ensureDirSync(outDir)
-renderFile('index.ejs.html', data, 'index.html')
+function getLdJson(data, pageLdJson) {
+  ldjWebPage["@id"] = `https://tomnunes.com${pageLdJson.page}/#webpage`
+  ldjWebPage.url = `https://tomnunes.com${pageLdJson.page}/`
+  ldjWebPage.name = data.meta.title
+  ldjWebPage.datePublished = pageLdJson.published
+  ldjWebPage.dateModified = new Date().toISOString()
+  ldjWebPage.description = pageLdJson.description
+  data.ldJSON = JSON.stringify(ldJSON)
+}
 
+fs.ensureDirSync(outDir)
+const homeLdJson = {
+  page: '/',
+  published: "2019-05-14T00:00:00+00:00",
+  description: description
+}
+renderFile('index.ejs.html', data, 'index.html', homeLdJson)
+
+const privacyLdJson = {
+  page: '/privacy',
+  published: "2019-05-14T00:00:00+00:00",
+  description: "Tom Nunes Voiceover Privacy Policy"
+}
 fs.ensureDirSync(`${outDir}/privacy`)
 const privacyData = {...data, meta: {...data.meta, title: `Privacy Policy | ${title}`}, relPath: '../'}
-renderFile('privacy/index.ejs', privacyData, 'privacy/index.html')
+renderFile('privacy/index.ejs', privacyData, 'privacy/index.html', privacyLdJson)
+
+const searchLdJson = {
+  page: '/search',
+  published: "2020-02-16T04:00:00+00:00",
+  description: "Tom Nunes Voiceover search page"
+}
+fs.ensureDirSync(`${outDir}/search`)
+const searchData = {...data, meta: {...data.meta, title: `Search | ${title}`}, relPath: '../'}
+renderFile('search/index.ejs', searchData, 'search/index.html', searchLdJson)
 

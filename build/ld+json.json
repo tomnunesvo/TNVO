@@ -1,0 +1,47 @@
+{
+	"@context": "https://schema.org",
+	"@graph": [{
+		"@type": ["Person", "Organization"],
+		"@id": "https://tomnunes.com/#person",
+		"name": "Tom Nunes",
+		"image": {
+			"@type": "ImageObject",
+			"@id": "https://tomnunes.com/#personlogo",
+			"url": "(enter social image here)",
+			"caption": "Tom Nunes"
+		},
+		"logo": {
+			"@id": "https://tomnunes.com/#personlogo"
+		},
+		"sameAs": []
+	}, {
+		"@type": "WebSite",
+		"@id": "https://tomnunes.com/#website",
+		"url": "https://tomnunes.com/",
+		"name": "Tom Nunes Voiceover",
+		"description": "(enter website description here)",
+		"publisher": {
+			"@id": "https://tomnunes.com/#person"
+		},
+		"potentialAction": {
+			"@type": "SearchAction",
+			"target": "https://tomnunes.com/search?q={search_term_string}",
+			"query-input": "required name=search_term_string"
+		}
+	}, {
+		"@type": "WebPage",
+		"@id": "https://tomnunes.com/#webpage",
+		"url": "https://tomnunes.com/",
+		"inLanguage": "en-US",
+		"name": "##########################",
+		"isPartOf": {
+			"@id": "https://tomnunes.com/#website"
+		},
+		"about": {
+			"@id": "https://tomnunes.com/#person"
+		},
+		"datePublished": "2019-05-14T00:00:00+00:00",
+		"dateModified": "2019-12-31T19:05:07+00:00",
+		"description": "########################################"
+	}]
+}

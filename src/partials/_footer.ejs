@@ -2,15 +2,15 @@
   <div class="container">
     <div class="tnvo-footer__identity">
       <div class="tnvo-footer__whoiam"><%= meta.name %></div>
-      <a href="<%= relPath %>#home" class="tnvo-footer__logo">
-        <img src="../assets/images/tnvo-logo.svg">
+      <a href="<%= relPath %>#home" class="tnvo-footer__logo" aria-label="Home" rel="home">
+        <img src='<%= relPath %>assets/images/tnvo-logo.svg' alt="<%= meta.name %> <%= whatIDo %> logo" title="<%= meta.name %> <%= whatIDo %> | Savor the Sound"/>
       </a>
       <div class="tnvo-footer__whatido"><%= whatIDo %></div>
     </div>
     <p>
       <snan class="tnvo-footer__copyright">&copy; <span id="copyrightYear">2019</span> <%= legalName %></snan>
       <span class="tnvo-footer__links">
-        <a href="<%= relPath %>/privacy">Privacy Policy</a>
+        <a href="<%= relPath %>privacy">Privacy Policy</a>
       </span>
     </p>
     <p class="tnvo-footer__contact">
