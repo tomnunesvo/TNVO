@@ -317,6 +317,14 @@ function keydownHandler(trackList) {
   }
 }
 
+function prepAudio(audio) {
+  const sources = audio.querySelectorAll('source')
+  if (audio.canPlayType(sources[0].type)) { //if browser can play .mp3
+    audio.removeChild(sources[1]) // remove .ogg
+  }
+  audio.load()
+}
+
 function logEvents(audio) {
   const events = 'abort canplay canplaythrough durationchange emptied ended error loadeddata loadedmetadata loadstart pause play playing progress ratechange seeked stalled suspend timeupdate waiting'
   events.split(' ').forEach(event => {
@@ -340,6 +348,7 @@ if (typeof Audio === 'function') {
     for (let i = 0; i < players.length; i++) {
       new DemoPlayer(players[i])
     }
+    window.setTimeout(() => { demoPlayers.map(player => player.audio).forEach(prepAudio) }, 1000)
     // logEvents(demoPlayers[0].audio)
   })
 }

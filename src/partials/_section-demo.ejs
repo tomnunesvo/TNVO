@@ -31,7 +31,7 @@
         <% demos.forEach(demo => {%>
         <div class="demo-player">
           <h3 class="demo-player__heading"><%= demo.name %></h3>
-          <audio controls hidden preload="auto">
+          <audio controls hidden preload="none">
             <source src="audio/<%- demo.audio %>.mp3" type="audio/mp3" />
             <source src="audio/<%- demo.audio %>.ogg" type="audio/ogg" />
             <p>
