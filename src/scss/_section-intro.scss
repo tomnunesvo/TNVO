@@ -1,92 +1,83 @@
 .section-intro {
   background-color: $dark-blue;
-  background-image: url("../assets/images/coffee-bag-fp-small.jpg");
+  background-image: url("../assets/images/coffee-bag-with-mic-small.jpg");
   background-size: cover;
   background-position: 50% 50%;
   color: white;
-  text-align: center;
-  padding: 3rem 0 4rem;
-
+  height: px2rem(400px);
+  max-height: 100vw * 3 / 4;
+  min-height: 100vw * 1 / 2;
+  
   &__content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 100%;
   }
 
-  &__title,
   &__tagline {
     color: inherit;
-    font-family: $base-font-family;
-    text-shadow: -1px -1px 3px rgba(#000, 1);
-    transform: none;
-  }
-
-  &__title {
-    font-size: px2rem(14);
-    margin: 0;
-    line-height: 1.5;
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
-  }
-
-  &__tagline {
     font-family: $heading-font-family;
     font-size: calc(1.25em + (0.75 * (100vw - 20em) / 28));
-    font-style: italic;
-    line-height: normal;
+    line-height: 1.25;
     margin: 0;
-    max-width: 100%;
+    max-width: $max-container-width-rem;
+    text-align: center;
+    text-shadow: 0 1px .2em rgba(#000, 1);
+    transform: translateY(70%);
   }
 
   img {
-    display: block;
+    display: none; //block;
     margin: px2rem(30) 0;
     margin: 0 auto;
     width: px2rem(320);
   }
 
-  @media screen and (min-width: $sm) {
-    padding-top: 4rem;
-
-    img {
-      width: px2rem(360);
+  @media (min-width: $md) {
+    &__tagline {
+      transform: translateY(60%);
     }
-
-    &__title {
-      font-size: px2rem(16);
+  }
+  @media (min-width: px2em(719)) {
+    // when tagline goes to 2 lines
+    &__tagline {
+      transform: translateY(75%);
     }
   }
 
   @media (min-resolution: 200dpi), (min-resolution: 1.25dppx), (-webkit-min-device-pixel-ratio: 1.25) {
-    background-image: url("../assets/images/coffee-bag-fp-small@2.jpg");
+    background-image: url("../assets/images/coffee-bag-with-mic-small@2.jpg");
   }
 
   @media (min-resolution: 360dpi), (min-resolution: 2.25dppx), (-webkit-min-device-pixel-ratio: 2.25) {
-    background-image: url("../assets/images/coffee-bag-fp-small@3.jpg");
+    background-image: url("../assets/images/coffee-bag-with-mic-small@3.jpg");
   }
 
-  @media (min-width: $md) {
-    background-image: url("../assets/images/coffee-bag-fp.jpg");
-    background-position: 50% 80%;
-
+  @media (min-width: $sm) {
+    background-image: url("../assets/images/coffee-bag-with-mic.jpg");
     @media (min-resolution: 200dpi), (min-resolution: 1.25dppx), (-webkit-min-device-pixel-ratio: 1.25) {
-      background-image: url("../assets/images/coffee-bag-fp@2.jpg");
+      background-image: url("../assets/images/coffee-bag-with-mic@2.jpg");
     }
-
+    
     @media (min-resolution: 360dpi), (min-resolution: 2.25dppx), (-webkit-min-device-pixel-ratio: 2.25) {
-      background-image: url("../assets/images/coffee-bag-fp-@3.jpg");
+      background-image: url("../assets/images/coffee-bag-with-mic@3.jpg");
     }
   }
-
-  @media (min-width: px2em(1000)) {
-    background-image: url("../assets/images/coffee-bag-fp@2.jpg");
+  
+  
+  
+  @media (min-width: px2em(801)) {
+    background-image: url("../assets/images/coffee-bag-with-mic@2.jpg");
 
     @media (min-resolution: 200dpi), (min-resolution: 1.25dppx), (-webkit-min-device-pixel-ratio: 1.25) {
-      background-image: url("../assets/images/coffee-bag-fp@3.jpg");
+      background-image: url("../assets/images/coffee-bag-with-mic@3.jpg");
     }
   }
-  @media (min-width: px2em(2000)) {
-    background-image: url("../assets/images/coffee-bag-fp@3.jpg");
+
+  @media (min-width: px2em(1601)) {
+    background-image: url("../assets/images/coffee-bag-with-mic@3.jpg");
   }
 }
+

@@ -10,7 +10,7 @@ $demo-board-margin-right: 1.5rem;
     color: $white;
     background-color: $demo-board-background;
     position: relative;
-    margin: px2rem(-15) auto 0;
+    margin: px2rem(-1) auto 0;
     &::before {
       content: '';
       position: absolute;
@@ -93,6 +93,7 @@ $demo-board-margin-right: 1.5rem;
       border-radius: px2rem(6);
       box-shadow: px2rem(1) px2rem(3) px2rem(10) 2px rgba(black, 0.5);
       margin-bottom: 1.5rem;
+      margin-top: px2rem(-15);
     }
   }
 
@@ -123,7 +124,7 @@ $demo-board-margin-right: 1.5rem;
     
     &__board {
       float: left;
-      margin-top: px2rem(-40);
+      margin-top: px2rem(-60);
       margin-left: -($container-padding-lg - .5rem);
       margin-right: $demo-board-margin-right;
       margin-bottom: 1.5rem;
