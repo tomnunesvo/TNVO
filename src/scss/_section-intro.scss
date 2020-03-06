@@ -1,19 +1,35 @@
 .section-intro {
-  background-color: $dark-blue;
-  background-image: url("../assets/images/coffee-bag-with-mic-small.jpg");
-  background-size: cover;
-  background-position: 50% 50%;
+  background-color: $brown-dark2; //$midnight-blue;
   color: white;
   height: px2rem(400px);
   max-height: 100vw * 3 / 4;
   min-height: 100vw * 1 / 2;
-  
+
   &__content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100%;
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+
+  &__title {
+    color: inherit;
+    font-family: $base-font-family;
+    font-size: px2rem(12);
+    margin: 2rem 0 0;
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    width: 100%;
+    visibility: hidden;
+
+    .show-backup & {
+      visibility: visible;
+    }
   }
 
   &__tagline {
@@ -23,61 +39,66 @@
     line-height: 1.25;
     margin: 0;
     max-width: $max-container-width-rem;
-    text-align: center;
-    text-shadow: 0 1px .2em rgba(#000, 1);
-    transform: translateY(70%);
+    position: relative;
+    text-shadow: -1px -1px 0.2em rgba(#000, 1);
+    z-index: $z-index-hero;
   }
 
   img {
-    display: none; //block;
+    display: block;
     margin: px2rem(30) 0;
     margin: 0 auto;
-    width: px2rem(320);
+    width: 24vw;
+    min-height: 22vw;
   }
 
-  @media (min-width: $md) {
-    &__tagline {
-      transform: translateY(60%);
-    }
-  }
-  @media (min-width: px2em(719)) {
+  @media (min-width: px2em(515)) {
     // when tagline goes to 2 lines
     &__tagline {
-      transform: translateY(75%);
+      margin-bottom: 3rem;
     }
   }
 
-  @media (min-resolution: 200dpi), (min-resolution: 1.25dppx), (-webkit-min-device-pixel-ratio: 1.25) {
-    background-image: url("../assets/images/coffee-bag-with-mic-small@2.jpg");
-  }
+  &__hero-image {
+    background-size: cover;
+    background-position: 50% 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 
-  @media (min-resolution: 360dpi), (min-resolution: 2.25dppx), (-webkit-min-device-pixel-ratio: 2.25) {
-    background-image: url("../assets/images/coffee-bag-with-mic-small@3.jpg");
-  }
+    background-image: url("../assets/images/coffee-bag-with-mic-small.jpg");
 
-  @media (min-width: $sm) {
-    background-image: url("../assets/images/coffee-bag-with-mic.jpg");
     @media (min-resolution: 200dpi), (min-resolution: 1.25dppx), (-webkit-min-device-pixel-ratio: 1.25) {
-      background-image: url("../assets/images/coffee-bag-with-mic@2.jpg");
+      background-image: url("../assets/images/coffee-bag-with-mic-small@2.jpg");
     }
-    
+
     @media (min-resolution: 360dpi), (min-resolution: 2.25dppx), (-webkit-min-device-pixel-ratio: 2.25) {
+      background-image: url("../assets/images/coffee-bag-with-mic-small@3.jpg");
+    }
+
+    @media (min-width: $sm) {
+      background-image: url("../assets/images/coffee-bag-with-mic.jpg");
+      @media (min-resolution: 200dpi), (min-resolution: 1.25dppx), (-webkit-min-device-pixel-ratio: 1.25) {
+        background-image: url("../assets/images/coffee-bag-with-mic@2.jpg");
+      }
+
+      @media (min-resolution: 360dpi), (min-resolution: 2.25dppx), (-webkit-min-device-pixel-ratio: 2.25) {
+        background-image: url("../assets/images/coffee-bag-with-mic@3.jpg");
+      }
+    }
+
+    @media (min-width: px2em(1200)) {
+      background-image: url("../assets/images/coffee-bag-with-mic@2.jpg");
+
+      @media (min-resolution: 200dpi), (min-resolution: 1.25dppx), (-webkit-min-device-pixel-ratio: 1.25) {
+        background-image: url("../assets/images/coffee-bag-with-mic@3.jpg");
+      }
+    }
+
+    @media (min-width: px2em(2000)) {
       background-image: url("../assets/images/coffee-bag-with-mic@3.jpg");
     }
-  }
-  
-  
-  
-  @media (min-width: px2em(801)) {
-    background-image: url("../assets/images/coffee-bag-with-mic@2.jpg");
-
-    @media (min-resolution: 200dpi), (min-resolution: 1.25dppx), (-webkit-min-device-pixel-ratio: 1.25) {
-      background-image: url("../assets/images/coffee-bag-with-mic@3.jpg");
-    }
-  }
-
-  @media (min-width: px2em(1601)) {
-    background-image: url("../assets/images/coffee-bag-with-mic@3.jpg");
   }
 }
-

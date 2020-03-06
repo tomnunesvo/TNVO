@@ -33,6 +33,7 @@ $header-bgcolor: mix(black, $charcoal);
     left: 0;
     top: 100%;
     width: 100%;
+    z-index: $z-index-hero + 1;
 
     .container {
       margin: 0 auto;

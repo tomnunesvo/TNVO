@@ -31,7 +31,6 @@ $maroon-light1: mix(white, $maroon, 20%);
 $maroon-light2: mix(white, $maroon, 35%);
 $maroon-light3: mix(white, $maroon, 55%);
 $maroon-light4: mix(white, $maroon, 70%);
-$z-index-status: 1000;
 
 $brown: #805426;
 $brown-dark1: mix(black, $brown, 20%);
@@ -57,3 +56,6 @@ $heading-font-color: $dk-slate-blue;
 
 $status-message-color: $base-font-color;
 $status-message-bgcolor: $gold;
+
+$z-index-status: 1000;
+$z-index-hero: 1;
