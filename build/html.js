@@ -16,7 +16,9 @@ const obsfuscatePhone = () => obfuscate([contact.pArea, '-', contact.pExchange, 
 const title = "Tom Nunes Voiceover — Savor the Sound"
 const url = "https://tomnunes.com"
 const description = `Tom Nunes, professional male voice actor, serves a vocal blend with the honesty and authority to carry 
-your message in commercials, eLearning, corporate narration, explainer videos and tutorials. Savor the sound.`
+your message in commercials, eLearning, corporate narration, explainer videos and tutorials. Tom can connect remotely for 
+directed sessions over Source-Connect, ipDTL, bodalgoCall, Skype or any web-based communication platform. He produces production 
+quality audio in all major formats with fast turnaround.`
 
 const cacheBuster = (function makeid(length) {
   var result           = '';

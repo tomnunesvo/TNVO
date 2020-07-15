@@ -7,6 +7,15 @@
     line-height: normal;
   }
 
+  .in-the-studio-list {
+    list-style-type: "\2713"; //check mark
+    padding-left: 1em;
+
+    > li {
+      padding-left: .5em;
+    }
+  }
+
   @media (min-width: $lg) {
 
     .container > * {
