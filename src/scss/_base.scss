@@ -20,6 +20,22 @@ a {
   }
 }
 
+ul {
+  margin: 0 0 1.5rem;
+  padding-left: 1rem;
+}
+li {
+  line-height: 1.25em;
+}
+
+li + li {
+  margin-top: .5em;
+}
+
+figure {
+  margin: 0;
+}
+
 .section-heading {
   text-align: center;
 }

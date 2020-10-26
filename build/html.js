@@ -13,7 +13,7 @@ const obfuscate = parts => {
   
 const obsfuscateEmail = () => obfuscate([contact.eName, '@', contact.eHostBase, '.', contact.eHostExt])
 const obsfuscatePhone = () => obfuscate([contact.pArea, '-', contact.pExchange, '-', contact.pNumber])
-const title = "Tom Nunes Voiceover — Savor the Sound"
+const title = "Tom Nunes Voiceover — Professional Male Voice Actor"
 const url = "https://tomnunes.com"
 const description = `Tom Nunes, professional male voice actor, serves a vocal blend with the honesty and authority to carry 
 your message in commercials, eLearning, corporate narration, explainer videos and tutorials. Tom can connect remotely for 
@@ -46,7 +46,12 @@ const data = {
   phoneLabel: 'eight six zero seven five six zero two nine six',
   legalName: 'Tom Nunes Voiceover',
   cacheBuster,
-  demos
+  demos,
+  rawSample: {
+    file: "Tom_Nunes_Commercial.mp3",
+    label: "Raw Studio Sample",
+    duration: 64.123
+  }
 }
 
 // configure ld+json

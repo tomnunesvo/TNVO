@@ -271,12 +271,14 @@ class DemoPlayer {
 
     }
     const progressTicks = this._playerEl.querySelector('.demo-player__progress-ticks')
-    progressTicks.innerHTML = renderPlayerTicks(this.duration, trackList)
-    const ticks = progressTicks.querySelectorAll('.demo-player__progress-tick')
-    for(let i=0; i< ticks.length; i++) {
-      ticks[i].addEventListener('click', ()=> {
-        this.toggleTrack(i)
-      })
+    if (progressTicks) {
+      progressTicks.innerHTML = renderPlayerTicks(this.duration, trackList)
+      const ticks = progressTicks.querySelectorAll('.demo-player__progress-tick')
+      for(let i=0; i< ticks.length; i++) {
+        ticks[i].addEventListener('click', ()=> {
+          this.toggleTrack(i)
+        })
+      }  
     }
   }
 }

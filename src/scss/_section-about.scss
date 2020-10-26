@@ -1,31 +1,100 @@
 .section-about {
   background-color: $white;
-  
+
   .section-sub-heading {
     font-size: px2rem(14);
     text-transform: uppercase;
     line-height: normal;
   }
 
-  .in-the-studio-list {
-    list-style-type: "\2713"; //check mark
-    padding-left: 1em;
-
-    > li {
-      padding-left: .5em;
-    }
-  }
-
   @media (min-width: $lg) {
-
-    .container > * {
-      margin-left: $demo-board-width + 1.5rem - $container-padding-lg + .5rem;
+    .container > *:not(.about-summaries) {
+      margin-left: $demo-board-width + 1.5rem - $container-padding-lg + 0.5rem;
     }
   }
 
   @media (min-width: $max-container-width-em + px2em(20)) {
-    .container > * {
+    .container > *:not(.about-summaries) {
       margin-left: $demo-board-width + 1.5rem - $container-padding-lg;
     }
+  }
+}
+
+.about-summaries {
+  clear: both;
+
+  > div {
+    margin: 0 auto 1.5rem;
+    max-width: px2rem(512);
+  }
+  @media (min-width: px2em(624)) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 -1rem;
+
+    > div {
+      flex: 1 0 33.33333%;
+      min-width: px2rem(320);
+      max-width: 50%;
+      padding: 0 1rem;
+      display: flex;
+      justify-content: stretch;
+      > * {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.about-summary {
+  background-color: rgba($brown, 0.1);
+  padding: 1rem;
+  border-radius: px2rem(6);
+  font-size: 0.9rem;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+  }
+  ul {
+    margin: 0;
+    padding-left: 1rem;
+  }
+}
+
+.raw-sample-demo-player-container {
+  background-color: $demo-board-background;
+  padding: 0.5rem 0.5rem 0.25rem 0.5rem;
+  border-bottom-left-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+  margin: 1rem -1rem -1rem;
+
+  figure {
+    margin: 0;
+    padding: 0;
+  }
+
+  .demo-player__heading {
+    padding-left: 1.5rem;
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+  }
+
+  .demo-player__play-pause {
+    left: -0.5rem;
+  }
+
+  .demo-player__play-pause-icon {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .demo-player__progress {
+    margin-left: 1.5rem;
+    margin-right: 2.25rem;
+  }
+  .demo-player__tracks {
+    display: none;
   }
 }

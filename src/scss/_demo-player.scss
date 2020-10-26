@@ -342,6 +342,20 @@ $demo-player-prefix: 'demo-player';
   }
 }
 
+.raw-studio-invite {
+  border-top: dashed px2rem(1) rgba($white, .5);
+  font-size: .8rem;
+  line-height: 3rem;
+  margin: 0 1rem;
+  text-align: center;
+
+  a {
+    color: mix(white, $gold, 20%); 
+  }
+}
+
+
+
 @keyframes spin {
   from {
     transform: rotate(0deg);

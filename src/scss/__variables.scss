@@ -24,19 +24,29 @@ $jb-goldenrod: #d2a72f;
 $jb-dark-teal: #253436;
 $sb-dark-brown: #2e2926;
 $sb-gold: #d3a049;
+$sb-gold-light1: mix(white, $sb-gold, 20%);
+$sb-gold-light2: mix(white, $sb-gold, 35%);
+$sb-gold-light3: mix(white, $sb-gold, 55%);
 $chobani-white: #f4f3f0;
+$chobani-dark1: mix(black, $chobani-white, 5%);
 
 $maroon: #1f0905;
 $maroon-light1: mix(white, $maroon, 20%);
 $maroon-light2: mix(white, $maroon, 35%);
 $maroon-light3: mix(white, $maroon, 55%);
-$maroon-light4: mix(white, $maroon, 70%);
+$maroon-light4: mix(white, $maroon, 75%);
+$maroon-light5: mix(white, $maroon, 95%);
 
 $brown: #805426;
 $brown-dark1: mix(black, $brown, 20%);
 $brown-dark2: mix(black, $brown, 40%);
 $brown-dark3: mix(black, $brown, 60%);
 $brown-dark4: mix(black, $brown, 80%);
+$brown-light1: mix(white, $brown, 20%);
+$brown-light2: mix(white, $brown, 40%);
+$brown-light50: mix(white, $brown, 50%);
+$brown-light3: mix(white, $brown, 60%);
+$brown-light4: mix(white, $brown, 80%);
 
 
 $neutral: #948d85;
