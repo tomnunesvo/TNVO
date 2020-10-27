@@ -321,21 +321,34 @@ function keydownHandler(trackList) {
 
 function prepAudio(audio) {
   const sources = audio.querySelectorAll('source')
-  if (audio.canPlayType(sources[0].type)) { //if browser can play .mp3
+  if (sources[1] && audio.canPlayType(sources[0].type)) { //if browser can play .mp3
     audio.removeChild(sources[1]) // remove .ogg
   }
   audio.load()
 }
 
-function logEvents(audio) {
-  const events = 'abort canplay canplaythrough durationchange emptied ended error loadeddata loadedmetadata loadstart pause play playing progress ratechange seeked stalled suspend timeupdate waiting'
-  events.split(' ').forEach(event => {
-    audio.addEventListener(event, e => {
-      const seekable = audio.seekable.length ? audio.seekable.end(audio.seekable.length - 1) : -1
-      console.log(`${e.type} - ct: ${audio.currentTime}; seekable: ${seekable}; rs: ${audio.readyState}; now=${new Date().getTime()}`)
+function linkToRawSampleHandler() {
+  const rawSampleId = 'raw-studio-sample';
+  const link = document.querySelector(`a[href="#${rawSampleId}"]`);
+  const rawSample = document.getElementById(rawSampleId);
+  if (link && rawSampleId) {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      rawSample.focus && rawSample.focus();
+      analytics('Audio Track', 'link to', 'Raw audio sample');
     })
-  })
+  }
 }
+
+// function logEvents(audio) {
+//   const events = 'abort canplay canplaythrough durationchange emptied ended error loadeddata loadedmetadata loadstart pause play playing progress ratechange seeked stalled suspend timeupdate waiting'
+//   events.split(' ').forEach(event => {
+//     audio.addEventListener(event, e => {
+//       const seekable = audio.seekable.length ? audio.seekable.end(audio.seekable.length - 1) : -1
+//       console.log(`${e.type} - ct: ${audio.currentTime}; seekable: ${seekable}; rs: ${audio.readyState}; now=${new Date().getTime()}`)
+//     })
+//   })
+// }
 
 function analytics(category, action, label) {
   if ('function' === typeof ga) {
@@ -350,6 +363,7 @@ if (typeof Audio === 'function') {
     for (let i = 0; i < players.length; i++) {
       new DemoPlayer(players[i])
     }
+    linkToRawSampleHandler();
     window.setTimeout(() => { demoPlayers.map(player => player.audio).forEach(prepAudio) }, 1000)
     // logEvents(demoPlayers[0].audio)
   })

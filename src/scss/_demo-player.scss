@@ -350,7 +350,18 @@ $demo-player-prefix: 'demo-player';
   text-align: center;
 
   a {
-    color: mix(white, $gold, 20%); 
+    color: rgba($white, .8);
+    font-weight: 300; 
+    text-decoration: none;
+    &:focus,
+    &:hover {
+      text-decoration: underline;
+    }
+
+    strong {
+      color: mix(white, $gold, 20%); 
+      font-weight: 400;
+    }
   }
 }
 

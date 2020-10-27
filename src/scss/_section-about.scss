@@ -49,17 +49,16 @@
 
 .about-summary {
   background-color: rgba($brown, 0.1);
-  padding: 1rem;
   border-radius: px2rem(6);
   font-size: 0.9rem;
 
   h3 {
-    margin-top: 0;
-    margin-bottom: 0.25rem;
+    padding: .5rem 1rem;
+    margin: 0;
   }
   ul {
     margin: 0;
-    padding-left: 1rem;
+    padding: 0 1rem 1rem 2rem;
   }
 }
 
@@ -68,7 +67,6 @@
   padding: 0.5rem 0.5rem 0.25rem 0.5rem;
   border-bottom-left-radius: 0.3rem;
   border-bottom-right-radius: 0.3rem;
-  margin: 1rem -1rem -1rem;
 
   figure {
     margin: 0;

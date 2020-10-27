@@ -47,7 +47,8 @@ const data = {
   legalName: 'Tom Nunes Voiceover',
   cacheBuster,
   demos,
-  rawSample: {
+  rawSample: false,
+  _rawSample: {
     file: "Tom_Nunes_Commercial.mp3",
     label: "Raw Studio Sample",
     duration: 64.123
