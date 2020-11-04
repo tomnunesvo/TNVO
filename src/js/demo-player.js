@@ -364,7 +364,12 @@ if (typeof Audio === 'function') {
       new DemoPlayer(players[i])
     }
     linkToRawSampleHandler();
-    window.setTimeout(() => { demoPlayers.map(player => player.audio).forEach(prepAudio) }, 1000)
+    window.setTimeout(() => { 
+      demoPlayers
+        .filter(player => !player._playerEl.classList.contains('raw-sample-demo-player'))
+        .map(player => player.audio)
+        .forEach(prepAudio) 
+    }, 1000)
     // logEvents(demoPlayers[0].audio)
   })
 }

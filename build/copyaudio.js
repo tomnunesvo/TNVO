@@ -16,4 +16,4 @@ demos.forEach(demo => {
   })
 })
 
-cpy([`${src}*.mp3`, `${src}*.ogg`], dest, {rename: basename => renameMap[basename] || basename})
+cpy([`${src}*.mp3`, `${src}*.ogg`, `${src}*.wav`], dest, {rename: basename => renameMap[basename] || basename})
