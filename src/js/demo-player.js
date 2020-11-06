@@ -328,15 +328,25 @@ function prepAudio(audio) {
 }
 
 function linkToRawSampleHandler() {
-  const rawSampleId = 'raw-studio-sample';
-  const link = document.querySelector(`a[href="#${rawSampleId}"]`);
-  const rawSample = document.getElementById(rawSampleId);
-  if (link && rawSampleId) {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      rawSample.focus && rawSample.focus();
-      analytics('Audio Track', 'link to', 'Raw audio sample');
-    })
+  const rawSampleId = 'raw-studio-sample'
+  const rawSampleHash = '#rawsample'
+  const link = document.querySelector(`a[href="${rawSampleHash}"]`)
+  const rawSample = document.getElementById(rawSampleId)
+  function goToSampleIf() {
+    const hash = window.location.hash
+    if (rawSampleHash === hash) {
+      rawSample.focus && rawSample.focus()
+      analytics('Audio Track', 'link to', 'Raw audio sample')
+    }
+  }
+  if (rawSample) {
+    window.addEventListener('hashchange', goToSampleIf)
+    goToSampleIf()
+    if (link) {
+      link.addEventListener('click', (e) => {
+        goToSampleIf()
+      })
+    }
   }
 }
 
