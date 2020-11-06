@@ -332,22 +332,30 @@ function linkToRawSampleHandler() {
   const rawSampleHash = '#rawsample'
   const link = document.querySelector(`a[href="${rawSampleHash}"]`)
   const rawSample = document.getElementById(rawSampleId)
-  function goToSampleIf() {
-    const hash = window.location.hash
-    if (rawSampleHash === hash) {
-      rawSample.focus && rawSample.focus()
-      analytics('Audio Track', 'link to', 'Raw audio sample')
+  function goToSampleIf(e = {}) {
+    if (rawSample === document.activeElement) {
+      return;
+    }
+    if (rawSampleHash === window.location.hash || e.type === 'click') {
+      scrollTo(rawSample)
+      const action = e.type === 'click' ? 'click link' : 'direct link'
+      analytics('Audio Track', action, 'Raw audio sample')
     }
   }
   if (rawSample) {
     window.addEventListener('hashchange', goToSampleIf)
     goToSampleIf()
     if (link) {
-      link.addEventListener('click', (e) => {
-        goToSampleIf()
-      })
+      link.addEventListener('click', goToSampleIf)
     }
   }
+}
+function scrollTo(el) {
+  const rect = el.getBoundingClientRect()
+  const scrollY = window.scrollY || window.pageYOffset
+  const elTop = (rect.y || rect.top) + scrollY 
+  el.focus && el.focus()
+  window.scrollTo(0, elTop - 60)
 }
 
 // function logEvents(audio) {

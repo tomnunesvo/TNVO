@@ -36,7 +36,10 @@ const data = {
     description: description,
     name: "Tom Nunes",
     url: url,
-    socialImage: `${url}/assets/images/social-share.png`
+    socialImage: `${url}/assets/images/social-share-1024.png`,
+    socialImageWidth: 1024,
+    socialImageHeight: 1024,
+    socialImageType: 'image/png'
   },
   relPath: '',
   whatIDo: "Voiceover",
