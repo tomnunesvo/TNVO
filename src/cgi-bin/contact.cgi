@@ -19,6 +19,17 @@ if ($honeypot ne "") {
     &dienice("Invalid request (subject)\n", "400");
 }
 
+my $message = param('message');
+# Combat other annoyances
+my $domaincount = () = $message =~ /\bdomain\b/gi;
+if ($domaincount > 2) {
+    &dienice("Invalid request (domain warning)\n", "400");
+}
+my $termcount = () = $message =~ /\terminated\b/gi;
+if (($domaincount > 0) && ($termcount > 0)) {
+    &dienice("Invalid request (domain terminated warning)\n", "400");
+}
+
 foreach my $p (param()) {
     if (($p ne "name") && ($p ne "email") && ($p ne "message") && ($p ne "subject")) {
         &dienice("Invalid request\n", "400");
