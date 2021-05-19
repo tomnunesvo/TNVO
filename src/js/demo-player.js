@@ -69,7 +69,7 @@ class DemoPlayer {
           this.waitForTrack = null
           audio.currentTime = trackItem.startTime + .1
           // console.log('playing now...')
-          audio.play()      
+          audio.play()
         }
         else {
           window.setTimeout(poll, 100)
@@ -77,9 +77,9 @@ class DemoPlayer {
       }
     }
 
-    this.setPlayPauseStatus({type: 'waiting'})
+    this.setPlayPauseStatus({ type: 'waiting' })
     this.setProgress()
-    audio.currentTime = trackItem.startTime  + .1 // to tell browser to load to this point (?)
+    audio.currentTime = trackItem.startTime + .1 // to tell browser to load to this point (?)
     poll()
   }
 
@@ -99,9 +99,9 @@ class DemoPlayer {
         break;
       default:
         audioState = ''
-      }
+    }
 
-      const playPause = this._getPlayPauseButton()
+    const playPause = this._getPlayPauseButton()
     _playerEl.classList.remove('playing')
     _playerEl.classList.remove('paused')
     _playerEl.classList.remove('waiting')
@@ -110,6 +110,16 @@ class DemoPlayer {
     }
     playPause.title = [audioState === 'playing' ? 'pause' : audioState === 'waiting' ? 'waiting for audio to load' : 'play']
     playPause.setAttribute('aria-label', playPause.title)
+    if (audioState === 'waiting' || audioState === 'playing') {
+      const trackList = _playerEl.querySelector('.demo-player__tracks')
+      if (!trackList.classList.contains('expanded')) {
+        const allTrackLists = Array.from(_playerEl.parentNode.querySelectorAll('.demo-player__tracks'))
+        allTrackLists.forEach(tl => {
+          tl.classList[tl === trackList ? 'add' : 'remove']('expanded')
+        })
+      }
+    }
+
   }
 
   setProgress() {
@@ -122,7 +132,7 @@ class DemoPlayer {
     progress.setAttribute('aria-valuenow', valueNow)
     progressbar.style.transform = `translateX(${pct - 100}%)`
     let nowPlayingText = ''
-    for(let i=0; i<_trackList.length; i++) {
+    for (let i = 0; i < _trackList.length; i++) {
       const trackItem = _trackList[i]
       const track = trackItem.track
       const trackProgress = track.querySelector('.demo-player__track-progress')
@@ -133,7 +143,7 @@ class DemoPlayer {
         if (i === (this.currentTrack - 1) && timeRemaining < .1) {
           // gone backwards. iOS has put current time to an earlier point than requested. So, to prevent flash...
           isCurrentTrack = false
-        } 
+        }
       }
       else if (i === this.currentTrack) {
         const timeUntil = trackItem.startTime - valueNow
@@ -150,12 +160,12 @@ class DemoPlayer {
         const trackProgressPct = audio.ended ? 100 : Math.min(100, 100 * trackValueNow / trackItem.duration)
         trackProgressbar.style.transform = `translateX(${trackProgressPct - 100}%)`
         trackProgress.setAttribute('aria-valuenow', trackValueNow)
-        const currentTrackEl = _trackList[this.currentTrack] && _trackList[this.currentTrack].track 
-        if (document.activeElement === currentTrackEl) {  
+        const currentTrackEl = _trackList[this.currentTrack] && _trackList[this.currentTrack].track
+        if (document.activeElement === currentTrackEl) {
           track.focus()
         }
         this.currentTrack = i
-        nowPlayingText = `Now playing read ${i+1}: ${trackItem.track.querySelector('.demo-player__track-name').innerHTML}`
+        nowPlayingText = `Now playing read ${i + 1}: ${trackItem.track.querySelector('.demo-player__track-name').innerHTML}`
       }
       else {
         trackItem.track.classList.remove('playing')
@@ -195,7 +205,7 @@ class DemoPlayer {
   }
 
   _bind() {
-    const { _playerEl, audio, _trackList} = this
+    const { _playerEl, audio, _trackList } = this
     this._getPlayPauseButton().addEventListener('click', this.toggle.bind(this))
     if (isNaN(audio.duration)) {
       audio.addEventListener('durationchange', () => this.duration = audio.duration)
@@ -220,15 +230,15 @@ class DemoPlayer {
     if (!this.loadStarted) {
       const onLoadEvent = () => {
         this.loadStarted = true
-        audio.removeEventListener('loadeddata' , onLoadEvent)
+        audio.removeEventListener('loadeddata', onLoadEvent)
         audio.removeEventListener('loadstart', onLoadEvent)
       }
-      audio.addEventListener('loadeddata' , onLoadEvent)
+      audio.addEventListener('loadeddata', onLoadEvent)
       audio.addEventListener('loadstart', onLoadEvent)
     }
 
     const downloadLinks = this._playerEl.querySelectorAll('a[download]')
-    for(let i=0; i< downloadLinks.length; i++) {
+    for (let i = 0; i < downloadLinks.length; i++) {
       downloadLinks[i].addEventListener('click', e => {
         const src = downloadLinks[i].getAttribute('href') || 'cannot determine'
         analytics('Audio', 'download', src)
@@ -249,7 +259,7 @@ class DemoPlayer {
     const trackList = this._trackList = []
     var startTime = 0
     this.duration = 0
-    for(let i=0; i< tracks.length; i++) {
+    for (let i = 0; i < tracks.length; i++) {
       const duration = tracks[i].getAttribute('data-duration') * 1
       const endTime = startTime + duration
       trackList.push({
@@ -262,11 +272,11 @@ class DemoPlayer {
       startTime = endTime
       this.duration += duration
 
-      tracks[i].addEventListener('click', ()=> {
+      tracks[i].addEventListener('click', () => {
         this.toggleTrack(i)
         if (!this.audio.paused && !this.audio.ended) {
           analytics('Audio Track', 'play', trackList[i].audio)
-        } 
+        }
       })
 
     }
@@ -274,23 +284,23 @@ class DemoPlayer {
     if (progressTicks) {
       progressTicks.innerHTML = renderPlayerTicks(this.duration, trackList)
       const ticks = progressTicks.querySelectorAll('.demo-player__progress-tick')
-      for(let i=0; i< ticks.length; i++) {
-        ticks[i].addEventListener('click', ()=> {
+      for (let i = 0; i < ticks.length; i++) {
+        ticks[i].addEventListener('click', () => {
           this.toggleTrack(i)
         })
-      }  
+      }
     }
   }
 }
 
-function renderPlayerTicks (duration, trackList) {
+function renderPlayerTicks(duration, trackList) {
   let remainingDuration = duration
   let remainingPct = 100
   return trackList.map((trackItem, i) => {
     const pct = remainingPct * trackItem.duration / remainingDuration
     remainingDuration -= trackItem.duration
     remainingPct -= pct
-    return `<span class="demo-player__progress-tick" style="width:${pct}%;" title="Jump to read ${i+1}"></span>`
+    return `<span class="demo-player__progress-tick" style="width:${pct}%;" title="Jump to read ${i + 1}"></span>`
   }).join('')
 }
 
@@ -300,10 +310,10 @@ function keydownHandler(trackList) {
     let trackIX = trackList
       .map(trackItem => trackItem.track)
       .indexOf(document.activeElement)
-    switch(event.key || event.code) {
+    switch (event.key || event.code) {
       case 'Up':
       case 'ArrowUp':
-        trackIX = trackIX === -1 ? noOfTracks -1 : (trackIX - 1 + noOfTracks) % noOfTracks
+        trackIX = trackIX === -1 ? noOfTracks - 1 : (trackIX - 1 + noOfTracks) % noOfTracks
         break
 
       case 'Down':
@@ -353,7 +363,7 @@ function linkToRawSampleHandler() {
 function scrollTo(el) {
   const rect = el.getBoundingClientRect()
   const scrollY = window.scrollY || window.pageYOffset
-  const elTop = (rect.y || rect.top) + scrollY 
+  const elTop = (rect.y || rect.top) + scrollY
   el.focus && el.focus()
   window.scrollTo(0, elTop - 60)
 }
@@ -371,7 +381,37 @@ function scrollTo(el) {
 function analytics(category, action, label) {
   if ('function' === typeof ga) {
     // ga('send', 'event', category, action, label)
-    gtag('event', action, {event_category: category, event_label: label})
+    gtag('event', action, { event_category: category, event_label: label })
+  }
+}
+
+function sizeTrackLists(players) {
+  if (typeof window.requestAnimationFrame === 'function') {
+    let resizing = false;
+    const run = () => {
+      players.forEach(player => {
+        const trackList = player.querySelector('.demo-player__tracks')
+        if (trackList) {
+          trackList.style.height = `${trackList.scrollHeight}px`
+        }
+      });
+      if (resizing) {
+        window.requestAnimationFrame(run)
+      }
+    }
+    run()
+    let timeout
+    window.addEventListener('resize', () => {
+      resizing = true;
+      if (timeout) {
+        window.clearTimeout(timeout)
+      }
+      timeout = window.setTimeout(() => {
+        resizing = false
+        timeout = 0
+      }, 100);
+      run()
+    })
   }
 }
 
@@ -381,12 +421,13 @@ if (typeof Audio === 'function') {
     for (let i = 0; i < players.length; i++) {
       new DemoPlayer(players[i])
     }
-    linkToRawSampleHandler();
-    window.setTimeout(() => { 
+    sizeTrackLists(players)
+    linkToRawSampleHandler()
+    window.setTimeout(() => {
       demoPlayers
         .filter(player => !player._playerEl.classList.contains('raw-sample-demo-player'))
         .map(player => player.audio)
-        .forEach(prepAudio) 
+        .forEach(prepAudio)
     }, 1000)
     // logEvents(demoPlayers[0].audio)
   })

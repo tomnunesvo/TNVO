@@ -215,6 +215,15 @@ $demo-player-prefix: 'demo-player';
     margin: 0;
     padding: 0 0 0 ($demo-action-button-width - .25rem);
     counter-reset: demotrack;
+    overflow: hidden;
+    transition-property: height, visibility;
+    transition-duration: .4s;
+    transition-timing-function: ease;
+
+    &:not(.expanded) {
+      height: 0 !important;
+      visibility: hidden;
+    }
 
     > li {
       display: flex;
