@@ -1,6 +1,7 @@
 {
   "demos": [
     {
+      "id": "commercial-demo",
       "name": "Commercial",
       "audio": "Tom_Nunes_Commercial",
       "tracks": [
@@ -38,7 +39,51 @@
       ]
     },
     {
-      "name": "Narration",
+      "id": "elearning-demo",
+      "name": "eLearning",
+      "audio": "Tom_Nunes_eLearning",
+      "tracks": [
+        {
+          "name": "Employee onboarding: friendly, inclusive",
+          "duration": 19.837,
+          "audio": "Tom_Nunes_eLearning-1",
+          "topic": "Choban1"
+        },{
+          "name": "Diversity training: business, role play",
+          "duration": 11.029,
+          "audio": "Tom_Nunes_eLearning-2",
+          "topic": "Diversity Training"
+        },{
+          "name": "Government Agency training: factual, straightforward",
+          "duration": 16.024,
+          "audio": "Tom_Nunes_eLearning-3",
+          "topic": "Decision Making"
+        },{
+          "name": "Medical: knowledgeable, approachable",
+          "duration": 15.116,
+          "audio": "Tom_Nunes_eLearning-4",
+          "topic": "Idiopathic intracranial hypertension (IIH)"
+        },{
+          "name": "Cloud computing: experienced, casual",
+          "duration": 17.340,
+          "audio": "Tom_Nunes_eLearning-5",
+          "topic": "AWS"
+        },{
+          "name": "Fishing: youth-oriented, easy-going",
+          "duration": 18.619,
+          "audio": "Tom_Nunes_eLearning-6",
+          "topic": "Fishing"
+        },{
+          "name": "Machine Learning: energetic, funny",
+          "duration": 16.892,
+          "audio": "Tom_Nunes_eLearning-7",
+          "topic": "Machine Learning"
+        }
+      ]
+    },
+    {
+      "id": "narration-demo",
+      "name": "Other Narration",
       "audio": "Tom_Nunes_Narration",
       "tracks": [
         {
@@ -65,6 +110,19 @@
           "duration": 19.954,
           "audio": "Tom_Nunes_Narration-4",
           "topic": "Interior Painting"
+        }
+      ]
+    },
+    {
+      "id": "raw-studio-sample",
+      "name": "Raw Studio Sample",
+      "audio": "Tom_Nunes_Raw-Studio-Sample.wav",
+      "tracks": [
+        {
+          "name": "Raw Studio Sample",
+          "duration": 38.029,
+          "audio": "Tom_Nunes_Raw-Studio-Sample.wav",
+          "topic": "Raw Studio"
         }
       ]
     }

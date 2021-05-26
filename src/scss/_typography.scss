@@ -25,6 +25,10 @@ html {
   font-display: swap;
   line-height: 1.5;
   scroll-behavior: smooth;
+
+  @media screen and (min-width: px2em(1120)) {
+    font-size: 125%; //20px
+  }
 }
 body {
   color: $base-font-color;

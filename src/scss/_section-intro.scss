@@ -36,12 +36,17 @@
     color: inherit;
     font-family: $heading-font-family;
     font-size: calc(1.25em + (0.75 * (100vw - 20em) / 28));
+    // font-size: px2rem(44);
     line-height: 1.25;
     margin: 0;
     max-width: $max-container-width-rem;
     position: relative;
     text-shadow: -1px -1px 0.2em rgba(#000, 1);
     z-index: $z-index-hero;
+
+    @media screen and (min-width: px2em(1260)) {
+      font-size: px2rem(48);
+    }
   }
 
   img {

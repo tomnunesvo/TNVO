@@ -75,7 +75,7 @@ $demo-player-prefix: 'demo-player';
     display: block;
     color: $white;
     font-size: 1.5rem;
-    transform: translateY(-2.25rem);
+    transform: translateY(-1rem);
     position: absolute;
     top: 0;
     left: -.5rem;
@@ -217,8 +217,8 @@ $demo-player-prefix: 'demo-player';
     counter-reset: demotrack;
     overflow: hidden;
     transition-property: height, visibility;
-    transition-duration: .4s;
-    transition-timing-function: ease;
+    transition-duration: .6s;
+    transition-timing-function: ease-in-out;
 
     &:not(.expanded) {
       height: 0 !important;
@@ -228,6 +228,15 @@ $demo-player-prefix: 'demo-player';
     > li {
       display: flex;
       align-items: stretch;
+      margin-top: 0;
+    }
+
+    > li:only-child {
+      display: none; //if one track, do not show (raw audio sample)
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
     }
   }
 
@@ -244,7 +253,6 @@ $demo-player-prefix: 'demo-player';
     font-weight: 300;
     letter-spacing: 0.04em;
     line-height: $demo-action-button-height;
-    margin-top: px2rem(-1);
     border: none;
     position: relative;
     padding-left: $track-number-width;

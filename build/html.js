@@ -50,7 +50,8 @@ const data = {
   legalName: 'Tom Nunes Voiceover',
   cacheBuster,
   demos,
-  rawSample: {
+  rawSample: false,
+  __rawSample: { // included in main demo now
     file: "Tom_Nunes_Raw-Studio-Sample.wav",
     label: "Raw Studio Sample",
     duration: 38

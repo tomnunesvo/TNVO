@@ -25,22 +25,31 @@
         <span class="section-demos__logo">
           <img src="assets/images/tnvo-coffee-logo.png" role="presentation">
         </span>
-        <h2 class="section-demos__heading">Demos</h2>
+        <h2 class="sr-only">Demos</h2>
       </div>
       <div class="section-demos__demo-board-content">
-        <% demos.forEach(demo => {%>
+        <% demos.forEach(demo => {
+          const sources = [];
+          if (/.wav$/.test(demo.audio)) {
+            sources.push({file: demo.audio, type: "audio/wav"});
+          } else {
+            sources.push({file: demo.audio + ".mp3", type: "audio/mpeg"});
+            sources.push({file: demo.audio + ".ogg", type: "audio/ogg"});
+          }
+          %>
         <div class="demo-player">
           <h3 class="demo-player__heading"><%= demo.name %></h3>
           <audio controls hidden preload="none">
-            <source src="audio/<%- demo.audio %>.mp3" type="audio/mpeg" />
-            <source src="audio/<%- demo.audio %>.ogg" type="audio/ogg" />
+            <% sources.forEach(source => { %>
+            <source src="audio/<%- source.file %>" type="<%- source.type %>" />
+            <% }) %>
             <p>
               You're browser does not support audio. <a href="audio/<%- demo.audio %>.mp3" download>Download this
                 demo</a>.
             </p>
           </audio>
           <div class="demo-player__wrapper">
-            <button class="demo-player__play-pause" aria-label="play" title="play">
+            <button id="<%- demo.id %>" class="demo-player__play-pause" aria-label="play" title="play">
               <span class="demo-player__play-pause-icon" role="presentation">
                 <svg class="circle-icon" focusable="false"><use xlink:href="#icon-circle"></use></svg>
                 <svg class="loading-icon" focusable="false"><use xlink:href="#icon-loading"></use></svg>
@@ -54,7 +63,7 @@
               aria-valuemax="<%- totalDuration %>">
               <div class="demo-player__progressbar"></div>
             </div>
-            <a href="audio/<%- demo.audio %>.mp3" class="demo-player__download" download aria-label="download demo"
+            <a href="audio/<%- sources[0].file %>" class="demo-player__download" download aria-label="download demo"
               title="download demo">
               <svg class="download-icon" focusable="false"><use xlink:href="#icon-download"></use></svg>
             </a>
