@@ -2,8 +2,8 @@
   background-color: $brown-dark2; //$midnight-blue;
   color: white;
   height: px2rem(400px);
-  max-height: 100vw * 3 / 4;
-  min-height: 100vw * 1 / 2;
+  max-height: 75vw;
+  min-height: 35vw;
 
   &__content {
     display: flex;
@@ -36,16 +36,22 @@
     color: inherit;
     font-family: $heading-font-family;
     font-size: calc(1.25em + (0.75 * (100vw - 20em) / 28));
-    // font-size: px2rem(44);
     line-height: 1.25;
     margin: 0;
-    max-width: $max-container-width-rem;
-    position: relative;
+    max-width: none;
+    position: absolute;
+    left:0;
+    right: 0;
+    bottom: 2rem;
     text-shadow: -1px -1px 0.2em rgba(#000, 1);
     z-index: $z-index-hero;
 
-    @media screen and (min-width: px2em(1260)) {
-      font-size: px2rem(48);
+    @media screen and (min-width: $sm) {
+      bottom: 3rem;
+    }
+
+    @media screen and (min-width: $lg) {
+      bottom: 4rem;
     }
   }
 
@@ -57,16 +63,9 @@
     min-height: 22vw;
   }
 
-  @media (min-width: px2em(515)) {
-    // when tagline goes to 2 lines
-    &__tagline {
-      margin-bottom: 3rem;
-    }
-  }
-
   &__hero-image {
     background-size: cover;
-    background-position: 50% 50%;
+    background-position: 50% 45%;
     position: absolute;
     top: 0;
     left: 0;

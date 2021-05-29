@@ -365,7 +365,7 @@ function scrollTo(el) {
   const scrollY = window.scrollY || window.pageYOffset
   const elTop = (rect.y || rect.top) + scrollY
   el.focus && el.focus()
-  window.scrollTo(0, elTop - 300)
+  window.scrollTo(0, elTop - 60)
 }
 
 // function logEvents(audio) {
