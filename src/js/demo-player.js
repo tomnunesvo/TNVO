@@ -337,29 +337,22 @@ function prepAudio(audio) {
   audio.load()
 }
 
-function linkToRawSampleHandler() {
-  const rawSampleId = 'raw-studio-sample'
-  const rawSampleHash = '#rawsample'
-  const link = document.querySelector(`a[href="${rawSampleHash}"]`)
-  const rawSample = document.getElementById(rawSampleId)
-  function goToSampleIf(e = {}) {
-    if (rawSample === document.activeElement) {
-      return;
-    }
-    if (rawSampleHash === window.location.hash || e.type === 'click') {
-      scrollTo(rawSample)
-      const action = e.type === 'click' ? 'click link' : 'direct link'
-      analytics('Audio Track', action, 'Raw audio sample')
+function linkToDemosHandler() {
+  function goToDemo(e) {
+    const hash = window.location.hash
+    if (hash) {
+      const el = document.querySelector(`button${hash}.demo-player__play-pause`)
+      if (el) {
+        scrollTo(el)
+        const action = e ? 'click link' : 'direct link'
+        analytics('Audio Track', action, 'Raw audio sample')  
+      }
     }
   }
-  if (rawSample) {
-    window.addEventListener('hashchange', goToSampleIf)
-    goToSampleIf()
-    if (link) {
-      link.addEventListener('click', goToSampleIf)
-    }
-  }
+  window.addEventListener('hashchange', goToDemo)
+  goToDemo()
 }
+
 function scrollTo(el) {
   const rect = el.getBoundingClientRect()
   const scrollY = window.scrollY || window.pageYOffset
@@ -422,7 +415,7 @@ if (typeof Audio === 'function') {
       new DemoPlayer(players[i])
     }
     sizeTrackLists(players)
-    linkToRawSampleHandler()
+    linkToDemosHandler()
     window.setTimeout(() => {
       demoPlayers
         .filter(player => !player._playerEl.classList.contains('raw-sample-demo-player'))
