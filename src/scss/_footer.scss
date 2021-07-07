@@ -42,11 +42,32 @@
   }
   
   &__contact {
-    > * + *:before {
-      content: '\2022';
-      margin: 0 .4em 0 .5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+    > * + * {
+      margin-top: .25rem;
     }
   }
+
+  &__social {
+    a {
+      display: inline-block;
+    }
+
+    a + a {
+      margin-left: .25rem;
+    }
+
+    svg {
+      fill: currentColor;
+      width: 1.5em;
+      height: 1.5em;
+      vertical-align: middle;
+    }
+  }
+
 }
 
 
@@ -74,6 +95,20 @@
     }
   }
 
+  @media (min-width: px2em(480)) {
+    .tnvo-footer__contact {
+      display: inline;
+      > * + * {
+        margin-top: 0;
+      }
+        > * + *:before {
+        content: '\2022';
+        margin: 0 .4em 0 .5em;
+      }
+    }
+  
+  }
+
   @media (min-width: $md) {
     .tnvo-footer {
       font-size: px2rem(16);
@@ -93,6 +128,7 @@
 
       &__contact {
         margin-left: auto;
+        font-size: inherit;
       }
     }
   }

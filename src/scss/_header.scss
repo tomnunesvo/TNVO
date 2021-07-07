@@ -102,6 +102,23 @@ $header-bgcolor: mix(black, $charcoal);
     }
   }
 
+  &__social {
+    a {
+      display: inline-block;
+    }
+
+    a + a {
+      margin-left: .25rem;
+    }
+
+    svg {
+      fill: currentColor;
+      width: 1.4em;
+      height: 1.4em;
+      vertical-align: middle;
+    }
+  }
+
   @media (min-width: $sm) {
     &__menu {
       font-size: px2rem(16);
