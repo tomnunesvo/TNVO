@@ -345,7 +345,7 @@ function linkToDemosHandler() {
       if (el) {
         scrollTo(el)
         const action = e ? 'click link' : 'direct link'
-        analytics('Audio Track', action, 'Raw audio sample')  
+        analytics('Audio Track', action, hash)  
       }
     }
   }
